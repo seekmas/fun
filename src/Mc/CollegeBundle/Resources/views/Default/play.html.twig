@@ -1,0 +1,16 @@
+<p>{{entry.subject}}</p>
+
+<link href="//vjs.zencdn.net/4.4/video-js.css" rel="stylesheet">
+<script src="//vjs.zencdn.net/4.4/video.js"></script>
+
+
+<script>
+  videojs.options.flash.swf = "{{ asset( 'bundles/video-js/video-js.swf' ) }}"
+</script>
+
+<video id="example_video_1" class="video-js vjs-default-skin"
+  controls preload="auto" width="auto" height="300"
+  poster="http://video-js.zencoder.com/oceans-clip.png"
+  data-setup='{"example_option":true}'>
+ <source src="{{ entry.playPath}}{{ entry.playFile }}" type='video/mp4' />
+</video>

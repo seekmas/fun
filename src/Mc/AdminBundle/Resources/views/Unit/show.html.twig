@@ -1,0 +1,58 @@
+{% extends '::bootstrap3.html.twig' %}
+
+{% block body -%}
+    <h1>Unit</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td>{{ entity.subject }}</td>
+            </tr>
+            <tr>
+                <th>Outline</th>
+                <td>{{ entity.outline }}</td>
+            </tr>
+            <tr>
+                <th>Ppt</th>
+                <td>{{ entity.ppt }}</td>
+            </tr>
+            <tr>
+                <th>Playpath</th>
+                <td>{{ entity.playPath }}</td>
+            </tr>
+            <tr>
+                <th>Playfile</th>
+                <td>{{ entity.playFile }}</td>
+            </tr>
+            <tr>
+                <th>Programid</th>
+                <td>{{ entity.programId }}</td>
+            </tr>
+            <tr>
+                <th>Createddate</th>
+                <td>{{ entity.createdDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="nav nav-pills">
+        <li>
+            <a href="{{ path('admin_unit') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('admin_unit_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+    </ul>
+
+    <p>{{ form(delete_form) }}</p>
+
+{% endblock %}

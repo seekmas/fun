@@ -1,0 +1,40 @@
+{% extends "::frame.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset( 'bundles/bootstrap3/dist/css/bootstrap.css' ) }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset( 'bundles/mc/css/timeline.css') }}" />
+    <link rel="stylesheet" href="{{ asset( 'bundles/mc/css/bootstrap_pack.css') }}" />
+    <style>
+        body{background: url( "{{asset('bundles/mc/img/background.png')}}")}
+    </style> 
+{% endblock %}
+
+{% block head_javascripts %}
+	<script charset="utf-8" src="{{ asset( 'bundles/bootstrap3/dist/js/jquery-1.9.1.js') }}"></script>
+	<script charset="utf-8" src="{{ asset( 'bundles/bootstrap3/dist/js/bootstrap.min.js') }}"></script>
+	<script charset="utf-8" src="{{ asset( 'bundles/mc/js/timeline.js') }}"></script>
+{% endblock %}
+
+{% block base %}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                    	{{ render( controller('McModuleBundle:Dashboard:show') ) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    {% block body %}{% endblock %}
+                    
+                    {% block fos_user_content %}{% endblock fos_user_content %}
+
+                  </div>
+                </div>
+            </div>
+
+        </div></div>
+{% endblock %}

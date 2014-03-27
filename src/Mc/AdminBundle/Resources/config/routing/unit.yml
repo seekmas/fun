@@ -1,0 +1,30 @@
+admin_unit:
+    pattern: /
+    defaults: { _controller: "McAdminBundle:Unit:index" }
+    
+admin_unit_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "McAdminBundle:Unit:show" }
+
+admin_unit_new:
+    pattern:  /new
+    defaults: { _controller: "McAdminBundle:Unit:new" }
+
+admin_unit_create:
+    pattern:  /create
+    defaults: { _controller: "McAdminBundle:Unit:create" }
+    requirements: { _method: post }
+
+admin_unit_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "McAdminBundle:Unit:edit" }
+
+admin_unit_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "McAdminBundle:Unit:update" }
+    requirements: { _method: post|put }
+
+admin_unit_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "McAdminBundle:Unit:delete" }
+    requirements: { _method: post|delete }

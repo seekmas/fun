@@ -1,0 +1,79 @@
+{% extends "::bootstrap3.html.twig" %}
+
+{% block left %}
+	<h3>课程大纲</h3>
+	<hr/>
+
+	<ul class="nav nav-pills nav-stacked">
+		
+		<li class="active"><a href="{{ url('mc_college_program' , { 'id' : current.id } ) }}">
+			<i class="fa fa-play-circle-o"></i>  
+			{{current.subject}}
+			<span class="badge pull-right">{{current.id}}</span>
+			</a>
+			<ul class="nav-small" style="padding-left:0px;margin-left:0px;">
+				<li>课程内容</li>
+				{% for key , course in courses %}
+					{% if id == course.id %}
+					<li>
+						<a href="{{ url('mc_college_learn' , {'id':course.id}) }}">
+							<i class="fa fa-play"></i>
+							{{key+1}}. {{course.subject}}
+						</a>
+					</li>
+					{% else %}
+					<li>
+						<a href="{{ url('mc_college_learn' , {'id':course.id}) }}">{{key+1}}. {{course.subject}}</a>
+					</li>
+					{% endif %}
+				
+				{% endfor %}
+			</ul>
+		</li>
+	</ul>
+	<hr/>
+	<h4>其他课程</h4>
+	<ul class="nav nav-pills nav-stacked">
+
+		{% for program in programs %}
+
+			{% if program.id == current.id %}
+
+
+
+			{% else %}
+			<li><a href="{{ url('mc_college_program' , { 'id' : program.id } ) }}">
+				<i class="fa fa-play-circle-o"></i>  
+				{{program.subject}}
+				<span class="badge pull-right">{{program.id}}</span>
+				</a>
+			</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+		
+	
+			{% if id %}
+
+				{{ render(controller('McCollegeBundle:Default:play', {'id': id })) }}
+
+			{% else %}
+				
+				什么都没有
+
+			{% endif %}
+
+		<hr/>
+		<div class="col-md-8">
+			FOSCommentBundle
+		</div>	
+		<div class="col-md-4">
+			分享到 SinaBundle
+		</div>
+
+
+{% endblock %}

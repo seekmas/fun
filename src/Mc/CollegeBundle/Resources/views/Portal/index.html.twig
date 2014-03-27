@@ -1,0 +1,28 @@
+{% extends "::bootstrap3.html.twig" %}
+
+{% block title %}精益创业云学院{% endblock %}
+
+{% block left %}
+		
+	<h4>所有课程</h4>
+	<hr/>
+
+	<ul class="nav nav-pills nav-stacked">
+		{% for program in programs %}
+		<li><a href="{{ url('mc_college_program' , { 'id' : program.id } ) }}">
+			<i class="fa fa-play-circle-o"></i>  
+			{{program.subject}}
+			<span class="badge pull-right">{{program.id}}</span>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}
+
+{% block body %}
+<h1>进行中的学习目标</h1>
+	
+	
+
+{% endblock %}

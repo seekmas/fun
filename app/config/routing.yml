@@ -1,0 +1,32 @@
+mc_module:
+    resource: "@McModuleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+mc_admin:
+    resource: "@McAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+mc_college:
+    resource: "@McCollegeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+#fos user routing
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

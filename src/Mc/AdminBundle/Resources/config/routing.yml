@@ -1,0 +1,7 @@
+McAdminBundle_admin_program:
+    resource: "@McAdminBundle/Resources/config/routing/program.yml"
+    prefix:   /program
+    
+McAdminBundle_admin_unit:
+    resource: "@McAdminBundle/Resources/config/routing/unit.yml"
+    prefix:   /unit

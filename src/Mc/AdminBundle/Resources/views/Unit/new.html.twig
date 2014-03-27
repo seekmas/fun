@@ -1,0 +1,30 @@
+{% extends '::bootstrap3.html.twig' %}
+
+{% block body -%}
+    <h1>创建课程页面</h1>
+
+
+    {{ form_start( form) }}
+
+    	{% for input in form %}
+
+    		<div class="control-group">
+
+    			<label>{{ form_label(input) }}</label>
+    			<div class="controls">
+    				{{form_widget( input)}}
+    			</div>
+    		</div>
+
+    	{% endfor %}
+
+    {{ form_end( form)  }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_unit') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

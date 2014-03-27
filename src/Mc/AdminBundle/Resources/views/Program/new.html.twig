@@ -1,0 +1,30 @@
+{% extends '::bootstrap3.html.twig' %}
+
+{% block body -%}
+    <h1>Program creation</h1>
+
+    {{ form_start(form) }}
+
+    	{% for entry in form %}
+
+    		<div class="control-group">
+
+    			<label>{{form_label( entry )}}</label>
+
+    			<div class="controls">
+    				{{form_widget(entry)}}
+    			</div>
+    		</div>
+
+    	{% endfor %}
+
+    {{ form_end(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a class="btn btn-primary" href="{{ path('admin_program') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

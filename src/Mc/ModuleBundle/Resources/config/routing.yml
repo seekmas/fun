@@ -1,0 +1,3 @@
+dashboard_show:
+    pattern: /dashboard_show
+    defaults: { _controller: McModuleBundle:Dashboard:show }

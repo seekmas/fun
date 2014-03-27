@@ -1,0 +1,30 @@
+admin_program:
+    pattern:  /
+    defaults: { _controller: "McAdminBundle:Program:index" }
+
+admin_program_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "McAdminBundle:Program:show" }
+
+admin_program_new:
+    pattern:  /new
+    defaults: { _controller: "McAdminBundle:Program:new" }
+
+admin_program_create:
+    pattern:  /create
+    defaults: { _controller: "McAdminBundle:Program:create" }
+    requirements: { _method: post }
+
+admin_program_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "McAdminBundle:Program:edit" }
+
+admin_program_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "McAdminBundle:Program:update" }
+    requirements: { _method: post|put }
+
+admin_program_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "McAdminBundle:Program:delete" }
+    requirements: { _method: post|delete }
