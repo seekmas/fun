@@ -18,9 +18,10 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="McCollegeBundle">Mc\CollegeBundle\McCollegeBundle</parameter>
       <parameter key="McAdminBundle">Mc\AdminBundle\McAdminBundle</parameter>
+      <parameter key="McModuleBundle">Mc\ModuleBundle\McModuleBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="BmatznerFontAwesomeBundle">Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle</parameter>
-      <parameter key="McModuleBundle">Mc\ModuleBundle\McModuleBundle</parameter>
+      <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -37,7 +38,7 @@
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
     <parameter key="mailer_password">null</parameter>
-    <parameter key="locale">en</parameter>
+    <parameter key="locale">zh_CN</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
     <parameter key="controller_name_converter.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser</parameter>
@@ -96,7 +97,7 @@
     <parameter key="kernel.http_method_override">true</parameter>
     <parameter key="kernel.trusted_hosts" type="collection"/>
     <parameter key="kernel.trusted_proxies" type="collection"/>
-    <parameter key="kernel.default_locale">en</parameter>
+    <parameter key="kernel.default_locale">zh_CN</parameter>
     <parameter key="session.class">Symfony\Component\HttpFoundation\Session\Session</parameter>
     <parameter key="session.flashbag.class">Symfony\Component\HttpFoundation\Session\Flash\FlashBag</parameter>
     <parameter key="session.attribute_bag.class">Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag</parameter>
@@ -512,6 +513,7 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
+    <parameter key="router.helper.class">Mc\McService\RouterService\RouterHelper</parameter>
     <parameter key="fos_user.backend_type_orm">true</parameter>
     <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\EventListener\LastLoginListener</parameter>
     <parameter key="fos_user.security.login_manager.class">FOS\UserBundle\Security\LoginManager</parameter>
@@ -529,9 +531,9 @@
       <parameter>Default</parameter>
     </parameter>
     <parameter key="fos_user.registration.confirmation.from_email" type="collection">
-      <parameter key="webmaster@example.com">webmaster</parameter>
+      <parameter key="mot.wu@36lean.com">精创学院</parameter>
     </parameter>
-    <parameter key="fos_user.registration.confirmation.enabled">false</parameter>
+    <parameter key="fos_user.registration.confirmation.enabled">true</parameter>
     <parameter key="fos_user.registration.form.type">fos_user_registration</parameter>
     <parameter key="fos_user.registration.form.name">fos_user_registration_form</parameter>
     <parameter key="fos_user.registration.form.validation_groups" type="collection">
@@ -545,7 +547,7 @@
       <parameter>Default</parameter>
     </parameter>
     <parameter key="fos_user.resetting.email.from_email" type="collection">
-      <parameter key="webmaster@example.com">webmaster</parameter>
+      <parameter key="mot.wu@36lean.com">精创学院</parameter>
     </parameter>
     <parameter key="fos_user.resetting.token_ttl">86400</parameter>
     <parameter key="fos_user.resetting.form.type">fos_user_resetting</parameter>
@@ -554,6 +556,13 @@
       <parameter>ResetPassword</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
+    <parameter key="knp_paginator.templating.helper.pagination.class">Knp\Bundle\PaginatorBundle\Templating\PaginationHelper</parameter>
+    <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
+    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:sliding.html.twig</parameter>
+    <parameter key="knp_paginator.template.filtration">KnpPaginatorBundle:Pagination:filtration.html.twig</parameter>
+    <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
+    <parameter key="knp_paginator.page_range">30</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -628,7 +637,7 @@
     </service>
     <service id="locale_listener" class="Symfony\Component\HttpKernel\EventListener\LocaleListener">
       <tag name="kernel.event_subscriber"/>
-      <argument>en</argument>
+      <argument>zh_CN</argument>
       <argument type="service" id="router" on-invalid="ignore"/>
       <argument type="service" id="request_stack"/>
     </service>
@@ -787,7 +796,7 @@
       </argument>
       <call method="setFallbackLocales">
         <argument type="collection">
-          <argument>en</argument>
+          <argument>zh_CN</argument>
         </argument>
       </call>
       <call method="addResource">
@@ -1488,6 +1497,12 @@
       </call>
       <call method="addResource">
         <argument>yml</argument>
+        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/translations/messages.zh_CN.yml</argument>
+        <argument>zh_CN</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ar.yml</argument>
         <argument>ar</argument>
         <argument>FOSUserBundle</argument>
@@ -1906,12 +1921,6 @@
         <argument>zh_CN</argument>
         <argument>validators</argument>
       </call>
-      <call method="addResource">
-        <argument>xlf</argument>
-        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/translations/messages.fr.xlf</argument>
-        <argument>fr</argument>
-        <argument>messages</argument>
-      </call>
     </service>
     <service id="translation.loader.php" class="Symfony\Component\Translation\Loader\PhpFileLoader">
       <tag name="translation.loader" alias="php"/>
@@ -2099,6 +2108,46 @@
       <argument type="service" id="debug.stopwatch"/>
       <argument type="service" id="monolog.logger.event" on-invalid="null"/>
       <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.paginate</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.paginate</argument>
+          <argument>pagination</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sortable</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.filtration</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sliding_pagination</argument>
+          <argument>pagination</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
         <argument>kernel.controller</argument>
         <argument type="collection">
           <argument>data_collector.router</argument>
@@ -2110,6 +2159,14 @@
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument>assetic.request_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sliding_pagination</argument>
           <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
@@ -2205,6 +2262,10 @@
       <call method="addSubscriberService">
         <argument>fos_user.listener.flash</argument>
         <argument>FOS\UserBundle\EventListener\FlashListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>fos_user.listener.email_confirmation</argument>
+        <argument>FOS\UserBundle\EventListener\EmailConfirmationListener</argument>
       </call>
       <call method="addSubscriberService">
         <argument>fos_user.listener.resetting</argument>
@@ -2843,7 +2904,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5333d91f7648a</argument>
+            <argument>53351e4c9b429</argument>
           </service>
         </argument>
         <argument type="service">
@@ -3163,7 +3224,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5333d91f7648a</argument>
+            <argument>53351e4c9b429</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3451,6 +3512,9 @@
             <tag name="twig.extension"/>
           </service>
         </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="knp_paginator.twig.extension.pagination"/>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
@@ -3822,6 +3886,10 @@
       <argument type="service" id="security.authentication.trust_resolver" on-invalid="null"/>
       <argument type="service" id="security.role_hierarchy" on-invalid="null"/>
     </service>
+    <service id="mc_user.registration.form.type" class="Mc\AdminBundle\Form\Type\RegistrationFormType">
+      <argument>Mc\AdminBundle\Entity\User</argument>
+    </service>
+    <service id="router.helper" class="Mc\McService\RouterService\RouterHelper"/>
     <service id="fos_user.security.interactive_login_listener" class="FOS\UserBundle\EventListener\LastLoginListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="fos_user.user_manager"/>
@@ -3882,6 +3950,13 @@
       <tag name="form.type" alias="fos_user_registration"/>
       <argument>Mc\AdminBundle\Entity\User</argument>
     </service>
+    <service id="fos_user.listener.email_confirmation" class="FOS\UserBundle\EventListener\EmailConfirmationListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="fos_user.mailer"/>
+      <argument type="service" id="fos_user.util.token_generator"/>
+      <argument type="service" id="router"/>
+      <argument type="service" id="session"/>
+    </service>
     <service id="fos_user.change_password.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>
       <argument>fos_user_change_password_form</argument>
@@ -3912,6 +3987,51 @@
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="router"/>
       <argument>86400</argument>
+    </service>
+    <service id="knp_paginator" class="Knp\Component\Pager\Paginator">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <call method="setDefaultPaginatorOptions">
+        <argument type="collection">
+          <argument key="pageParameterName">page</argument>
+          <argument key="sortFieldParameterName">sort</argument>
+          <argument key="sortDirectionParameterName">direction</argument>
+          <argument key="filterFieldParameterName">filterField</argument>
+          <argument key="filterValueParameterName">filterValue</argument>
+          <argument key="distinct">true</argument>
+        </argument>
+      </call>
+    </service>
+    <service id="knp_paginator.subscriber.paginate" class="Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sortable" class="Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.filtration" class="Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sliding_pagination" class="Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+      <argument type="collection">
+        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:sliding.html.twig</argument>
+        <argument key="defaultSortableTemplate">KnpPaginatorBundle:Pagination:sortable_link.html.twig</argument>
+        <argument key="defaultFiltrationTemplate">KnpPaginatorBundle:Pagination:filtration.html.twig</argument>
+        <argument key="defaultPageRange">30</argument>
+      </argument>
+    </service>
+    <service id="knp_paginator.helper.processor" class="Knp\Bundle\PaginatorBundle\Helper\Processor">
+      <argument type="service" id="templating.helper.router"/>
+      <argument type="service" id="translator.default"/>
+    </service>
+    <service id="knp_paginator.templating.helper.pagination" class="Knp\Bundle\PaginatorBundle\Templating\PaginationHelper">
+      <tag name="templating.helper" alias="knp_pagination"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
+      <argument type="service" id="debug.templating.engine.php"/>
+    </service>
+    <service id="knp_paginator.twig.extension.pagination" class="Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
     <service id="web_profiler.controller.profiler" class="Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController">
       <argument type="service" id="router" on-invalid="null"/>
@@ -4131,6 +4251,7 @@
           <argument key="logout_url">templating.helper.logout_url</argument>
           <argument key="security">templating.helper.security</argument>
           <argument key="assetic">assetic.helper.dynamic</argument>
+          <argument key="knp_pagination">knp_paginator.templating.helper.pagination</argument>
         </argument>
       </call>
     </service>
@@ -4225,6 +4346,10 @@
         <argument>McAdmin</argument>
       </call>
       <call method="addPath">
+        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/views</argument>
+        <argument>McModule</argument>
+      </call>
+      <call method="addPath">
         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/app/Resources/FOSUserBundle/views</argument>
         <argument>FOSUser</argument>
       </call>
@@ -4233,8 +4358,8 @@
         <argument>FOSUser</argument>
       </call>
       <call method="addPath">
-        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/views</argument>
-        <argument>McModule</argument>
+        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>
@@ -4331,10 +4456,10 @@
         <argument key="resetting.template">FOSUserBundle:Resetting:email.txt.twig</argument>
         <argument key="from_email" type="collection">
           <argument key="confirmation" type="collection">
-            <argument key="webmaster@example.com">webmaster</argument>
+            <argument key="mot.wu@36lean.com">精创学院</argument>
           </argument>
           <argument key="resetting" type="collection">
-            <argument key="webmaster@example.com">webmaster</argument>
+            <argument key="mot.wu@36lean.com">精创学院</argument>
           </argument>
         </argument>
       </argument>

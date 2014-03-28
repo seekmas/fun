@@ -100,6 +100,7 @@ class appProdDebugProjectContainer extends Container
             'fos_user.change_password.form.factory' => 'getFosUser_ChangePassword_Form_FactoryService',
             'fos_user.change_password.form.type' => 'getFosUser_ChangePassword_Form_TypeService',
             'fos_user.listener.authentication' => 'getFosUser_Listener_AuthenticationService',
+            'fos_user.listener.email_confirmation' => 'getFosUser_Listener_EmailConfirmationService',
             'fos_user.listener.flash' => 'getFosUser_Listener_FlashService',
             'fos_user.listener.resetting' => 'getFosUser_Listener_ResettingService',
             'fos_user.mailer' => 'getFosUser_MailerService',
@@ -124,8 +125,17 @@ class appProdDebugProjectContainer extends Container
             'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
             'http_kernel' => 'getHttpKernelService',
             'kernel' => 'getKernelService',
+            'knp_paginator' => 'getKnpPaginatorService',
+            'knp_paginator.helper.processor' => 'getKnpPaginator_Helper_ProcessorService',
+            'knp_paginator.subscriber.filtration' => 'getKnpPaginator_Subscriber_FiltrationService',
+            'knp_paginator.subscriber.paginate' => 'getKnpPaginator_Subscriber_PaginateService',
+            'knp_paginator.subscriber.sliding_pagination' => 'getKnpPaginator_Subscriber_SlidingPaginationService',
+            'knp_paginator.subscriber.sortable' => 'getKnpPaginator_Subscriber_SortableService',
+            'knp_paginator.templating.helper.pagination' => 'getKnpPaginator_Templating_Helper_PaginationService',
+            'knp_paginator.twig.extension.pagination' => 'getKnpPaginator_Twig_Extension_PaginationService',
             'locale_listener' => 'getLocaleListenerService',
             'logger' => 'getLoggerService',
+            'mc_user.registration.form.type' => 'getMcUser_Registration_Form_TypeService',
             'monolog.handler.console' => 'getMonolog_Handler_ConsoleService',
             'monolog.handler.main' => 'getMonolog_Handler_MainService',
             'monolog.handler.nested' => 'getMonolog_Handler_NestedService',
@@ -142,6 +152,7 @@ class appProdDebugProjectContainer extends Container
             'request_stack' => 'getRequestStackService',
             'response_listener' => 'getResponseListenerService',
             'router' => 'getRouterService',
+            'router.helper' => 'getRouter_HelperService',
             'router.request_context' => 'getRouter_RequestContextService',
             'router_listener' => 'getRouterListenerService',
             'routing.loader' => 'getRouting_LoaderService',
@@ -402,6 +413,12 @@ class appProdDebugProjectContainer extends Container
     {
         $this->services['debug.event_dispatcher'] = $instance = new \Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher(new \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher($this), $this->get('debug.stopwatch'), $this->get('monolog.logger.event', ContainerInterface::NULL_ON_INVALID_REFERENCE));
 
+        $instance->addListenerService('knp_pager.before', array(0 => 'knp_paginator.subscriber.paginate', 1 => 'before'), 0);
+        $instance->addListenerService('knp_pager.pagination', array(0 => 'knp_paginator.subscriber.paginate', 1 => 'pagination'), 0);
+        $instance->addListenerService('knp_pager.before', array(0 => 'knp_paginator.subscriber.sortable', 1 => 'before'), 1);
+        $instance->addListenerService('knp_pager.before', array(0 => 'knp_paginator.subscriber.filtration', 1 => 'before'), 1);
+        $instance->addListenerService('knp_pager.pagination', array(0 => 'knp_paginator.subscriber.sliding_pagination', 1 => 'pagination'), 1);
+        $instance->addListenerService('kernel.request', array(0 => 'knp_paginator.subscriber.sliding_pagination', 1 => 'onKernelRequest'), 0);
         $instance->addSubscriberService('response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener');
         $instance->addSubscriberService('streamed_response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\StreamedResponseListener');
         $instance->addSubscriberService('locale_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\LocaleListener');
@@ -423,6 +440,7 @@ class appProdDebugProjectContainer extends Container
         $instance->addSubscriberService('fos_user.security.interactive_login_listener', 'FOS\\UserBundle\\EventListener\\LastLoginListener');
         $instance->addSubscriberService('fos_user.listener.authentication', 'FOS\\UserBundle\\EventListener\\AuthenticationListener');
         $instance->addSubscriberService('fos_user.listener.flash', 'FOS\\UserBundle\\EventListener\\FlashListener');
+        $instance->addSubscriberService('fos_user.listener.email_confirmation', 'FOS\\UserBundle\\EventListener\\EmailConfirmationListener');
         $instance->addSubscriberService('fos_user.listener.resetting', 'FOS\\UserBundle\\EventListener\\ResettingListener');
 
         return $instance;
@@ -453,7 +471,7 @@ class appProdDebugProjectContainer extends Container
     {
         $this->services['debug.templating.engine.php'] = $instance = new \Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine($this->get('templating.name_parser'), $this, $this->get('templating.loader'), $this->get('debug.stopwatch'), $this->get('templating.globals'));
 
-        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'stopwatch' => 'templating.helper.stopwatch', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.static'));
+        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'stopwatch' => 'templating.helper.stopwatch', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.static', 'knp_pagination' => 'knp_paginator.templating.helper.pagination'));
 
         return $instance;
     }
@@ -1210,6 +1228,19 @@ class appProdDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'fos_user.listener.email_confirmation' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return FOS\UserBundle\EventListener\EmailConfirmationListener A FOS\UserBundle\EventListener\EmailConfirmationListener instance.
+     */
+    protected function getFosUser_Listener_EmailConfirmationService()
+    {
+        return $this->services['fos_user.listener.email_confirmation'] = new \FOS\UserBundle\EventListener\EmailConfirmationListener($this->get('fos_user.mailer'), $this->get('fos_user.util.token_generator'), $this->get('router'), $this->get('session'));
+    }
+
+    /**
      * Gets the 'fos_user.listener.flash' service.
      *
      * This service is shared.
@@ -1245,7 +1276,7 @@ class appProdDebugProjectContainer extends Container
      */
     protected function getFosUser_MailerService()
     {
-        return $this->services['fos_user.mailer'] = new \FOS\UserBundle\Mailer\Mailer($this->get('swiftmailer.mailer.default'), $this->get('router'), $this->get('templating'), array('confirmation.template' => 'FOSUserBundle:Registration:email.txt.twig', 'resetting.template' => 'FOSUserBundle:Resetting:email.txt.twig', 'from_email' => array('confirmation' => array('webmaster@example.com' => 'webmaster'), 'resetting' => array('webmaster@example.com' => 'webmaster'))));
+        return $this->services['fos_user.mailer'] = new \FOS\UserBundle\Mailer\Mailer($this->get('swiftmailer.mailer.default'), $this->get('router'), $this->get('templating'), array('confirmation.template' => 'FOSUserBundle:Registration:email.txt.twig', 'resetting.template' => 'FOSUserBundle:Resetting:email.txt.twig', 'from_email' => array('confirmation' => array('mot.wu@36lean.com' => '精创学院'), 'resetting' => array('mot.wu@36lean.com' => '精创学院'))));
     }
 
     /**
@@ -1529,6 +1560,114 @@ class appProdDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'knp_paginator' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Component\Pager\Paginator A Knp\Component\Pager\Paginator instance.
+     */
+    protected function getKnpPaginatorService()
+    {
+        $this->services['knp_paginator'] = $instance = new \Knp\Component\Pager\Paginator($this->get('debug.event_dispatcher'));
+
+        $instance->setDefaultPaginatorOptions(array('pageParameterName' => 'page', 'sortFieldParameterName' => 'sort', 'sortDirectionParameterName' => 'direction', 'filterFieldParameterName' => 'filterField', 'filterValueParameterName' => 'filterValue', 'distinct' => true));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'knp_paginator.helper.processor' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Bundle\PaginatorBundle\Helper\Processor A Knp\Bundle\PaginatorBundle\Helper\Processor instance.
+     */
+    protected function getKnpPaginator_Helper_ProcessorService()
+    {
+        return $this->services['knp_paginator.helper.processor'] = new \Knp\Bundle\PaginatorBundle\Helper\Processor($this->get('templating.helper.router'), $this->get('translator.default'));
+    }
+
+    /**
+     * Gets the 'knp_paginator.subscriber.filtration' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber A Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber instance.
+     */
+    protected function getKnpPaginator_Subscriber_FiltrationService()
+    {
+        return $this->services['knp_paginator.subscriber.filtration'] = new \Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber();
+    }
+
+    /**
+     * Gets the 'knp_paginator.subscriber.paginate' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber A Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber instance.
+     */
+    protected function getKnpPaginator_Subscriber_PaginateService()
+    {
+        return $this->services['knp_paginator.subscriber.paginate'] = new \Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber();
+    }
+
+    /**
+     * Gets the 'knp_paginator.subscriber.sliding_pagination' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber A Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber instance.
+     */
+    protected function getKnpPaginator_Subscriber_SlidingPaginationService()
+    {
+        return $this->services['knp_paginator.subscriber.sliding_pagination'] = new \Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber(array('defaultPaginationTemplate' => 'KnpPaginatorBundle:Pagination:sliding.html.twig', 'defaultSortableTemplate' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig', 'defaultFiltrationTemplate' => 'KnpPaginatorBundle:Pagination:filtration.html.twig', 'defaultPageRange' => 30));
+    }
+
+    /**
+     * Gets the 'knp_paginator.subscriber.sortable' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber A Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber instance.
+     */
+    protected function getKnpPaginator_Subscriber_SortableService()
+    {
+        return $this->services['knp_paginator.subscriber.sortable'] = new \Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber();
+    }
+
+    /**
+     * Gets the 'knp_paginator.templating.helper.pagination' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Bundle\PaginatorBundle\Templating\PaginationHelper A Knp\Bundle\PaginatorBundle\Templating\PaginationHelper instance.
+     */
+    protected function getKnpPaginator_Templating_Helper_PaginationService()
+    {
+        return $this->services['knp_paginator.templating.helper.pagination'] = new \Knp\Bundle\PaginatorBundle\Templating\PaginationHelper($this->get('knp_paginator.helper.processor'), $this->get('debug.templating.engine.php'));
+    }
+
+    /**
+     * Gets the 'knp_paginator.twig.extension.pagination' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension A Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension instance.
+     */
+    protected function getKnpPaginator_Twig_Extension_PaginationService()
+    {
+        return $this->services['knp_paginator.twig.extension.pagination'] = new \Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension($this->get('knp_paginator.helper.processor'));
+    }
+
+    /**
      * Gets the 'locale_listener' service.
      *
      * This service is shared.
@@ -1538,7 +1677,7 @@ class appProdDebugProjectContainer extends Container
      */
     protected function getLocaleListenerService()
     {
-        return $this->services['locale_listener'] = new \Symfony\Component\HttpKernel\EventListener\LocaleListener('en', $this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('request_stack'));
+        return $this->services['locale_listener'] = new \Symfony\Component\HttpKernel\EventListener\LocaleListener('zh_CN', $this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('request_stack'));
     }
 
     /**
@@ -1557,6 +1696,19 @@ class appProdDebugProjectContainer extends Container
         $instance->pushHandler($this->get('monolog.handler.main'));
 
         return $instance;
+    }
+
+    /**
+     * Gets the 'mc_user.registration.form.type' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Mc\AdminBundle\Form\Type\RegistrationFormType A Mc\AdminBundle\Form\Type\RegistrationFormType instance.
+     */
+    protected function getMcUser_Registration_Form_TypeService()
+    {
+        return $this->services['mc_user.registration.form.type'] = new \Mc\AdminBundle\Form\Type\RegistrationFormType('Mc\\AdminBundle\\Entity\\User');
     }
 
     /**
@@ -1813,6 +1965,19 @@ class appProdDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'router.helper' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Mc\McService\RouterService\RouterHelper A Mc\McService\RouterService\RouterHelper instance.
+     */
+    protected function getRouter_HelperService()
+    {
+        return $this->services['router.helper'] = new \Mc\McService\RouterService\RouterHelper();
+    }
+
+    /**
      * Gets the 'router_listener' service.
      *
      * This service is shared.
@@ -1951,7 +2116,7 @@ class appProdDebugProjectContainer extends Container
         $g = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($d, array('always_use_default_target_path' => false, 'default_target_path' => '/', 'login_path' => '/login', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $g->setProviderKey('main');
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_provider.username'), 1 => $this->get('security.user.provider.concrete.in_memory')), 'main', $b, $c), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $this->get('security.authentication.manager'), $this->get('security.authentication.session_strategy'), $d, 'main', $g, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '5333df28b5d4b', $b), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false), NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_provider.username'), 1 => $this->get('security.user.provider.concrete.in_memory')), 'main', $b, $c), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $this->get('security.authentication.manager'), $this->get('security.authentication.session_strategy'), $d, 'main', $g, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '53351f27a4b54', $b), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false), NULL, NULL, $b));
     }
 
     /**
@@ -2945,7 +3110,7 @@ class appProdDebugProjectContainer extends Container
     {
         $this->services['translator.default'] = $instance = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, new \Symfony\Component\Translation\MessageSelector(), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini'), 'translation.loader.json' => array(0 => 'json')), array('cache_dir' => '/Applications/XAMPP/xamppfiles/htdocs/startup/app/cache/prod/translations', 'debug' => true));
 
-        $instance->setFallbackLocales(array(0 => 'en'));
+        $instance->setFallbackLocales(array(0 => 'zh_CN'));
         $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.af.xlf', 'af', 'validators');
         $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ar.xlf', 'ar', 'validators');
         $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.bg.xlf', 'bg', 'validators');
@@ -3062,6 +3227,7 @@ class appProdDebugProjectContainer extends Container
         $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ua.xlf', 'ua', 'security');
         $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
         $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
+        $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/translations/messages.zh_CN.yml', 'zh_CN', 'messages');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ar.yml', 'ar', 'FOSUserBundle');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.bg.yml', 'bg', 'FOSUserBundle');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ca.yml', 'ca', 'FOSUserBundle');
@@ -3132,7 +3298,6 @@ class appProdDebugProjectContainer extends Container
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.uk.yml', 'uk', 'validators');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.vi.yml', 'vi', 'validators');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.zh_CN.yml', 'zh_CN', 'validators');
-        $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
 
         return $instance;
     }
@@ -3164,6 +3329,7 @@ class appProdDebugProjectContainer extends Container
         $instance->addExtension(new \Twig_Extension_Debug());
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), false, array(), array(), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
+        $instance->addExtension($this->get('knp_paginator.twig.extension.pagination'));
         $instance->addGlobal('app', $this->get('templating.globals'));
 
         return $instance;
@@ -3214,9 +3380,10 @@ class appProdDebugProjectContainer extends Container
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/views', 'McCollege');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/views', 'McAdmin');
+        $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/views', 'McModule');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/app/Resources/FOSUserBundle/views', 'FOSUser');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/views', 'FOSUser');
-        $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/views', 'McModule');
+        $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/views', 'KnpPaginator');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/app/Resources/views');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
 
@@ -3423,7 +3590,7 @@ class appProdDebugProjectContainer extends Container
         $b = $this->get('security.user_checker');
         $c = $this->get('security.encoder_factory');
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5333df28b5d4b'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'secured_area', $c, true)), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('53351f27a4b54'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'secured_area', $c, true)), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -3709,9 +3876,10 @@ class appProdDebugProjectContainer extends Container
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'McCollegeBundle' => 'Mc\\CollegeBundle\\McCollegeBundle',
                 'McAdminBundle' => 'Mc\\AdminBundle\\McAdminBundle',
+                'McModuleBundle' => 'Mc\\ModuleBundle\\McModuleBundle',
                 'FOSUserBundle' => 'FOS\\UserBundle\\FOSUserBundle',
                 'BmatznerFontAwesomeBundle' => 'Bmatzner\\FontAwesomeBundle\\BmatznerFontAwesomeBundle',
-                'McModuleBundle' => 'Mc\\ModuleBundle\\McModuleBundle',
+                'KnpPaginatorBundle' => 'Knp\\Bundle\\PaginatorBundle\\KnpPaginatorBundle',
             ),
             'kernel.charset' => 'UTF-8',
             'kernel.container_class' => 'appProdDebugProjectContainer',
@@ -3725,7 +3893,7 @@ class appProdDebugProjectContainer extends Container
             'mailer_host' => '127.0.0.1',
             'mailer_user' => NULL,
             'mailer_password' => NULL,
-            'locale' => 'en',
+            'locale' => 'zh_CN',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
@@ -3788,7 +3956,7 @@ class appProdDebugProjectContainer extends Container
             'kernel.trusted_proxies' => array(
 
             ),
-            'kernel.default_locale' => 'en',
+            'kernel.default_locale' => 'zh_CN',
             'session.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Session',
             'session.flashbag.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Flash\\FlashBag',
             'session.attribute_bag.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Attribute\\AttributeBag',
@@ -4200,6 +4368,7 @@ class appProdDebugProjectContainer extends Container
             'sensio_framework_extra.converter.doctrine.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
             'sensio_framework_extra.converter.datetime.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DateTimeParamConverter',
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
+            'router.helper.class' => 'Mc\\McService\\RouterService\\RouterHelper',
             'fos_user.backend_type_orm' => true,
             'fos_user.security.interactive_login_listener.class' => 'FOS\\UserBundle\\EventListener\\LastLoginListener',
             'fos_user.security.login_manager.class' => 'FOS\\UserBundle\\Security\\LoginManager',
@@ -4217,9 +4386,9 @@ class appProdDebugProjectContainer extends Container
                 1 => 'Default',
             ),
             'fos_user.registration.confirmation.from_email' => array(
-                'webmaster@example.com' => 'webmaster',
+                'mot.wu@36lean.com' => '精创学院',
             ),
-            'fos_user.registration.confirmation.enabled' => false,
+            'fos_user.registration.confirmation.enabled' => true,
             'fos_user.registration.form.type' => 'fos_user_registration',
             'fos_user.registration.form.name' => 'fos_user_registration_form',
             'fos_user.registration.form.validation_groups' => array(
@@ -4233,7 +4402,7 @@ class appProdDebugProjectContainer extends Container
                 1 => 'Default',
             ),
             'fos_user.resetting.email.from_email' => array(
-                'webmaster@example.com' => 'webmaster',
+                'mot.wu@36lean.com' => '精创学院',
             ),
             'fos_user.resetting.token_ttl' => 86400,
             'fos_user.resetting.form.type' => 'fos_user_resetting',
@@ -4242,6 +4411,13 @@ class appProdDebugProjectContainer extends Container
                 0 => 'ResetPassword',
                 1 => 'Default',
             ),
+            'knp_paginator.class' => 'Knp\\Component\\Pager\\Paginator',
+            'knp_paginator.templating.helper.pagination.class' => 'Knp\\Bundle\\PaginatorBundle\\Templating\\PaginationHelper',
+            'knp_paginator.helper.processor.class' => 'Knp\\Bundle\\PaginatorBundle\\Helper\\Processor',
+            'knp_paginator.template.pagination' => 'KnpPaginatorBundle:Pagination:sliding.html.twig',
+            'knp_paginator.template.filtration' => 'KnpPaginatorBundle:Pagination:filtration.html.twig',
+            'knp_paginator.template.sortable' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig',
+            'knp_paginator.page_range' => 30,
             'console.command.ids' => array(
 
             ),

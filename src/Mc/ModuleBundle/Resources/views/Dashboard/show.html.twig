@@ -1,5 +1,13 @@
 {% block body %}
 
-	user navigation
+	
+
+<ul class="nav nav-pills nav-stacked">
+	{% for key , n in navigator %}
+		<li><a href="{{ url(n) }}">{{key}}</a></li>
+	{% endfor %}
+</ul>
+
+
 
 {% endblock %}

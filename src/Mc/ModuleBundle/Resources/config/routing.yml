@@ -1,3 +1,6 @@
 dashboard_show:
     pattern: /dashboard_show
     defaults: { _controller: McModuleBundle:Dashboard:show }
+navigation_show:
+    pattern: /module_show
+    defaults: { _controller: McModuleBundle:Navigation:show }

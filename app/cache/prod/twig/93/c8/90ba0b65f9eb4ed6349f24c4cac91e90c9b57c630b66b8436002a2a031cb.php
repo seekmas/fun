@@ -7,7 +7,7 @@ class __TwigTemplate_93c890ba0b65f9eb4ed6349f24c4cac91e90c9b57c630b66b8436002a2a
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("::base2.html.twig");
+        $this->parent = $this->env->loadTemplate("::base_pure.html.twig");
 
         $this->blocks = array(
             'stylesheets' => array($this, 'block_stylesheets'),
@@ -20,7 +20,7 @@ class __TwigTemplate_93c890ba0b65f9eb4ed6349f24c4cac91e90c9b57c630b66b8436002a2a
 
     protected function doGetParent(array $context)
     {
-        return "::base2.html.twig";
+        return "::base_pure.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -91,11 +91,7 @@ class __TwigTemplate_93c890ba0b65f9eb4ed6349f24c4cac91e90c9b57c630b66b8436002a2a
                     ";
         } else {
             // line 26
-            echo "                        <a href=\"";
-            echo $this->env->getExtension('routing')->getPath("fos_user_security_login");
-            echo "\">";
-            echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("layout.login", array(), "FOSUserBundle"), "html", null, true);
-            echo "</a>
+            echo "                        
                     ";
         }
         // line 28
@@ -175,6 +171,6 @@ class __TwigTemplate_93c890ba0b65f9eb4ed6349f24c4cac91e90c9b57c630b66b8436002a2a
 
     public function getDebugInfo()
     {
-        return array (  162 => 46,  158 => 40,  155 => 39,  150 => 47,  148 => 46,  141 => 41,  139 => 39,  135 => 37,  129 => 36,  120 => 33,  115 => 32,  110 => 31,  106 => 30,  102 => 28,  94 => 26,  88 => 23,  84 => 22,  79 => 21,  77 => 20,  71 => 16,  68 => 15,  62 => 12,  57 => 11,  54 => 10,  48 => 7,  44 => 6,  40 => 5,  35 => 4,  32 => 3,);
+        return array (  158 => 46,  154 => 40,  151 => 39,  146 => 47,  144 => 46,  137 => 41,  135 => 39,  131 => 37,  125 => 36,  116 => 33,  111 => 32,  106 => 31,  102 => 30,  98 => 28,  94 => 26,  88 => 23,  84 => 22,  79 => 21,  77 => 20,  71 => 16,  68 => 15,  62 => 12,  57 => 11,  54 => 10,  48 => 7,  44 => 6,  40 => 5,  35 => 4,  32 => 3,);
     }
 }

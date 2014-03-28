@@ -18,12 +18,13 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Mc\CollegeBundle\McCollegeBundle(),
             new Mc\AdminBundle\McAdminBundle(),
+            new Mc\ModuleBundle\McModuleBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             //new FOS\RestBundle\FOSRestBundle(),
             //new FOS\CommentBundle\FOSCommentBundle(),
             //new JMS\SerializerBundle\JMSSerializerBundle($this),
-            new Mc\ModuleBundle\McModuleBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

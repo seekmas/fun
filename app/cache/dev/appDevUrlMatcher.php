@@ -135,6 +135,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // dashboard_show
+        if ($pathinfo === '/dashboard_show') {
+            return array (  '_controller' => 'Mc\\ModuleBundle\\Controller\\DashboardController::showAction',  '_route' => 'dashboard_show',);
+        }
+
         if (0 === strpos($pathinfo, '/admin')) {
             if (0 === strpos($pathinfo, '/admin/program')) {
                 // admin_program
@@ -204,6 +209,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     }
 
                     return array (  '_controller' => 'Mc\\AdminBundle\\Controller\\UnitController::indexAction',  '_route' => 'admin_unit',);
+                }
+
+                // admin_unit_pagination
+                if (preg_match('#^/admin/unit/(?P<program>\\d+)/(?P<page>\\d+)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_unit_pagination')), array (  '_controller' => 'Mc\\AdminBundle\\Controller\\UnitController::indexAction',));
                 }
 
                 // admin_unit_show

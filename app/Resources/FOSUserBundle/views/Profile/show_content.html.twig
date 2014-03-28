@@ -1,8 +1,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}
-    {{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <dl class="dl-horizontal">
+    	<dt> {{ 'profile.show.username'|trans }}:</dt>
+    	<dd> {{ user.username }}</dd>
+    	<dt> {{ 'profile.show.email'|trans }}:</dt>
+    	<dd> {{ user.email }}</dd>
+    </dl>
 </div>
 
 {% for type, messages in app.session.flashbag.all() %}

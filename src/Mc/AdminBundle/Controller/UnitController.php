@@ -19,11 +19,26 @@ class UnitController extends Controller
      * Lists all Unit entities.
      *
      */
-    public function indexAction( $id = 1)
+    public function indexAction( $program = 0  , $page = 1 )
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('McAdminBundle:Unit')->findAll();
+        $query = $em->getRepository('McAdminBundle:Unit')->createQueryBuilder('u');
+        $query->select('u');
+
+        if( $program != 0 )
+        {
+            $query->where('u.programId = :programId');
+            $query->setParameter('programId' , $program);
+        }
+
+
+        $paginator  = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page') ? $this->get('request')->query->get('page') : $page ,
+            20/*limit per page*/
+        );
 
         $programs = $em->getRepository('McAdminBundle:Program')->findAll();
 

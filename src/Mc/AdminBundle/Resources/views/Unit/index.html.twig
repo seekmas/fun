@@ -4,28 +4,23 @@
 <ul>
     {% for p in programs %}
     <li>
-        <a href="{{ url('admin_unit' , { 'id' : p.id } ) }}">{{ p.subject }}</a>
+        <a href="{{ url('admin_unit_pagination' , { 'program' : p.id , 'page' : 1 } ) }}">{{ p.subject }}</a>
         <small>{{ p.summary }}</small>
     </li>
     {% endfor %}
 </ul>
 {% endblock %}
 
-
 {% block body %}
     <h1>Unit list</h1>
-
+    {{knp_pagination_render( entities)}}
     <table class="table table-bordered table-condensed">
         <thead>
         <tr>
             <th>Id</th>
             <th>Subject</th>
             <th>Outline</th>
-            <th>Ppt</th>
-            <th>Playpath</th>
             <th>Playfile</th>
-            <th>Programid</th>
-            <th>Createddate</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -35,11 +30,7 @@
                 <td><a href="{{ path('admin_unit_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.subject }}</td>
                 <td>{{ entity.outline }}</td>
-                <td>{{ entity.ppt }}</td>
-                <td>{{ entity.playPath }}</td>
                 <td>{{ entity.playFile }}</td>
-                <td>{{ entity.programId }}</td>
-                <td>{% if entity.createdDate %}{{ entity.createdDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                 <ul class="nav nav-pills nav-stacked">
 
@@ -53,6 +44,8 @@
             </tbody>
         {% endfor %}
     </table>
+
+
 
         <ul>
         <li>

@@ -145,7 +145,7 @@ class __TwigTemplate_afe7a2cda7c5a14692a80ec4d8dbc4ee5adff2a1c1a0168bafdb6b37339
 
 \t<div class=\"col-md-12\">
     <div class=\"page-header text-center\">
-        <h1 id=\"timeline\">course Line</h1>
+        <h1 id=\"timeline\">本课程学习计划</h1>
     </div>
     <ul class=\"timeline\">
     \t";
@@ -155,7 +155,7 @@ class __TwigTemplate_afe7a2cda7c5a14692a80ec4d8dbc4ee5adff2a1c1a0168bafdb6b37339
         echo "    \t";
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["courses"]) ? $context["courses"] : $this->getContext($context, "courses")));
-        foreach ($context['_seq'] as $context["_key"] => $context["course"]) {
+        foreach ($context['_seq'] as $context["key"] => $context["course"]) {
             // line 62
             echo "        <li ";
             if (((isset($context["flag"]) ? $context["flag"] : $this->getContext($context, "flag")) % 2)) {
@@ -163,27 +163,39 @@ class __TwigTemplate_afe7a2cda7c5a14692a80ec4d8dbc4ee5adff2a1c1a0168bafdb6b37339
             }
             echo ">
           <div class=\"timeline-badge primary\">
-
+          <a><i class=\"glyphicon glyphicon-record\" rel=\"tooltip\" title=\"here we go\" id=\"\"></i></a>
           </div>
           <div class=\"timeline-panel\">
             <div class=\"timeline-heading\">
               \t
             </div>
             <div class=\"timeline-body\">
-              <p class=\"lead\">";
+              <p class=\"lead\">第";
             // line 71
+            echo twig_escape_filter($this->env, ((isset($context["key"]) ? $context["key"] : $this->getContext($context, "key")) + 1), "html", null, true);
+            echo "步</p>
+              <p class=\"lead\">";
+            // line 72
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["course"]) ? $context["course"] : $this->getContext($context, "course")), "subject"), "html", null, true);
             echo "</p>
               <p>";
-            // line 72
+            // line 73
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["course"]) ? $context["course"] : $this->getContext($context, "course")), "outline"), "html", null, true);
             echo "</p>
             </div>
+
+            <ul>
+            \t<li>关键字: </li>
+            \t<li>难度: </li>
+            \t<li>时长: </li>
+            \t<li>语言: </li>
+            \t<li>观看数: </li>
+            </ul>
             
             <div class=\"timeline-footer\">
                 <a><i class=\"glyphicon glyphicon-thumbs-up\"></i> 分享</a>
                 <a class=\"btn btn-primary btn-sm pull-right\" href=\"";
-            // line 77
+            // line 86
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("mc_college_learn", array("id" => $this->getAttribute((isset($context["course"]) ? $context["course"] : $this->getContext($context, "course")), "id"))), "html", null, true);
             echo "\">学习</a>
             </div>
@@ -191,15 +203,15 @@ class __TwigTemplate_afe7a2cda7c5a14692a80ec4d8dbc4ee5adff2a1c1a0168bafdb6b37339
         </li>
 
         ";
-            // line 82
+            // line 91
             $context["flag"] = ((isset($context["flag"]) ? $context["flag"] : $this->getContext($context, "flag")) + 1);
-            // line 83
+            // line 92
             echo "        ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['course'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['key'], $context['course'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 84
+        // line 93
         echo "        
         <li class=\"clearfix\" style=\"float: none;\"></li>
     </ul>
@@ -220,6 +232,6 @@ class __TwigTemplate_afe7a2cda7c5a14692a80ec4d8dbc4ee5adff2a1c1a0168bafdb6b37339
 
     public function getDebugInfo()
     {
-        return array (  203 => 84,  197 => 83,  195 => 82,  187 => 77,  179 => 72,  175 => 71,  160 => 62,  155 => 61,  153 => 60,  139 => 51,  136 => 50,  133 => 49,  127 => 44,  121 => 43,  114 => 39,  110 => 38,  104 => 36,  101 => 35,  99 => 34,  96 => 33,  92 => 32,  83 => 25,  70 => 23,  66 => 22,  56 => 15,  52 => 14,  47 => 12,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  215 => 93,  209 => 92,  207 => 91,  199 => 86,  183 => 73,  179 => 72,  175 => 71,  160 => 62,  155 => 61,  153 => 60,  139 => 51,  136 => 50,  133 => 49,  127 => 44,  121 => 43,  114 => 39,  110 => 38,  104 => 36,  101 => 35,  99 => 34,  96 => 33,  92 => 32,  83 => 25,  70 => 23,  66 => 22,  56 => 15,  52 => 14,  47 => 12,  39 => 6,  36 => 5,  30 => 3,);
     }
 }

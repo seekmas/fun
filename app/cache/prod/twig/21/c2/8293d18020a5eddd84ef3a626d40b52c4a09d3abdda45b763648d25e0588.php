@@ -24,7 +24,29 @@ class __TwigTemplate_21c28293d18020a5eddd84ef3a626d40b52c4a09d3abdda45b763648d25
     {
         // line 2
         echo "
-\tuser navigation
+\t
+
+<ul class=\"nav nav-pills nav-stacked\">
+\t";
+        // line 6
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["navigator"]) ? $context["navigator"] : $this->getContext($context, "navigator")));
+        foreach ($context['_seq'] as $context["key"] => $context["n"]) {
+            // line 7
+            echo "\t\t<li><a href=\"";
+            echo $this->env->getExtension('routing')->getUrl((isset($context["n"]) ? $context["n"] : $this->getContext($context, "n")));
+            echo "\">";
+            echo twig_escape_filter($this->env, (isset($context["key"]) ? $context["key"] : $this->getContext($context, "key")), "html", null, true);
+            echo "</a></li>
+\t";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['key'], $context['n'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 9
+        echo "</ul>
+
+
 
 ";
     }
@@ -36,6 +58,6 @@ class __TwigTemplate_21c28293d18020a5eddd84ef3a626d40b52c4a09d3abdda45b763648d25
 
     public function getDebugInfo()
     {
-        return array (  26 => 2,  20 => 1,);
+        return array (  47 => 9,  36 => 7,  32 => 6,  26 => 2,  20 => 1,);
     }
 }

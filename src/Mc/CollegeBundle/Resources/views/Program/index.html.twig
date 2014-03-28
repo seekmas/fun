@@ -54,23 +54,32 @@
 
 	<div class="col-md-12">
     <div class="page-header text-center">
-        <h1 id="timeline">course Line</h1>
+        <h1 id="timeline">本课程学习计划</h1>
     </div>
     <ul class="timeline">
     	{% set flag = 0 %}
-    	{% for course in courses %}
+    	{% for key,course in courses %}
         <li {% if flag % 2 %}class="timeline-inverted"{% endif %}>
           <div class="timeline-badge primary">
-
+          <a><i class="glyphicon glyphicon-record" rel="tooltip" title="here we go" id=""></i></a>
           </div>
           <div class="timeline-panel">
             <div class="timeline-heading">
               	
             </div>
             <div class="timeline-body">
+              <p class="lead">第{{key+1}}步</p>
               <p class="lead">{{course.subject}}</p>
               <p>{{course.outline}}</p>
             </div>
+
+            <ul>
+            	<li>关键字: </li>
+            	<li>难度: </li>
+            	<li>时长: </li>
+            	<li>语言: </li>
+            	<li>观看数: </li>
+            </ul>
             
             <div class="timeline-footer">
                 <a><i class="glyphicon glyphicon-thumbs-up"></i> 分享</a>

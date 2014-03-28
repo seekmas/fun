@@ -1,7 +1,14 @@
 admin_unit:
     pattern: /
     defaults: { _controller: "McAdminBundle:Unit:index" }
-    
+
+admin_unit_pagination:
+    pattern: /{program}/{page}
+    defaults: { _controller: "McAdminBundle:Unit:index"}
+    requirements:
+        program: \d+
+        page: \d+
+
 admin_unit_show:
     pattern:  /{id}/show
     defaults: { _controller: "McAdminBundle:Unit:show" }

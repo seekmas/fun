@@ -1,0 +1,63 @@
+<style>
+a.navbar-brand {
+  background-image: url("{{ asset( 'bundles/mc/img/logo.png')}}") ;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 280px;
+  height: 20px;
+  background-size:contain;
+  
+}
+</style>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+
+    </a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li><a href="#">新闻</a></li>
+      <li><a href="#">课程</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的课程 <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{url('mc_college_homepage')}}">学习中的课程</a></li>
+          <li><a href="#">预定的课程</a></li>
+          <li class="divider"></li>
+          <li><a href="#">历史记录</a></li>
+
+        </ul>
+      </li>
+    </ul>
+
+    <p class="navbar-text navbar-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+
+                        <a href="{{ path('fos_user_profile_show') }}">
+                            {{ 'layout.profile'|trans({}, 'FOSUserBundle') }}
+                        </a>
+
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+    </p>
+
+  </div><!-- /.navbar-collapse -->
+  </div>
+</nav>
+

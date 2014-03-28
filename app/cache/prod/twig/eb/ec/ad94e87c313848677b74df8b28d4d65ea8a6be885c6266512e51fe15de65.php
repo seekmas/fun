@@ -18,36 +18,42 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
         // line 2
         echo "
 <div class=\"fos_user_user_show\">
-    <p>";
-        // line 4
-        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("profile.show.username", array(), "FOSUserBundle"), "html", null, true);
-        echo ": ";
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "username"), "html", null, true);
-        echo "
-    ";
+    <dl class=\"dl-horizontal\">
+    \t<dt> ";
         // line 5
+        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("profile.show.username", array(), "FOSUserBundle"), "html", null, true);
+        echo ":</dt>
+    \t<dd> ";
+        // line 6
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "username"), "html", null, true);
+        echo "</dd>
+    \t<dt> ";
+        // line 7
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("profile.show.email", array(), "FOSUserBundle"), "html", null, true);
-        echo ": ";
+        echo ":</dt>
+    \t<dd> ";
+        // line 8
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "email"), "html", null, true);
-        echo "</p>
+        echo "</dd>
+    </dl>
 </div>
 
 ";
-        // line 8
+        // line 12
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "flashbag"), "all", array(), "method"));
         foreach ($context['_seq'] as $context["type"] => $context["messages"]) {
-            // line 9
+            // line 13
             echo "    ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["messages"]) ? $context["messages"] : $this->getContext($context, "messages")));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 10
+                // line 14
                 echo "        <div class=\"flash-";
                 echo twig_escape_filter($this->env, (isset($context["type"]) ? $context["type"] : $this->getContext($context, "type")), "html", null, true);
                 echo "\">
             ";
-                // line 11
+                // line 15
                 echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
                 echo "
         </div>
@@ -74,6 +80,6 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
 
     public function getDebugInfo()
     {
-        return array (  51 => 11,  46 => 10,  41 => 9,  37 => 8,  29 => 5,  23 => 4,  19 => 2,);
+        return array (  57 => 15,  52 => 14,  47 => 13,  43 => 12,  36 => 8,  32 => 7,  28 => 6,  24 => 5,  19 => 2,);
     }
 }
