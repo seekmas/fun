@@ -1,7 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<link rel="stylesheet" href="{{ asset( 'bundles/mc/css/step.css' ) }}" />
-
 <div class="" align="center">
 
 <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-signin">
@@ -12,21 +10,24 @@
 	        <button type="button" class="btn btn-primary btn-circle">1</button>
 	        <p>账户信息</p>
 	    </div>
+
 	    <div class="stepwizard-step">
-	        <button type="button" class="btn btn-default btn-circle">2</button>
-	        <p>资料完善</p>
-	    </div>
+	        <button type="button" class="btn btn-default btn-circle" disabled="disabled">2</button>
+	        <p>邮件激活</p>
+	    </div> 
+	    
 	    <div class="stepwizard-step">
 	        <button type="button" class="btn btn-default btn-circle" disabled="disabled">3</button>
-	        <p>提交审核</p>
+	        <p>开始学习</p>
 	    </div> 
+
 	</div>
 	</div>
 
 
-	 <h2 class="form-signin-heading">{{ 'register_right_now'|trans}}</h2>
+	<h2 class="form-signin-heading">{{ 'register_right_now'|trans}}</h2>
 
-	 {{ form_errors(form) }}
+	{{ form_errors(form) }}
 
 	<div class="control-group">
 		<label>{{form_label(form.username)}}</label>

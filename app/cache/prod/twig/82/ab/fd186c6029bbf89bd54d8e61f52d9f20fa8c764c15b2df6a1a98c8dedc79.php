@@ -20,10 +20,14 @@ class __TwigTemplate_82abfd186c6029bbf89bd54d8e61f52d9f20fa8c764c15b2df6a1a98c8d
 
 
 <p>我们是一个创业团队</p>
-<p>我们有过经历</p>
-<p>我们有了经验</p>
-<p>希望能帮助中国的创业团队</p>
-<p></p>";
+
+<p>我们热爱自由</p>
+
+<p>我们欢迎所有的创业团队入驻</p>
+
+<p>我们开发免费的课程</p>
+
+<p>我们分享经验</p>";
     }
 
     public function getTemplateName()
@@ -33,6 +37,6 @@ class __TwigTemplate_82abfd186c6029bbf89bd54d8e61f52d9f20fa8c764c15b2df6a1a98c8d
 
     public function getDebugInfo()
     {
-        return array (  19 => 1,  128 => 42,  122 => 40,  119 => 39,  115 => 37,  102 => 35,  98 => 34,  91 => 30,  85 => 27,  82 => 26,  80 => 25,  76 => 23,  73 => 22,  67 => 18,  55 => 12,  51 => 11,  48 => 10,  44 => 9,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  19 => 1,);
     }
 }

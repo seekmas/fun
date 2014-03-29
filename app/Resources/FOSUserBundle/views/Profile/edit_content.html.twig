@@ -1,8 +1,37 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-    {{ form_widget(form) }}
+<h3> {{ 'profile.my_profile_change'|trans }}:</h3>
+
+
+{{ form_errors(form) }}
+
+
+<form role="form" action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
+    {% for row in form %}
+    	{% if row.vars.name == 'username' %}
+
+		    <div class="form-group">
+		    	<label>{{form_label(row)}}
+		    	
+		    		{{row.vars.value}}
+		    		{{form_widget( row , { 'attr' : { 'style' : 'display:none;' }} )}}
+		    	
+		    	</label>
+		    </div>	
+    	{% else %}
+		    {% if row.vars.block_prefixes.1 != 'hidden'  %}
+		    <div class="form-group">
+		    	<label>{{form_label(row)}}</label>
+		    	<div class="controls">
+		    		{{form_widget(row , { 'attr' : { 'class' : 'form-control' }} )}}
+		    	</div>
+		    </div>
+		    {% else %}
+		    	{{form_widget( row)}}
+		    {% endif %}
+    	{% endif %}
+    {% endfor %}
     <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        <input class="btn btn-sm btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
     </div>
 </form>

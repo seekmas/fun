@@ -31,13 +31,14 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
     public function block_base($context, array $blocks = array())
     {
         // line 4
-        echo "            <div class=\"col-md-4\">
+        echo "        <div class=\"container\"><div class=\"row\">
+            <div class=\"col-md-4\">
                 <div class=\"panel panel-default\">
                     <div class=\"panel-body\">
                         ";
-        // line 7
-        $this->displayBlock('left', $context, $blocks);
         // line 8
+        $this->displayBlock('left', $context, $blocks);
+        // line 9
         echo "                    </div>
                 </div>
             </div>
@@ -46,14 +47,14 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
                 <div class=\"panel panel-default\">
                   <div class=\"panel-body\">
                     ";
-        // line 15
-        $this->displayBlock('body', $context, $blocks);
         // line 16
+        $this->displayBlock('body', $context, $blocks);
+        // line 17
         echo "                    
                     ";
-        // line 17
-        $this->displayBlock('fos_user_content', $context, $blocks);
         // line 18
+        $this->displayBlock('fos_user_content', $context, $blocks);
+        // line 19
         echo "                  </div>
                 </div>
             </div>
@@ -62,17 +63,17 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
 ";
     }
 
-    // line 7
+    // line 8
     public function block_left($context, array $blocks = array())
     {
     }
 
-    // line 15
+    // line 16
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 17
+    // line 18
     public function block_fos_user_content($context, array $blocks = array())
     {
     }
@@ -89,6 +90,6 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
 
     public function getDebugInfo()
     {
-        return array (  76 => 17,  71 => 15,  66 => 7,  57 => 18,  55 => 17,  52 => 16,  50 => 15,  41 => 8,  39 => 7,  34 => 4,  31 => 3,);
+        return array (  77 => 18,  72 => 16,  67 => 8,  58 => 19,  56 => 18,  53 => 17,  51 => 16,  42 => 9,  40 => 8,  34 => 4,  31 => 3,);
     }
 }

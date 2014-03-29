@@ -1,18 +1,31 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+
+{% for type, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+
+
 <div class="fos_user_user_show">
+
+    <h3> {{ 'profile.my_profile'|trans }}:</h3>
+
     <dl class="dl-horizontal">
     	<dt> {{ 'profile.show.username'|trans }}:</dt>
     	<dd> {{ user.username }}</dd>
     	<dt> {{ 'profile.show.email'|trans }}:</dt>
     	<dd> {{ user.email }}</dd>
+        <dt> {{ 'profile.show.name'|trans }}:</dt>
+        <dd> {{ user.name }}</dd>
+        <dt> {{ 'profile.show.job'|trans }}:</dt>
+        <dd> {{ user.job }}</dd>
+        <dt> {{ 'profile.show.qq'|trans }}:</dt>
+        <dd> {{ user.qq }}</dd>
+
     </dl>
 </div>
-
-{% for type, messages in app.session.flashbag.all() %}
-    {% for message in messages %}
-        <div class="flash-{{ type }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}

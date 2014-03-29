@@ -13,8 +13,8 @@ class __TwigTemplate_f8ab610a7d81f985549245161cb9fc30a43474919cee34826832cf41f9a
             'stylesheets' => array($this, 'block_stylesheets'),
             'head_javascripts' => array($this, 'block_head_javascripts'),
             'base' => array($this, 'block_base'),
-            'body' => array($this, 'block_body'),
             'fos_user_content' => array($this, 'block_fos_user_content'),
+            'body' => array($this, 'block_body'),
         );
     }
 
@@ -78,11 +78,12 @@ class __TwigTemplate_f8ab610a7d81f985549245161cb9fc30a43474919cee34826832cf41f9a
     public function block_base($context, array $blocks = array())
     {
         // line 20
-        echo "            <div class=\"col-md-4\">
+        echo "<div class=\"container\"><div class=\"row\">
+            <div class=\"col-md-4\">
                 <div class=\"panel panel-default\">
                     <div class=\"panel-body\">
                     \t";
-        // line 23
+        // line 24
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("McModuleBundle:Dashboard:show"));
         echo "
                     </div>
@@ -92,31 +93,32 @@ class __TwigTemplate_f8ab610a7d81f985549245161cb9fc30a43474919cee34826832cf41f9a
             <div class=\"col-md-8\">
                 <div class=\"panel panel-default\">
                   <div class=\"panel-body\">
-                    ";
-        // line 31
-        $this->displayBlock('body', $context, $blocks);
-        // line 32
-        echo "                    
+                    
                     ";
         // line 33
         $this->displayBlock('fos_user_content', $context, $blocks);
         // line 34
         echo "
+                    ";
+        // line 35
+        $this->displayBlock('body', $context, $blocks);
+        // line 36
+        echo "                    
+                    
                   </div>
                 </div>
             </div>
-
-        </div></div>
+</div></div>
 ";
-    }
-
-    // line 31
-    public function block_body($context, array $blocks = array())
-    {
     }
 
     // line 33
     public function block_fos_user_content($context, array $blocks = array())
+    {
+    }
+
+    // line 35
+    public function block_body($context, array $blocks = array())
     {
     }
 
@@ -132,6 +134,6 @@ class __TwigTemplate_f8ab610a7d81f985549245161cb9fc30a43474919cee34826832cf41f9a
 
     public function getDebugInfo()
     {
-        return array (  119 => 33,  114 => 31,  104 => 34,  102 => 33,  99 => 32,  97 => 31,  86 => 23,  81 => 20,  78 => 19,  72 => 16,  68 => 15,  63 => 14,  60 => 13,  53 => 9,  48 => 7,  44 => 6,  40 => 5,  35 => 4,  32 => 3,  31 => 4,  28 => 3,);
+        return array (  121 => 35,  116 => 33,  106 => 36,  104 => 35,  101 => 34,  99 => 33,  87 => 24,  81 => 20,  78 => 19,  72 => 16,  68 => 15,  63 => 14,  60 => 13,  53 => 9,  48 => 7,  44 => 6,  40 => 5,  35 => 4,  32 => 3,);
     }
 }

@@ -13,7 +13,7 @@ class ProgramController extends Controller
     	$this->getDoctrine()
     		 ->getRepository('McAdminBundle:Program')
     		 ->createQueryBuilder('c')
-    		 ->select('c.id,c.subject')
+    		 ->select('c')
     		 ->orderBy('c.sortId' , 'DESC')
     		 ->getQuery()
     		 ->getArrayResult();

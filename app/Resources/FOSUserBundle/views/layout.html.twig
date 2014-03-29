@@ -17,6 +17,7 @@
 {% endblock %}
 
 {% block base %}
+<div class="container"><div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -28,13 +29,14 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                   <div class="panel-body">
-                    {% block body %}{% endblock %}
                     
                     {% block fos_user_content %}{% endblock fos_user_content %}
 
+                    {% block body %}{% endblock %}
+                    
+                    
                   </div>
                 </div>
             </div>
-
-        </div></div>
+</div></div>
 {% endblock %}

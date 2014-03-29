@@ -1,7 +1,32 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "::login_layout.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+
 {% block fos_user_content %}
-    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+<div class="" align="center">
+<form class="form-signin">
+	<div class="stepwizard">
+	<div class="stepwizard-row">
+	    <div class="stepwizard-step">
+	        <button type="button" class="btn btn-default btn-circle">1</button>
+	        <p>账户信息</p>
+	    </div>
+
+	    <div class="stepwizard-step">
+	        <button type="button" class="btn btn-primary btn-circle" disabled="disabled">2</button>
+	        <p>邮件激活</p>
+	    </div>
+	    
+	    <div class="stepwizard-step">
+	        <button type="button" class="btn btn-default btn-circle" disabled="disabled">3</button>
+	        <p>开始学习</p>
+	    </div> 
+
+	</div>
+	</div>
+	
+    <div class="alert alert-success">{{ 'registration.check_email'|trans({'%email%': user.email}) }}</div>
+</form>
+</div>
 {% endblock fos_user_content %}

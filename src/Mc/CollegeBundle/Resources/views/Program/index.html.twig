@@ -1,6 +1,6 @@
 {% extends "::bootstrap3.html.twig" %}
 
-{% block title %}McCollegeBundle:Program:index{% endblock %}
+{% block title %}精创学院 - {{current.subject}}{% endblock %}
 
 {% block left %}
 	
@@ -12,7 +12,6 @@
 		<li class="active"><a href="{{ url('mc_college_program' , { 'id' : current.id } ) }}">
 			<i class="fa fa-play-circle-o"></i>  
 			{{current.subject}}
-			<span class="badge pull-right">{{current.id}}</span>
 			</a>
 		</li>
 
@@ -37,7 +36,7 @@
 		<li><a href="{{ url('mc_college_program' , { 'id' : program.id } ) }}">
 			<i class="fa fa-play-circle-o"></i>  
 			{{program.subject}}
-			<span class="badge pull-right">{{program.id}}</span>
+			<span class="badge pull-right">{{program.view}}</span>
 			</a>
 		</li>
 		{% endif %}

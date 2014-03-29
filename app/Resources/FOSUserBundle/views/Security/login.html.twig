@@ -4,11 +4,13 @@
 
 {% block fos_user_content %}
 
-{% if error %}
-    <div>{{ error|trans }}</div>
-{% endif %}
 
-<div class="" align="center">
+
+<div align="center" style="margin-top:20px;">
+
+{% if error %}
+    <div class="alert alert-danger">{{ error|trans }}</div>
+{% endif %}
 
 <form class="form-signin" role="form" action="{{ path("fos_user_security_check") }}" method="post">
 	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />

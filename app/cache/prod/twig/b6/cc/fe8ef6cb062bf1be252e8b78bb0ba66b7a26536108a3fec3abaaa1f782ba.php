@@ -38,7 +38,7 @@ class __TwigTemplate_b6ccfe8ef6cb062bf1be252e8b78bb0ba66b7a26536108a3fec3abaaa1f
         <input type=\"text\" id=\"username\" name=\"username\" required=\"required\" />
     </div>
     <div>
-        <input type=\"submit\" value=\"";
+        <input class=\"btn btn-primary\" type=\"submit\" value=\"";
         // line 12
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("resetting.request.submit", array(), "FOSUserBundle"), "html", null, true);
         echo "\" />
@@ -59,6 +59,6 @@ class __TwigTemplate_b6ccfe8ef6cb062bf1be252e8b78bb0ba66b7a26536108a3fec3abaaa1f
 
     public function getDebugInfo()
     {
-        return array (  43 => 12,  35 => 8,  29 => 6,  27 => 5,  22 => 3,  19 => 2,  31 => 4,  28 => 3,);
+        return array (  43 => 12,  35 => 8,  29 => 6,  27 => 5,  22 => 3,  19 => 2,);
     }
 }
