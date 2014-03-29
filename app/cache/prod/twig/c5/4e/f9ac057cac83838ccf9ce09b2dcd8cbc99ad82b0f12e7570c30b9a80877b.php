@@ -54,8 +54,7 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
         // line 17
         $this->displayBlock('fos_user_content', $context, $blocks);
         // line 18
-        echo "
-                  </div>
+        echo "                  </div>
                 </div>
             </div>
 
@@ -90,6 +89,6 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
 
     public function getDebugInfo()
     {
-        return array (  77 => 17,  72 => 15,  67 => 7,  57 => 18,  55 => 17,  52 => 16,  50 => 15,  41 => 8,  39 => 7,  34 => 4,  31 => 3,);
+        return array (  76 => 17,  71 => 15,  66 => 7,  57 => 18,  55 => 17,  52 => 16,  50 => 15,  41 => 8,  39 => 7,  34 => 4,  31 => 3,);
     }
 }

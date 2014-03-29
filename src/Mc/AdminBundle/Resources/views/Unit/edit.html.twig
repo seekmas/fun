@@ -1,17 +1,26 @@
 {% extends '::bootstrap3.html.twig' %}
 
+{% block left %}
+
+    <ul>
+        {% for key , u in entities %}
+        <li><a href="{{ url('admin_unit_edit' , { id : u.id })}}">{{key+1}} . {{u.subject}}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
+
 {% block body -%}
     <h1>Unit edit</h1>
 
     {{ form_start(edit_form) }}
 
-    	{% for entry in edit_form %}
-    	<div class="control-group">
-    		<label>{{ form_label(entry) }}</label>
-    		<div class="controls">{{ form_widget(entry) }}</div>
-    	</div>
-    	{% endfor %}
-
+        <div class="control-group">
+            {{form_row( edit_form)}}
+        </div>
+        
     {{ form_end(edit_form) }}
 
 

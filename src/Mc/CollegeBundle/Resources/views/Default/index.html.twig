@@ -39,13 +39,13 @@
 
 			{% if program.id == current.id %}
 
-
+			
 
 			{% else %}
 			<li><a href="{{ url('mc_college_program' , { 'id' : program.id } ) }}">
 				<i class="fa fa-play-circle-o"></i>  
 				{{program.subject}}
-				<span class="badge pull-right">{{program.id}}</span>
+				<span class="badge pull-right">{{program.view}}</span>
 				</a>
 			</li>
 			{% endif %}

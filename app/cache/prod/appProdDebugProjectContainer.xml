@@ -497,7 +497,7 @@
     <parameter key="fos_user.model_manager_name">null</parameter>
     <parameter key="fos_user.model.user.class">Mc\AdminBundle\Entity\User</parameter>
     <parameter key="fos_user.template.engine">twig</parameter>
-    <parameter key="fos_user.profile.form.type">fos_user_profile</parameter>
+    <parameter key="fos_user.profile.form.type">mc_user_profile</parameter>
     <parameter key="fos_user.profile.form.name">fos_user_profile_form</parameter>
     <parameter key="fos_user.profile.form.validation_groups" type="collection">
       <parameter>Profile</parameter>
@@ -507,7 +507,7 @@
       <parameter key="mot.wu@36lean.com">精创学院</parameter>
     </parameter>
     <parameter key="fos_user.registration.confirmation.enabled">true</parameter>
-    <parameter key="fos_user.registration.form.type">fos_user_registration</parameter>
+    <parameter key="fos_user.registration.form.type">mc_user_registration</parameter>
     <parameter key="fos_user.registration.form.name">fos_user_registration_form</parameter>
     <parameter key="fos_user.registration.form.validation_groups" type="collection">
       <parameter>Registration</parameter>
@@ -2249,6 +2249,8 @@
               <argument key="reset">form.type.reset</argument>
               <argument key="currency">form.type.currency</argument>
               <argument key="entity">form.type.entity</argument>
+              <argument key="mc_user_registration">mc_user.registration.form.type</argument>
+              <argument key="mc_user_profile">mc_user.profile.form.type</argument>
               <argument key="fos_user_username">fos_user.username_form_type</argument>
               <argument key="fos_user_profile">fos_user.profile.form.type</argument>
               <argument key="fos_user_registration">fos_user.registration.form.type</argument>
@@ -2653,7 +2655,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>53351f27a4b54</argument>
+            <argument>5336c5ac10404</argument>
           </service>
         </argument>
         <argument type="service">
@@ -2770,6 +2772,17 @@
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/repository</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
       <call method="add">
         <argument type="service">
           <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
@@ -2973,7 +2986,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>53351f27a4b54</argument>
+            <argument>5336c5ac10404</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3622,6 +3635,11 @@
       <argument type="service" id="security.role_hierarchy" on-invalid="null"/>
     </service>
     <service id="mc_user.registration.form.type" class="Mc\AdminBundle\Form\Type\RegistrationFormType">
+      <tag name="form.type" alias="mc_user_registration"/>
+      <argument>Mc\AdminBundle\Entity\User</argument>
+    </service>
+    <service id="mc_user.profile.form.type" class="Mc\AdminBundle\Form\Type\ProfileFormType">
+      <tag name="form.type" alias="mc_user_profile"/>
       <argument>Mc\AdminBundle\Entity\User</argument>
     </service>
     <service id="router.helper" class="Mc\McService\RouterService\RouterHelper"/>
@@ -3662,7 +3680,7 @@
     <service id="fos_user.profile.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>
       <argument>fos_user_profile_form</argument>
-      <argument>fos_user_profile</argument>
+      <argument>mc_user_profile</argument>
       <argument type="collection">
         <argument>Profile</argument>
         <argument>Default</argument>
@@ -3675,7 +3693,7 @@
     <service id="fos_user.registration.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>
       <argument>fos_user_registration_form</argument>
-      <argument>fos_user_registration</argument>
+      <argument>mc_user_registration</argument>
       <argument type="collection">
         <argument>Registration</argument>
         <argument>Default</argument>

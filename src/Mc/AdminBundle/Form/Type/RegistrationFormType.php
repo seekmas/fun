@@ -9,9 +9,11 @@ class RegistrationFormType extends BaseType
 {
 	public function buildForm( FormBuilderInterface $builder , array $option )
 	{
-		$builder->add('name')
-		        ->add('job')
-		        ->add('qq')
+		parent::buildForm($builder, $option);
+		
+		$builder->add('name' , 'text' , array('label'=>'真实姓名'))
+		        ->add('job' , 'text' , array('label'=>'工作'))
+		        ->add('qq' , 'text' , array('label'=>'QQ号'))
 		        ;
 	}
 

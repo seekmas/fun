@@ -3,6 +3,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
+
 {% if error %}
     <div>{{ error|trans }}</div>
 {% endif %}
@@ -35,12 +36,8 @@
     	<input class="btn btn-primary btn-block btn-lg" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
     </div>
 </form>
-
     <a href="{{ url('fos_user_registration_register') }}">{{ 'link.register'|trans }}</a>
-
     <a href="{{ url('fos_user_resetting_request') }}">{{ 'link.forget_password'|trans }}</a>
-    
-    <a href="{{ url('fos_user_registration_check_email') }}">{{ 'link.activation'|trans }}</a>
 </div>
 
 {% endblock fos_user_content %}

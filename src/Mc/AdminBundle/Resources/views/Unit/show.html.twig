@@ -1,5 +1,15 @@
 {% extends '::bootstrap3.html.twig' %}
 
+{% block left %}
+
+    <ul>
+        {% for key , u in entities %}
+        <li><a href="{{ url('admin_unit_show' , { id : u.id })}}">{{key+1}} . {{u.subject}}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
 {% block body -%}
     <h1>Unit</h1>
 

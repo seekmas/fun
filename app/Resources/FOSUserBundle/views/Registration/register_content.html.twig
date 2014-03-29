@@ -1,20 +1,44 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+<link rel="stylesheet" href="{{ asset( 'bundles/mc/css/step.css' ) }}" />
+
 <div class="" align="center">
 
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-signin">
+	
+	<div class="stepwizard">
+	<div class="stepwizard-row">
+	    <div class="stepwizard-step">
+	        <button type="button" class="btn btn-primary btn-circle">1</button>
+	        <p>账户信息</p>
+	    </div>
+	    <div class="stepwizard-step">
+	        <button type="button" class="btn btn-default btn-circle">2</button>
+	        <p>资料完善</p>
+	    </div>
+	    <div class="stepwizard-step">
+	        <button type="button" class="btn btn-default btn-circle" disabled="disabled">3</button>
+	        <p>提交审核</p>
+	    </div> 
+	</div>
+	</div>
+
+
+	 <h2 class="form-signin-heading">{{ 'register_right_now'|trans}}</h2>
+
+	 {{ form_errors(form) }}
 
 	<div class="control-group">
 		<label>{{form_label(form.username)}}</label>
 		<div class="controls">
-			{{form_widget(form.username)}}
+			{{form_widget(form.username , {'attr':{'class':'form-control'}} )}}
 		</div>
 	</div>
 
 	<div class="control-group">
 		<label>{{form_label(form.email)}}</label>
 		<div class="controls">
-			{{form_widget(form.email)}}
+			{{form_widget(form.email , {'attr':{'class':'form-control'}})}}
 		</div>
 	</div>
 
@@ -22,16 +46,40 @@
 	<div class="control-group">
 		<label>{{form_label( passwordField)}}</label>
 		<div class="controls">
-			{{form_widget( passwordField)}}
+			{{form_widget( passwordField , {'attr':{'class':'form-control'}})}}
 		</div>
 	</div>
 	{% endfor %}
-
 	
+	<div class="control-group">
+		<label>{{form_label(form.name)}}</label>
+		<div class="controls">
+			{{form_widget(form.name , {'attr':{'class':'form-control'}})}}
+		</div>
+	</div>
+	
+	<div class="control-group">
+		<label>{{form_label(form.job)}}</label>
+		<div class="controls">
+			{{form_widget(form.job , {'attr':{'class':'form-control'}})}}
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label>{{form_label(form.qq)}}</label>
+		<div class="controls">
+			{{form_widget(form.qq , {'attr':{'class':'form-control'}})}}
+		</div>
+	</div>
+
     <div class="control-group">
     	<label></label>
     	<div class="controls">
-        	<input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+        	<input class="btn btn-primary btn-block" type="submit" value="{{ 'registration.submit'|trans }}" />
         </div>
     </div>
-</form>
+{{form_end(form)}}
+
+<a href="{{url('fos_user_security_login')}}">{{ 'have_account'|trans}}</a>
+
+</div>

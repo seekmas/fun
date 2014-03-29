@@ -10,6 +10,7 @@ class __TwigTemplate_01cb42285c7cce1ace91489e65b3725aeb43b4bc733f317fc0f7f01e812
         $this->parent = $this->env->loadTemplate("::bootstrap3.html.twig");
 
         $this->blocks = array(
+            'left' => array($this, 'block_left'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -25,47 +26,61 @@ class __TwigTemplate_01cb42285c7cce1ace91489e65b3725aeb43b4bc733f317fc0f7f01e812
     }
 
     // line 3
-    public function block_body($context, array $blocks = array())
+    public function block_left($context, array $blocks = array())
     {
         // line 4
+        echo "
+    <ul>
+        ";
+        // line 6
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["entities"]) ? $context["entities"] : $this->getContext($context, "entities")));
+        foreach ($context['_seq'] as $context["key"] => $context["u"]) {
+            // line 7
+            echo "        <li><a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("admin_unit_edit", array("id" => $this->getAttribute((isset($context["u"]) ? $context["u"] : $this->getContext($context, "u")), "id"))), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, ((isset($context["key"]) ? $context["key"] : $this->getContext($context, "key")) + 1), "html", null, true);
+            echo " . ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : $this->getContext($context, "u")), "subject"), "html", null, true);
+            echo "</a></li>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['key'], $context['u'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 9
+        echo "    </ul>
+
+";
+    }
+
+    // line 15
+    public function block_body($context, array $blocks = array())
+    {
+        // line 16
         echo "<h1>Unit edit</h1>
 
     ";
-        // line 6
+        // line 18
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["edit_form"]) ? $context["edit_form"] : $this->getContext($context, "edit_form")), 'form_start');
         echo "
 
-    \t";
-        // line 8
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["edit_form"]) ? $context["edit_form"] : $this->getContext($context, "edit_form")));
-        foreach ($context['_seq'] as $context["_key"] => $context["entry"]) {
-            // line 9
-            echo "    \t<div class=\"control-group\">
-    \t\t<label>";
-            // line 10
-            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["entry"]) ? $context["entry"] : $this->getContext($context, "entry")), 'label');
-            echo "</label>
-    \t\t<div class=\"controls\">";
-            // line 11
-            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["entry"]) ? $context["entry"] : $this->getContext($context, "entry")), 'widget');
-            echo "</div>
-    \t</div>
-    \t";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entry'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 14
+        <div class=\"control-group\">
+            ";
+        // line 21
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["edit_form"]) ? $context["edit_form"] : $this->getContext($context, "edit_form")), 'row');
         echo "
+        </div>
+        
     ";
-        // line 15
+        // line 24
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["edit_form"]) ? $context["edit_form"] : $this->getContext($context, "edit_form")), 'form_end');
         echo "
 
 
     <a href=\"";
-        // line 18
+        // line 27
         echo $this->env->getExtension('routing')->getPath("admin_unit");
         echo "\">
         返回页面列表
@@ -73,7 +88,7 @@ class __TwigTemplate_01cb42285c7cce1ace91489e65b3725aeb43b4bc733f317fc0f7f01e812
 
 
     ";
-        // line 23
+        // line 32
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), 'form');
         echo "
 
@@ -92,6 +107,6 @@ class __TwigTemplate_01cb42285c7cce1ace91489e65b3725aeb43b4bc733f317fc0f7f01e812
 
     public function getDebugInfo()
     {
-        return array (  77 => 23,  69 => 18,  63 => 15,  60 => 14,  51 => 11,  47 => 10,  44 => 9,  40 => 8,  35 => 6,  31 => 4,  28 => 3,);
+        return array (  92 => 32,  84 => 27,  78 => 24,  72 => 21,  66 => 18,  62 => 16,  59 => 15,  53 => 9,  40 => 7,  36 => 6,  32 => 4,  29 => 3,);
     }
 }

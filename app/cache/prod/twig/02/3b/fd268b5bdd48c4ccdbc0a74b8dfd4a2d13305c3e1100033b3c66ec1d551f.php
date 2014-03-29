@@ -130,7 +130,7 @@ class __TwigTemplate_023bfd268b5bdd48c4ccdbc0a74b8dfd4a2d13305c3e1100033b3c66ec1
                 echo "
 \t\t\t\t<span class=\"badge pull-right\">";
                 // line 48
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["program"]) ? $context["program"] : $this->getContext($context, "program")), "id"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["program"]) ? $context["program"] : $this->getContext($context, "program")), "view"), "html", null, true);
                 echo "</span>
 \t\t\t\t</a>
 \t\t\t</li>

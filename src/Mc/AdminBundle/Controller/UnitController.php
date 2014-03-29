@@ -124,7 +124,10 @@ class UnitController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        $entities = $this->getDoctrine()->getRepository('McAdminBundle:Unit')->findByProgramId( $entity->getprogramId() );
+
         return $this->render('McAdminBundle:Unit:show.html.twig', array(
+            'entities'    => $entities,
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -142,11 +145,19 @@ class UnitController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Unit entity.');
         }
+        $entity->setProgramId( $this->getDoctrine()->getRepository('McAdminBundle:Program')->findOneById( $entity->getprogramId() ) );
+
+        //\Doctrine\Common\Util\Debug::dump($entity);
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
+
+
+        $entities = $this->getDoctrine()->getRepository('McAdminBundle:Unit')->findByProgramId( $entity->getprogramId() );
+        
         return $this->render('McAdminBundle:Unit:edit.html.twig', array(
+            'entities'    => $entities,
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -199,8 +210,10 @@ class UnitController extends Controller
 
             return $this->redirect($this->generateUrl('admin_unit_edit', array('id' => $id)));
         }
+        $entities = $this->getDoctrine()->getRepository('McAdminBundle:Unit')->findByProgramId( $entity->getprogramId() );
 
         return $this->render('McAdminBundle:Unit:edit.html.twig', array(
+            'entities'    => $entities,
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -10,6 +10,7 @@ class __TwigTemplate_940ae3ab07decbaef10fb3f4d2f3346755262e8c8907e3adce8def54907
         $this->parent = $this->env->loadTemplate("::bootstrap3.html.twig");
 
         $this->blocks = array(
+            'left' => array($this, 'block_left'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -25,9 +26,39 @@ class __TwigTemplate_940ae3ab07decbaef10fb3f4d2f3346755262e8c8907e3adce8def54907
     }
 
     // line 3
-    public function block_body($context, array $blocks = array())
+    public function block_left($context, array $blocks = array())
     {
         // line 4
+        echo "
+    <ul>
+        ";
+        // line 6
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["entities"]) ? $context["entities"] : $this->getContext($context, "entities")));
+        foreach ($context['_seq'] as $context["key"] => $context["u"]) {
+            // line 7
+            echo "        <li><a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("admin_unit_show", array("id" => $this->getAttribute((isset($context["u"]) ? $context["u"] : $this->getContext($context, "u")), "id"))), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, ((isset($context["key"]) ? $context["key"] : $this->getContext($context, "key")) + 1), "html", null, true);
+            echo " . ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["u"]) ? $context["u"] : $this->getContext($context, "u")), "subject"), "html", null, true);
+            echo "</a></li>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['key'], $context['u'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 9
+        echo "    </ul>
+
+";
+    }
+
+    // line 13
+    public function block_body($context, array $blocks = array())
+    {
+        // line 14
         echo "<h1>Unit</h1>
 
     <table class=\"record_properties\">
@@ -35,56 +66,56 @@ class __TwigTemplate_940ae3ab07decbaef10fb3f4d2f3346755262e8c8907e3adce8def54907
             <tr>
                 <th>Id</th>
                 <td>";
-        // line 10
+        // line 20
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "id"), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Subject</th>
                 <td>";
-        // line 14
+        // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "subject"), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Outline</th>
                 <td>";
-        // line 18
+        // line 28
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "outline"), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Ppt</th>
                 <td>";
-        // line 22
+        // line 32
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "ppt"), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Playpath</th>
                 <td>";
-        // line 26
+        // line 36
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "playPath"), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Playfile</th>
                 <td>";
-        // line 30
+        // line 40
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "playFile"), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Programid</th>
                 <td>";
-        // line 34
+        // line 44
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "programId"), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Createddate</th>
                 <td>";
-        // line 38
+        // line 48
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "createdDate"), "Y-m-d H:i:s"), "html", null, true);
         echo "</td>
             </tr>
@@ -94,7 +125,7 @@ class __TwigTemplate_940ae3ab07decbaef10fb3f4d2f3346755262e8c8907e3adce8def54907
     <ul class=\"nav nav-pills\">
         <li>
             <a href=\"";
-        // line 45
+        // line 55
         echo $this->env->getExtension('routing')->getPath("admin_unit");
         echo "\">
                 Back to the list
@@ -102,7 +133,7 @@ class __TwigTemplate_940ae3ab07decbaef10fb3f4d2f3346755262e8c8907e3adce8def54907
         </li>
         <li>
             <a href=\"";
-        // line 50
+        // line 60
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("admin_unit_edit", array("id" => $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "id"))), "html", null, true);
         echo "\">
                 Edit
@@ -111,7 +142,7 @@ class __TwigTemplate_940ae3ab07decbaef10fb3f4d2f3346755262e8c8907e3adce8def54907
     </ul>
 
     <p>";
-        // line 56
+        // line 66
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["delete_form"]) ? $context["delete_form"] : $this->getContext($context, "delete_form")), 'form');
         echo "</p>
 
@@ -130,6 +161,6 @@ class __TwigTemplate_940ae3ab07decbaef10fb3f4d2f3346755262e8c8907e3adce8def54907
 
     public function getDebugInfo()
     {
-        return array (  115 => 56,  106 => 50,  98 => 45,  88 => 38,  81 => 34,  74 => 30,  67 => 26,  60 => 22,  53 => 18,  46 => 14,  39 => 10,  31 => 4,  28 => 3,);
+        return array (  146 => 66,  137 => 60,  129 => 55,  119 => 48,  112 => 44,  105 => 40,  98 => 36,  91 => 32,  84 => 28,  77 => 24,  70 => 20,  62 => 14,  59 => 13,  53 => 9,  40 => 7,  36 => 6,  32 => 4,  29 => 3,);
     }
 }

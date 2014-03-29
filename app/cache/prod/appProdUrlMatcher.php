@@ -165,6 +165,19 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
         }
 
+        if (0 === strpos($pathinfo, '/repository')) {
+            // mc_college_public
+            if ($pathinfo === '/repository') {
+                return array (  '_controller' => 'Mc\\CollegeBundle\\Controller\\RepositoryController::indexAction',  '_route' => 'mc_college_public',);
+            }
+
+            // mc_college_repository
+            if (preg_match('#^/repository/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'mc_college_repository')), array (  '_controller' => 'Mc\\CollegeBundle\\Controller\\RepositoryController::indexAction',));
+            }
+
+        }
+
         // mc_college_homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

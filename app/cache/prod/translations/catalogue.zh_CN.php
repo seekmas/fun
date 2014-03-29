@@ -104,6 +104,8 @@ $catalogue = new MessageCatalogue('zh_CN', array (
   'FOSUserBundle' => 
   array (
     'login_right_now' => '马上登陆',
+    'register_right_now' => '马上注册',
+    'have_account' => '已经有账户了 ? 马上登陆',
     'Bad credentials' => '用户名或密码不正确',
     'group.edit.submit' => '更新小组',
     'group.show.name' => '小组名称',

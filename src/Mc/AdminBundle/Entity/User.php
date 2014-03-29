@@ -53,4 +53,32 @@ class User extends BaseUser
     {
         parent::__construct();
     }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function setName( $name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+    public function getJob()
+    {
+        return $this->job;
+    }
+    public function setJob( $job)
+    {   
+        $this->job = $job;
+        return $this;
+    }
+    public function getQq()
+    {
+        return $this->qq;
+    }
+    public function setQq( $qq)
+    {
+        $this->qq = $qq;
+        return $this;
+    }
 }

@@ -49,7 +49,10 @@ a.navbar-brand {
   <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
     <ul class=\"nav navbar-nav\">
       <li><a href=\"#\">新闻</a></li>
-      <li><a href=\"#\">课程</a></li>
+      <li><a href=\"";
+        // line 31
+        echo $this->env->getExtension('routing')->getUrl("mc_college_public");
+        echo "\">课程</a></li>
       <li class=\"dropdown\">
         <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">我的课程 <b class=\"caret\"></b></a>
         <ul class=\"dropdown-menu\">
@@ -125,6 +128,6 @@ a.navbar-brand {
 
     public function getDebugInfo()
     {
-        return array (  107 => 58,  93 => 53,  89 => 52,  79 => 48,  73 => 46,  71 => 45,  58 => 35,  23 => 3,  19 => 1,  203 => 84,  197 => 83,  195 => 82,  187 => 77,  179 => 72,  175 => 71,  160 => 62,  155 => 61,  153 => 60,  139 => 51,  136 => 50,  133 => 49,  127 => 44,  121 => 43,  114 => 39,  110 => 38,  104 => 36,  101 => 35,  99 => 56,  96 => 33,  92 => 32,  83 => 49,  70 => 23,  66 => 22,  56 => 15,  52 => 14,  47 => 12,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  110 => 58,  102 => 56,  96 => 53,  92 => 52,  86 => 49,  82 => 48,  76 => 46,  74 => 45,  61 => 35,  54 => 31,  23 => 3,  19 => 1,  58 => 13,  49 => 10,  46 => 9,  42 => 8,  38 => 6,  35 => 5,  29 => 3,);
     }
 }

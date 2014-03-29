@@ -34,7 +34,14 @@ class Program
      * @ORM\Column(name="summary", type="text")
      */
     private $summary;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="view", type="integer")
+     */
+    private $view;
+    
     /**
      * @var integer
      *

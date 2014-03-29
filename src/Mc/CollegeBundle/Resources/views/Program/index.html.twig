@@ -14,16 +14,17 @@
 			{{current.subject}}
 			<span class="badge pull-right">{{current.id}}</span>
 			</a>
-			</li>
+		</li>
 
-			<li>
-				<ul class="nav-small" style="padding-left:0px;margin-left:0px;">
-					<li>课程内容</li>
-					{% for key,course in courses %}
-					<li><a href="{{ url('mc_college_learn' , {'id':course.id}) }}">{{key+1}}. {{course.subject}}</a></li>
-					{% endfor %}
-				</ul>
-			</li>
+		<li>
+			<ul class="nav-small" style="padding-left:0px;margin-left:0px;">
+				<li>课程内容</li>
+				{% for key,course in courses %}
+				<li><a href="{{ url('mc_college_learn' , {'id':course.id}) }}">{{key+1}}. {{course.subject}}</a></li>
+				{% endfor %}
+			</ul>
+		</li>
+		
 	</ul>
 	<hr/>
 	<h4>其他课程</h4>
@@ -71,19 +72,33 @@
               <p class="lead">第{{key+1}}步</p>
               <p class="lead">{{course.subject}}</p>
               <p>{{course.outline}}</p>
+	            <dl class="dl-horizontal" style="padding-left:20px;">
+	            	<dt>关键字:</dt>
+	            	<dd>{{course.keywords}}</dd>
+	            	<dt>难度:</dt>
+	            	<dd>{{course.level}}</dd>
+	            	<dt>时长:</dt>
+	            	<dd>{{course.time}}</dd>
+	            	<dt>语言:</dt> 
+	            	<dd>{{course.language}}</dd>
+	            	<dt>观看数:</dt> 
+	            	<dd>{{course.view}}</dd>
+	            </dl>
             </div>
-
-            <ul>
-            	<li>关键字: </li>
-            	<li>难度: </li>
-            	<li>时长: </li>
-            	<li>语言: </li>
-            	<li>观看数: </li>
-            </ul>
             
             <div class="timeline-footer">
-                <a><i class="glyphicon glyphicon-thumbs-up"></i> 分享</a>
-                <a class="btn btn-primary btn-sm pull-right" href="{{ url('mc_college_learn' , { 'id' : course.id } ) }}">学习</a>
+				<div class="btn-group">
+				  <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+				    操作 <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				  		<li><a href="#">收藏</a></li>
+				  		<li><a href="#">分享</a></li>
+				  </ul>
+				</div>
+                
+            	<a class="btn btn-primary btn-sm pull-right" href="{{ url('mc_college_learn' , { 'id' : course.id } ) }}">学习</a>
+
             </div>
           </div>
         </li>

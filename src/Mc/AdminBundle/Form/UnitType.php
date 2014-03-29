@@ -20,6 +20,11 @@ class UnitType extends AbstractType
             ->add('ppt')
             ->add('playPath')
             ->add('playFile')
+            ->add('keywords' , 'textarea')
+            ->add('level')
+            ->add('time')
+            ->add('language')
+            ->add('view')
             ->add('programId' , 'entity' , array(
                 'class' => 'McAdminBundle:Program' , 
                 'property' => 'subject'

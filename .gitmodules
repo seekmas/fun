@@ -1,0 +1,3 @@
+[submodule "src/LK/TwigstringBundle"]
+	path = src/LK/TwigstringBundle
+	url = git://github.com/LaKrue/TwigstringBundle.git

@@ -29,22 +29,23 @@ class __TwigTemplate_bba82293e179003d9846b08c32da09ffe90d27da2ac63232e3185c41c21
     public function block_left($context, array $blocks = array())
     {
         // line 4
-        echo "<ul>
+        echo "课程目录
+<ul>
     ";
-        // line 5
+        // line 6
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["programs"]) ? $context["programs"] : $this->getContext($context, "programs")));
         foreach ($context['_seq'] as $context["_key"] => $context["p"]) {
-            // line 6
+            // line 7
             echo "    <li>
         <a href=\"";
-            // line 7
+            // line 8
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getUrl("admin_unit_pagination", array("program" => $this->getAttribute((isset($context["p"]) ? $context["p"] : $this->getContext($context, "p")), "id"), "page" => 1)), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : $this->getContext($context, "p")), "subject"), "html", null, true);
             echo "</a>
         <small>";
-            // line 8
+            // line 9
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["p"]) ? $context["p"] : $this->getContext($context, "p")), "summary"), "html", null, true);
             echo "</small>
     </li>
@@ -53,7 +54,7 @@ class __TwigTemplate_bba82293e179003d9846b08c32da09ffe90d27da2ac63232e3185c41c21
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['p'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 11
+        // line 12
         echo "</ul>
 ";
     }
@@ -155,6 +156,6 @@ class __TwigTemplate_bba82293e179003d9846b08c32da09ffe90d27da2ac63232e3185c41c21
 
     public function getDebugInfo()
     {
-        return array (  137 => 53,  129 => 47,  116 => 40,  111 => 38,  104 => 34,  100 => 33,  96 => 32,  90 => 31,  87 => 30,  83 => 29,  68 => 17,  65 => 16,  62 => 15,  57 => 11,  48 => 8,  42 => 7,  39 => 6,  35 => 5,  32 => 4,  29 => 3,);
+        return array (  138 => 53,  130 => 47,  117 => 40,  112 => 38,  105 => 34,  101 => 33,  97 => 32,  91 => 31,  88 => 30,  84 => 29,  69 => 17,  66 => 16,  63 => 15,  58 => 12,  49 => 9,  43 => 8,  40 => 7,  36 => 6,  32 => 4,  29 => 3,);
     }
 }

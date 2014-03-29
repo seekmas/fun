@@ -29,27 +29,28 @@ class __TwigTemplate_d65486dc708881ce8cd504a8c3f1a1dd64426ef62119aa20d25bb13c232
         // line 5
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
+        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
         ";
-        // line 6
-        $this->displayBlock('stylesheets', $context, $blocks);
         // line 7
+        $this->displayBlock('stylesheets', $context, $blocks);
+        // line 8
         echo "        ";
         $this->displayBlock('head_javascripts', $context, $blocks);
-        // line 8
+        // line 9
         echo "        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
     </head>
     <body>        
         ";
-        // line 11
-        $this->displayBlock('body', $context, $blocks);
         // line 12
+        $this->displayBlock('body', $context, $blocks);
+        // line 13
         echo "
         ";
-        // line 13
-        $this->displayBlock('javascripts', $context, $blocks);
         // line 14
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 15
         echo "    </body>
 </html>
 ";
@@ -58,25 +59,25 @@ class __TwigTemplate_d65486dc708881ce8cd504a8c3f1a1dd64426ef62119aa20d25bb13c232
     // line 5
     public function block_title($context, array $blocks = array())
     {
-        echo "Welcome!";
+        echo "欢迎莅临 精创学院 | 帮助互联网精益创业企业";
     }
 
-    // line 6
+    // line 7
     public function block_stylesheets($context, array $blocks = array())
     {
     }
 
-    // line 7
+    // line 8
     public function block_head_javascripts($context, array $blocks = array())
     {
     }
 
-    // line 11
+    // line 12
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 13
+    // line 14
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -93,6 +94,6 @@ class __TwigTemplate_d65486dc708881ce8cd504a8c3f1a1dd64426ef62119aa20d25bb13c232
 
     public function getDebugInfo()
     {
-        return array (  80 => 13,  75 => 11,  70 => 7,  65 => 6,  53 => 14,  51 => 13,  46 => 11,  36 => 7,  34 => 6,  30 => 5,  24 => 1,  162 => 46,  158 => 40,  155 => 39,  150 => 47,  148 => 46,  141 => 41,  139 => 39,  135 => 37,  129 => 36,  120 => 33,  115 => 32,  110 => 31,  106 => 30,  102 => 28,  94 => 26,  88 => 23,  84 => 22,  77 => 20,  71 => 16,  68 => 15,  62 => 12,  57 => 11,  54 => 10,  40 => 5,  35 => 4,  32 => 3,  79 => 21,  74 => 27,  66 => 22,  59 => 5,  55 => 17,  48 => 12,  44 => 6,  39 => 8,  33 => 7,  31 => 6,  28 => 5,);
+        return array (  81 => 14,  76 => 12,  71 => 8,  66 => 7,  60 => 5,  54 => 15,  52 => 14,  49 => 13,  47 => 12,  40 => 9,  37 => 8,  35 => 7,  30 => 5,  24 => 1,);
     }
 }

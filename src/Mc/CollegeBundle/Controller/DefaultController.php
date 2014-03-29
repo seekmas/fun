@@ -13,7 +13,7 @@ class DefaultController extends Controller
         $this->getDoctrine()
              ->getRepository('McAdminBundle:Program')
              ->createQueryBuilder('c')
-             ->select('c.id,c.subject')
+             ->select('c')
              ->orderBy('c.sortId' , 'DESC')
              ->getQuery()
              ->getArrayResult();
@@ -47,9 +47,6 @@ class DefaultController extends Controller
     {
 
         $entry = $this->getDoctrine()->getRepository('McAdminBundle:Unit')->findOneById( $id);
-
-
-
     	return $this->render('McCollegeBundle:Default:play.html.twig' , array('entry' => $entry) );
     }
 

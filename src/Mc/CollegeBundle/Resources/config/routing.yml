@@ -1,3 +1,13 @@
+mc_college_public:
+    pattern: /repository
+    defaults: { _controller: McCollegeBundle:Repository:index }
+
+mc_college_repository:
+    pattern: /repository/{id}
+    defaults: { _controller: McCollegeBundle:Repository:index }
+    requirements:
+        id: \d+
+
 mc_college_homepage:
     pattern: /
     defaults: { _controller: McCollegeBundle:Portal:index }
@@ -13,3 +23,5 @@ mc_college_learn:
     defaults: { _controller: McCollegeBundle:Default:index , id : 0 }
     requirements:
         id: \d+
+
+
