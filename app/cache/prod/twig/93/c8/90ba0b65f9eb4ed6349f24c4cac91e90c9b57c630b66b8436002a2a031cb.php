@@ -78,7 +78,7 @@ class __TwigTemplate_93c890ba0b65f9eb4ed6349f24c4cac91e90c9b57c630b66b8436002a2a
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("McModuleBundle:Navigation:show"));
         echo "
 
-        <div class=\"container\" style=\"margin-top:40px;\"><div class=\"row\">
+        <div class=\"container\" style=\"margin-top:20px;\"><div class=\"row\">
             <div class=\"col-md-12\">
                 <div>
                     ";
@@ -106,22 +106,21 @@ class __TwigTemplate_93c890ba0b65f9eb4ed6349f24c4cac91e90c9b57c630b66b8436002a2a
         // line 31
         echo "                </div>
 
+                <div>
                 ";
-        // line 33
+        // line 34
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "flashbag"), "all", array(), "method"));
         foreach ($context['_seq'] as $context["type"] => $context["messages"]) {
-            // line 34
+            // line 35
             echo "                    ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["messages"]) ? $context["messages"] : $this->getContext($context, "messages")));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-                // line 35
-                echo "                        <div class=\"flash-";
-                echo twig_escape_filter($this->env, (isset($context["type"]) ? $context["type"] : $this->getContext($context, "type")), "html", null, true);
-                echo "\">
-                            ";
                 // line 36
+                echo "                        <div class=\"\">
+                            ";
+                // line 37
                 echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
                 echo "
                         </div>
@@ -130,40 +129,37 @@ class __TwigTemplate_93c890ba0b65f9eb4ed6349f24c4cac91e90c9b57c630b66b8436002a2a
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 39
+            // line 40
             echo "                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['type'], $context['messages'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 40
-        echo "
-                <div>
-                    ";
-        // line 42
+        // line 41
+        echo "                    ";
         $this->displayBlock('fos_user_content', $context, $blocks);
-        // line 44
+        // line 43
         echo "                </div>
             </div>
 
         </div></div>
 
         ";
-        // line 49
+        // line 48
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 50
+        // line 49
         echo "
 ";
     }
 
-    // line 42
+    // line 41
     public function block_fos_user_content($context, array $blocks = array())
     {
-        // line 43
+        // line 42
         echo "                    ";
     }
 
-    // line 49
+    // line 48
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -180,6 +176,6 @@ class __TwigTemplate_93c890ba0b65f9eb4ed6349f24c4cac91e90c9b57c630b66b8436002a2a
 
     public function getDebugInfo()
     {
-        return array (  167 => 49,  163 => 43,  160 => 42,  155 => 50,  153 => 49,  146 => 44,  144 => 42,  140 => 40,  134 => 39,  125 => 36,  120 => 35,  115 => 34,  111 => 33,  107 => 31,  103 => 29,  97 => 26,  93 => 25,  88 => 24,  86 => 23,  78 => 18,  75 => 17,  72 => 16,  66 => 13,  61 => 12,  58 => 11,  52 => 8,  48 => 7,  44 => 6,  40 => 5,  35 => 4,  32 => 3,);
+        return array (  163 => 48,  159 => 42,  156 => 41,  151 => 49,  149 => 48,  142 => 43,  139 => 41,  133 => 40,  124 => 37,  121 => 36,  116 => 35,  112 => 34,  107 => 31,  103 => 29,  97 => 26,  93 => 25,  88 => 24,  86 => 23,  78 => 18,  75 => 17,  72 => 16,  66 => 13,  61 => 12,  58 => 11,  52 => 8,  48 => 7,  44 => 6,  40 => 5,  35 => 4,  32 => 3,);
     }
 }

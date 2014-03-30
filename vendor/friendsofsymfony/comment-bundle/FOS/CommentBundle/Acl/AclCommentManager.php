@@ -109,17 +109,17 @@ class AclCommentManager implements CommentManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function saveComment(CommentInterface $comment)
+    public function addComment(CommentInterface $comment, CommentInterface $parent = null)
     {
         if (!$this->threadAcl->canView($comment->getThread())) {
             throw new AccessDeniedException();
         }
 
-        if (!$this->commentAcl->canReply($comment->getParent())) {
+        if (!$this->commentAcl->canReply($parent)) {
             throw new AccessDeniedException();
         }
 
-        $this->realManager->saveComment($comment);
+        $this->realManager->addComment($comment, $parent);
         $this->commentAcl->setDefaultAcl($comment);
     }
 

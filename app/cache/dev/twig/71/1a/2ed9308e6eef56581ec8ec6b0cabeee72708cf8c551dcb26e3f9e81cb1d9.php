@@ -35,10 +35,10 @@ class __TwigTemplate_711a2ed9308e6eef56581ec8ec6b0cabeee72708cf8c551dcb26e3f9e81
 
 ";
         // line 11
-        if ((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error"))) {
+        if ((isset($context["error"]) ? $context["error"] : null)) {
             // line 12
             echo "    <div class=\"alert alert-danger\">";
-            echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), array(), "FOSUserBundle"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["error"]) ? $context["error"] : null), array(), "FOSUserBundle"), "html", null, true);
             echo "</div>
 ";
         }
@@ -50,7 +50,7 @@ class __TwigTemplate_711a2ed9308e6eef56581ec8ec6b0cabeee72708cf8c551dcb26e3f9e81
         echo "\" method=\"post\">
 \t<input type=\"hidden\" name=\"_csrf_token\" value=\"";
         // line 16
-        echo twig_escape_filter($this->env, (isset($context["csrf_token"]) ? $context["csrf_token"] : $this->getContext($context, "csrf_token")), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["csrf_token"]) ? $context["csrf_token"] : null), "html", null, true);
         echo "\" />
     <h2 class=\"form-signin-heading\">";
         // line 17
@@ -64,7 +64,7 @@ class __TwigTemplate_711a2ed9308e6eef56581ec8ec6b0cabeee72708cf8c551dcb26e3f9e81
         echo "</label>
     \t<input class=\"form-control\" type=\"text\" id=\"username\" name=\"_username\" value=\"";
         // line 21
-        echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : $this->getContext($context, "last_username")), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["last_username"]) ? $context["last_username"] : null), "html", null, true);
         echo "\" required=\"required\" />
     </div>
 

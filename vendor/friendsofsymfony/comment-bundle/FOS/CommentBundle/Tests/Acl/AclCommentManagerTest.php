@@ -212,7 +212,7 @@ class AclCommentManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResult, $result);
     }
 
-    protected function saveCommentSetup()
+    protected function addCommentSetup()
     {
         $this->parent = $this->getMock('FOS\CommentBundle\Model\CommentInterface');
         $this->commentReturnsThread();
@@ -221,31 +221,31 @@ class AclCommentManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException Symfony\Component\Security\Core\Exception\AccessDeniedException
      */
-    public function testSaveCommentNoReplyPermission()
+    public function testAddCommentNoReplyPermission()
     {
-        $this->saveCommentSetup();
+        $this->addCommentSetup();
         $this->configureThreadSecurity('canView', true);
         $this->configureCommentSecurity('canReply', false);
 
         $manager = new AclCommentManager($this->realManager, $this->commentSecurity, $this->threadSecurity);
-        $manager->saveComment($this->comment, $this->parent);
+        $manager->addComment($this->comment, $this->parent);
     }
 
     /**
      * @expectedException Symfony\Component\Security\Core\Exception\AccessDeniedException
      */
-    public function testSaveCommentNoThreadViewPermission()
+    public function testAddCommentNoThreadViewPermission()
     {
-        $this->saveCommentSetup();
+        $this->addCommentSetup();
         $this->configureThreadSecurity('canView', false);
 
         $manager = new AclCommentManager($this->realManager, $this->commentSecurity, $this->threadSecurity);
-        $manager->saveComment($this->comment);
+        $manager->addComment($this->comment);
     }
 
-    public function testSaveComment()
+    public function testAddComment()
     {
-        $this->saveCommentSetup();
+        $this->addCommentSetup();
         $this->configureCommentSecurity('canReply', true);
         $this->configureThreadSecurity('canView', true);
         $this->commentSecurity->expects($this->once())
@@ -253,7 +253,7 @@ class AclCommentManagerTest extends \PHPUnit_Framework_TestCase
             ->with($this->comment);
 
         $manager = new AclCommentManager($this->realManager, $this->commentSecurity, $this->threadSecurity);
-        $manager->saveComment($this->comment, $this->parent);
+        $manager->addComment($this->comment, $this->parent);
     }
 
     public function testCreateComment()

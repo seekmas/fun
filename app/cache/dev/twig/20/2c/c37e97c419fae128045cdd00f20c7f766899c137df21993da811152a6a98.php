@@ -74,7 +74,7 @@ a.navbar-brand {
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
             // line 46
             echo "                        ";
-            echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("layout.logged_in_as", array("%username%" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "username")), "FOSUserBundle"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("layout.logged_in_as", array("%username%" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "user"), "username")), "FOSUserBundle"), "html", null, true);
             echo " |
 
                         <a href=\"";
@@ -128,6 +128,6 @@ a.navbar-brand {
 
     public function getDebugInfo()
     {
-        return array (  110 => 58,  102 => 56,  96 => 53,  92 => 52,  86 => 49,  82 => 48,  74 => 45,  61 => 35,  54 => 31,  23 => 3,  19 => 1,  104 => 26,  99 => 21,  94 => 9,  89 => 8,  84 => 7,  78 => 5,  64 => 22,  62 => 21,  44 => 10,  41 => 9,  38 => 8,  25 => 1,  77 => 18,  72 => 27,  67 => 8,  58 => 19,  53 => 15,  51 => 16,  42 => 9,  40 => 8,  34 => 4,  31 => 5,  79 => 24,  76 => 46,  70 => 26,  60 => 15,  56 => 18,  50 => 12,  46 => 11,  39 => 6,  36 => 7,  30 => 3,);
+        return array (  110 => 58,  102 => 56,  96 => 53,  92 => 52,  82 => 48,  23 => 3,  19 => 1,  81 => 14,  76 => 46,  71 => 8,  60 => 5,  54 => 31,  47 => 12,  37 => 8,  30 => 5,  24 => 1,  163 => 48,  159 => 42,  156 => 41,  151 => 49,  149 => 48,  142 => 43,  139 => 41,  133 => 40,  124 => 37,  121 => 36,  116 => 35,  112 => 34,  107 => 31,  103 => 29,  97 => 26,  88 => 24,  86 => 49,  78 => 18,  75 => 17,  72 => 16,  66 => 7,  61 => 35,  58 => 11,  52 => 14,  48 => 7,  44 => 6,  35 => 7,  32 => 3,  105 => 42,  99 => 41,  93 => 25,  84 => 32,  74 => 45,  67 => 21,  63 => 20,  57 => 17,  53 => 16,  49 => 13,  46 => 14,  40 => 9,  38 => 11,  31 => 6,  28 => 5,);
     }
 }

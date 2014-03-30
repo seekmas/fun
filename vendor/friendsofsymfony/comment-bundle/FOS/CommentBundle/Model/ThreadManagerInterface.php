@@ -45,17 +45,16 @@ interface ThreadManagerInterface
     /**
      * Creates an empty comment thread instance
      *
-     * @param bool $id
      * @return Thread
      */
-    function createThread($id = null);
+    function createThread();
 
     /**
-     * Saves a thread
+     * Saves a new thread
      *
      * @param ThreadInterface $thread
      */
-    function saveThread(ThreadInterface $thread);
+    function addThread(ThreadInterface $thread);
 
     /**
      * Returns the comment thread fully qualified class name

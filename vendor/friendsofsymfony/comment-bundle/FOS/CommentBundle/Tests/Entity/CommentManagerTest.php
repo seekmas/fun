@@ -25,11 +25,9 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
     protected $class;
     protected $sortingFactory;
     protected $classMetadata;
-    protected $dispatcher;
 
     public function setUp()
     {
-        $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
             ->disableOriginalConstructor()
             ->getMock();
@@ -62,27 +60,48 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
             ->method('find')
             ->with($commentId);
 
-        $commentManager = new CommentManager($this->dispatcher, $this->sortingFactory, $this->em, $this->class);
+        $commentManager = new CommentManager($this->em, $this->class, $this->sortingFactory);
         $commentManager->findCommentById($commentId);
     }
 
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testSaveCommentNoThread()
+    public function testAddCommentAlreadySaved()
     {
         $comment = $this->getMock('FOS\CommentBundle\Model\CommentInterface');
+        $comment->expects($this->once())
+            ->method('getId')
+            ->will($this->returnValue(1));
+
+        $commentManager = new CommentManager($this->em, $this->class, $this->sortingFactory);
+        $commentManager->addComment($comment);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAddCommentNoThread()
+    {
+        $comment = $this->getMock('FOS\CommentBundle\Model\CommentInterface');
+        $comment->expects($this->once())
+            ->method('getId')
+            ->will($this->returnValue(null));
+
         $comment->expects($this->once())
             ->method('getThread')
             ->will($this->returnValue(null));
 
-        $commentManager = new CommentManager($this->dispatcher, $this->sortingFactory, $this->em, $this->class);
-        $commentManager->saveComment($comment);
+        $commentManager = new CommentManager($this->em, $this->class, $this->sortingFactory);
+        $commentManager->addComment($comment);
     }
 
-    public function testSaveComment()
+    public function testAddComment()
     {
         $comment = $this->getMock('FOS\CommentBundle\Model\CommentInterface');
+        $comment->expects($this->once())
+            ->method('getId')
+            ->will($this->returnValue(null));
 
         $thread = $this->getMock('FOS\CommentBundle\Model\ThreadInterface');
         $comment->expects($this->any())
@@ -97,13 +116,13 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
         $this->em->expects($this->once())
             ->method('flush');
 
-        $commentManager = new CommentManager($this->dispatcher, $this->sortingFactory, $this->em, $this->class);
-        $commentManager->saveComment($comment);
+        $commentManager = new CommentManager($this->em, $this->class, $this->sortingFactory);
+        $commentManager->addComment($comment);
     }
 
     public function testGetClass()
     {
-        $commentManager = new CommentManager($this->dispatcher, $this->sortingFactory, $this->em, $this->class);
+        $commentManager = new CommentManager($this->em, $this->class, $this->sortingFactory);
 
         $this->assertEquals($this->class, $commentManager->getClass());
     }
@@ -117,7 +136,7 @@ class CommentManagerTest extends \PHPUnit_Framework_TestCase
             ->method('getId')
             ->will($this->returnValue(1));
 
-        $manager = new CommentManager($this->dispatcher, $this->sortingFactory, $this->em, $this->class);
+        $manager = new CommentManager($this->em, $this->class, $this->sortingFactory);
         $result = $manager->createComment($thread, $parent);
 
         $this->assertInstanceOf('FOS\CommentBundle\Model\CommentInterface', $result);

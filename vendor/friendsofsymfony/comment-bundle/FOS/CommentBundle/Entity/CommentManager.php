@@ -16,7 +16,6 @@ use FOS\CommentBundle\Model\CommentManager as BaseCommentManager;
 use FOS\CommentBundle\Model\ThreadInterface;
 use FOS\CommentBundle\Model\CommentInterface;
 use FOS\CommentBundle\Sorting\SortingFactory;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use DateTime;
 use InvalidArgumentException;
 
@@ -45,20 +44,17 @@ class CommentManager extends BaseCommentManager
     /**
      * Constructor.
      *
-     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
-     * @param \FOS\CommentBundle\Sorting\SortingFactory $factory
-     * @param \Doctrine\ORM\EntityManager $em
-     * @param string $class
+     * @param EntityManager           $em
+     * @param string                  $class
+     * @param SortingFactory          $factory
      */
-    public function __construct(EventDispatcherInterface $dispatcher, SortingFactory $factory, EntityManager $em, $class)
+    public function __construct(EntityManager $em, $class, SortingFactory $factory)
     {
-        parent::__construct($dispatcher, $factory);
+        $this->em              = $em;
+        $this->repository      = $em->getRepository($class);
+        $this->class           = $em->getClassMetadata($class)->name;
 
-        $this->em = $em;
-        $this->repository = $em->getRepository($class);
-
-        $metadata = $em->getClassMetadata($class);
-        $this->class = $metadata->name;
+        $this->setSortingFactory($factory);
     }
 
     /**
@@ -125,13 +121,25 @@ class CommentManager extends BaseCommentManager
     }
 
     /**
-     * Performs persisting of the comment.
+     * Adds a comment
      *
      * @param CommentInterface $comment
      */
-    protected function doSaveComment(CommentInterface $comment)
+    public function addComment(CommentInterface $comment)
     {
-        $this->em->persist($comment->getThread());
+        if (null !== $comment->getId()) {
+            throw new InvalidArgumentException('Can not add already saved comment');
+        }
+
+        if (null === $comment->getThread()) {
+            throw new InvalidArgumentException('The comment must have a thread');
+        }
+
+        $thread = $comment->getThread();
+        $thread->incrementNumComments(1);
+        $thread->setLastCommentAt(new DateTime());
+
+        $this->em->persist($thread);
         $this->em->persist($comment);
         $this->em->flush();
     }

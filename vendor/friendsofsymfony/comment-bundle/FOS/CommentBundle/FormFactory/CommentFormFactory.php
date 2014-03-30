@@ -11,8 +11,9 @@
 
 namespace FOS\CommentBundle\FormFactory;
 
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormFactory;
+use FOS\CommentBundle\Form\ValueTransformer\ThreadValueTransformer;
 
 /**
  * CommentForm factory class.
@@ -23,7 +24,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 class CommentFormFactory implements CommentFormFactoryInterface
 {
     /**
-     * @var FormFactoryInterface
+     * @var FormFactory
      */
     protected $formFactory;
 
@@ -40,21 +41,21 @@ class CommentFormFactory implements CommentFormFactoryInterface
     /**
      * Constructor.
      *
-     * @param FormFactoryInterface $formFactory
+     * @param FormContext $formContext
      * @param string $type
      * @param string $name
      */
-    public function __construct(FormFactoryInterface $formFactory, $type, $name)
+    public function __construct(FormFactory $formFactory, $type, $name)
     {
-        $this->formFactory = $formFactory;
-        $this->type        = $type;
-        $this->name        = $name;
+        $this->formFactory            = $formFactory;
+        $this->type                   = $type;
+        $this->name                   = $name;
     }
 
     /**
      * Creates a new form.
      *
-     * @return FormInterface
+     * @return Form
      */
     public function createForm()
     {

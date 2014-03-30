@@ -102,26 +102,26 @@ class AclVoteManager implements VoteManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function saveVote(VoteInterface $vote)
+    public function addVote(VoteInterface $vote, VotableCommentInterface $comment)
     {
         if (!$this->voteAcl->canCreate()) {
             throw new AccessDeniedException();
         }
 
-        if (!$this->commentAcl->canView($vote->getComment())) {
+        if (!$this->commentAcl->canView($comment)) {
             throw new AccessDeniedException();
         }
 
-        $this->realManager->saveVote($vote);
+        $this->realManager->addVote($vote, $comment);
         $this->voteAcl->setDefaultAcl($vote);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function createVote(VotableCommentInterface $comment)
+    public function createVote()
     {
-        return $this->realManager->createVote($comment);
+        return $this->realManager->createVote();
     }
 
     /**

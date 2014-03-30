@@ -11,8 +11,6 @@
 
 namespace FOS\CommentBundle\Model;
 
-use Symfony\Component\Validator\ExecutionContext;
-
 /**
  * Methods a vote should implement.
  *
@@ -47,9 +45,4 @@ interface VoteInterface
      * @return DateTime
      */
     function getCreatedAt();
-
-    /**
-     * @param ExecutionContext $context
-     */
-    function isVoteValid(ExecutionContext $context);
 }

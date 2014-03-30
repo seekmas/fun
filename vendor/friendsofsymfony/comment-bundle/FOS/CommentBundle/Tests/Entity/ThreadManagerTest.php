@@ -24,11 +24,9 @@ class ThreadManagerTest extends \PHPUnit_Framework_TestCase
     protected $repository;
     protected $class;
     protected $classMetadata;
-    protected $dispatcher;
 
     public function setUp()
     {
-        $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
             ->disableOriginalConstructor()
             ->getMock();
@@ -61,13 +59,13 @@ class ThreadManagerTest extends \PHPUnit_Framework_TestCase
         $this->em->expects($this->once())
                 ->method('flush');
 
-        $manager = new ThreadManager($this->dispatcher, $this->em, $this->class);
-        $manager->saveThread($thread);
+        $manager = new ThreadManager($this->em, $this->class);
+        $manager->addThread($thread);
     }
 
     public function testGetClass()
     {
-        $manager = new ThreadManager($this->dispatcher, $this->em, $this->class);
+        $manager = new ThreadManager($this->em, $this->class);
 
         $this->assertEquals($this->class, $manager->getClass());
     }
@@ -82,7 +80,7 @@ class ThreadManagerTest extends \PHPUnit_Framework_TestCase
                 ->with($criteria)
                 ->will($this->returnValue($thread));
 
-        $manager = new ThreadManager($this->dispatcher, $this->em, $this->class);
+        $manager = new ThreadManager($this->em, $this->class);
         $result = $manager->findThreadBy($criteria);
 
         $this->assertEquals($thread, $result);
@@ -97,7 +95,7 @@ class ThreadManagerTest extends \PHPUnit_Framework_TestCase
             ->method('findAll')
             ->will($this->returnValue($threads));
 
-        $manager = new ThreadManager($this->dispatcher, $this->em, $this->class);
+        $manager = new ThreadManager($this->em, $this->class);
         $result = $manager->findAllThreads();
 
         $this->assertEquals($threads, $result);
@@ -113,7 +111,7 @@ class ThreadManagerTest extends \PHPUnit_Framework_TestCase
             ->with(array('id' => $threadId))
             ->will($this->returnValue($thread));
 
-        $manager = new ThreadManager($this->dispatcher, $this->em, $this->class);
+        $manager = new ThreadManager($this->em, $this->class);
         $result = $manager->findThreadById($threadId);
 
         $this->assertEquals($thread, $result);
@@ -121,7 +119,7 @@ class ThreadManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateThread()
     {
-        $manager = new ThreadManager($this->dispatcher, $this->em, $this->class);
+        $manager = new ThreadManager($this->em, $this->class);
         $result = $manager->createThread();
 
         $this->assertInstanceOf('FOS\CommentBundle\Model\ThreadInterface', $result);

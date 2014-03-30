@@ -1,8 +1,9 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form  '::form_fields.html.twig' %}
 
 <div class="" align="center">
 
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-signin">
+<form class="form-horizontal form-signin" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" >
 	
 	<div class="stepwizard">
 	<div class="stepwizard-row">
@@ -26,64 +27,65 @@
 
 
 	<h2 class="form-signin-heading">{{ 'register_right_now'|trans}}</h2>
-
-	{{ form_errors(form) }}
+	
+	{% for error in form %}
+		{{form_errors(error)}}
+	{% endfor %}
 
 	<div class="control-group">
-		<label>{{form_label(form.username)}}</label>
-		<div class="controls">
+		<label class="col-sm-4 control-label">{{form_label(form.username)|striptags}}</label>
+		<div class="col-sm-8">
 			{{form_widget(form.username , {'attr':{'class':'form-control'}} )}}
 		</div>
 	</div>
 
 	<div class="control-group">
-		<label>{{form_label(form.email)}}</label>
-		<div class="controls">
+		<label class="col-sm-4 control-label">{{form_label(form.email)|striptags}}</label>
+		<div class="col-sm-8">
 			{{form_widget(form.email , {'attr':{'class':'form-control'}})}}
 		</div>
+		
 	</div>
 
 	{% for passwordField in form.plainPassword %}
 	<div class="control-group">
-		<label>{{form_label( passwordField)}}</label>
-		<div class="controls">
+		<label class="col-sm-4 control-label">{{form_label( passwordField)|striptags}}</label>
+		<div class="col-sm-8">
 			{{form_widget( passwordField , {'attr':{'class':'form-control'}})}}
 		</div>
 	</div>
 	{% endfor %}
 	
 	<div class="control-group">
-		<label>{{form_label(form.name)}}</label>
-		<div class="controls">
+		<label class="col-sm-4 control-label">{{ form_label(form.name)|striptags}}</label>
+		<div class="col-sm-8">
 			{{form_widget(form.name , {'attr':{'class':'form-control'}})}}
 		</div>
+		
 	</div>
 	
 	<div class="control-group">
-		<label>{{form_label(form.job)}}</label>
-		<div class="controls">
+		<label class="col-sm-4 control-label">{{form_label(form.job)|striptags}}</label>
+		<div class="col-sm-8">
 			{{form_widget(form.job , {'attr':{'class':'form-control'}})}}
 		</div>
 	</div>
 
 	<div class="control-group">
-		<label>{{form_label(form.qq)}}</label>
-		<div class="controls">
+		<label class="col-sm-4 control-label">{{form_label(form.qq)|striptags}}</label>
+		<div class="col-sm-8">
 			{{form_widget(form.qq , {'attr':{'class':'form-control'}})}}
 		</div>
 	</div>
-
     <div class="control-group">
-    	<label></label>
-    	<div class="controls">
+    	<label class="col-sm-4 control-label"></label>
+    	<div class="col-sm-12">
         	<input class="btn btn-primary btn-block" type="submit" value="{{ 'registration.submit'|trans }}" />
         </div>
     </div>
     
-    {{form_widget(form)}}
+    <div class="control-group">
+   	<a class="form-link" href="{{url('fos_user_security_login')}}">{{ 'have_account'|trans}}</a>
 
 {{form_end(form)}}
-
-<a href="{{url('fos_user_security_login')}}">{{ 'have_account'|trans}}</a>
-
 </div>

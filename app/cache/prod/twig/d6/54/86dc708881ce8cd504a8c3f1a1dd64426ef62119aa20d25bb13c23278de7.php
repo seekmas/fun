@@ -41,7 +41,7 @@ class __TwigTemplate_d65486dc708881ce8cd504a8c3f1a1dd64426ef62119aa20d25bb13c232
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
     </head>
-    <body>        
+    <body style=\"margin-bottom:40px;\">        
         ";
         // line 12
         $this->displayBlock('body', $context, $blocks);

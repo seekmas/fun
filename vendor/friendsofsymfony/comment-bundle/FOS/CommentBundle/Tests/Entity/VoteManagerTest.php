@@ -20,7 +20,6 @@ use FOS\CommentBundle\Entity\VoteManager;
  */
 class VoteManagerTest extends \PHPUnit_Framework_TestCase
 {
-    protected $dispatcher;
     protected $em;
     protected $repository;
     protected $class;
@@ -28,7 +27,6 @@ class VoteManagerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
         $this->em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
             ->disableOriginalConstructor()
             ->getMock();
@@ -52,17 +50,28 @@ class VoteManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetClass()
     {
-        $manager = new VoteManager($this->dispatcher, $this->em, $this->class);
+        $manager = new VoteManager($this->em, $this->class);
 
         $this->assertEquals($this->class, $manager->getClass());
     }
 
     public function testAddVote()
     {
+        $voteValue = 1;
         $vote = $this->getMock('FOS\CommentBundle\Model\VoteInterface');
-        $vote->expects($this->any())
-            ->method('getComment')
-            ->will($this->returnValue($this->getMock('FOS\CommentBundle\Model\VotableCommentInterface')));
+        $comment = $this->getMock('FOS\CommentBundle\Model\VotableCommentInterface');
+
+        $vote->expects($this->once())
+            ->method('setComment')
+            ->with($comment);
+
+        $vote->expects($this->once())
+            ->method('getValue')
+            ->will($this->returnValue($voteValue));
+
+        $comment->expects($this->once())
+            ->method('incrementScore')
+            ->with($voteValue);
 
         $this->em->expects($this->exactly(2))
             ->method('persist');
@@ -70,8 +79,8 @@ class VoteManagerTest extends \PHPUnit_Framework_TestCase
         $this->em->expects($this->once())
             ->method('flush');
 
-        $manager = new VoteManager($this->dispatcher, $this->em, $this->class);
-        $manager->saveVote($vote);
+        $manager = new VoteManager($this->em, $this->class);
+        $manager->addVote($vote, $comment);
     }
 
     public function testFindVoteBy()
@@ -84,7 +93,7 @@ class VoteManagerTest extends \PHPUnit_Framework_TestCase
             ->with($criteria)
             ->will($this->returnValue($vote));
 
-        $manager = new VoteManager($this->dispatcher, $this->em, $this->class);
+        $manager = new VoteManager($this->em, $this->class);
         $result = $manager->findVoteBy($criteria);
 
         $this->assertEquals($vote, $result);
@@ -100,7 +109,7 @@ class VoteManagerTest extends \PHPUnit_Framework_TestCase
             ->with(array('id' => $id))
             ->will($this->returnValue($vote));
 
-        $manager = new VoteManager($this->dispatcher, $this->em, $this->class);
+        $manager = new VoteManager($this->em, $this->class);
         $result = $manager->findVoteById($id);
 
         $this->assertEquals($vote, $result);
@@ -108,10 +117,8 @@ class VoteManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateVote()
     {
-        $comment = $this->getMock('FOS\CommentBundle\Model\VotableCommentInterface');
-
-        $manager = new VoteManager($this->dispatcher, $this->em, $this->class);
-        $result = $manager->createVote($comment);
+        $manager = new VoteManager($this->em, $this->class);
+        $result = $manager->createVote();
 
         $this->assertInstanceOf('FOS\CommentBundle\Model\VoteInterface', $result);
     }

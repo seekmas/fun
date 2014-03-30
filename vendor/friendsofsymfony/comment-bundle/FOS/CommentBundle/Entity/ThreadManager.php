@@ -14,7 +14,6 @@ namespace FOS\CommentBundle\Entity;
 use Doctrine\ORM\EntityManager;
 use FOS\CommentBundle\Model\ThreadInterface;
 use FOS\CommentBundle\Model\ThreadManager as BaseThreadManager;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Default ORM ThreadManager.
@@ -41,19 +40,14 @@ class ThreadManager extends BaseThreadManager
     /**
      * Constructor.
      *
-     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
-     * @param \Doctrine\ORM\EntityManager $em
-     * @param string $class
+     * @param EntityManager     $em
+     * @param string            $class
      */
-    public function __construct(EventDispatcherInterface $dispatcher, EntityManager $em, $class)
+    public function __construct(EntityManager $em, $class)
     {
-        parent::__construct($dispatcher);
-
-        $this->em = $em;
+        $this->em         = $em;
         $this->repository = $em->getRepository($class);
-
-        $metadata = $em->getClassMetadata($class);
-        $this->class = $metadata->name;
+        $this->class      = $em->getClassMetadata($class)->name;
     }
 
     /**
@@ -78,11 +72,11 @@ class ThreadManager extends BaseThreadManager
     }
 
     /**
-     * Saves a thread
+     * Saves a new thread
      *
      * @param ThreadInterface $thread
      */
-    protected function doSaveThread(ThreadInterface $thread)
+    public function addThread(ThreadInterface $thread)
     {
         $this->em->persist($thread);
         $this->em->flush();
