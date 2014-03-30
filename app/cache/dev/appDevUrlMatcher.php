@@ -140,6 +140,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Mc\\ModuleBundle\\Controller\\DashboardController::showAction',  '_route' => 'dashboard_show',);
         }
 
+        // navigation_show
+        if ($pathinfo === '/module_show') {
+            return array (  '_controller' => 'Mc\\ModuleBundle\\Controller\\NavigationController::showAction',  '_route' => 'navigation_show',);
+        }
+
         if (0 === strpos($pathinfo, '/admin')) {
             if (0 === strpos($pathinfo, '/admin/program')) {
                 // admin_program
@@ -264,6 +269,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
                 not_admin_unit_delete:
 
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/repository')) {
+            // mc_college_public
+            if ($pathinfo === '/repository') {
+                return array (  '_controller' => 'Mc\\CollegeBundle\\Controller\\RepositoryController::indexAction',  '_route' => 'mc_college_public',);
+            }
+
+            // mc_college_repository
+            if (preg_match('#^/repository/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'mc_college_repository')), array (  '_controller' => 'Mc\\CollegeBundle\\Controller\\RepositoryController::indexAction',));
             }
 
         }

@@ -79,6 +79,9 @@
         	<input class="btn btn-primary btn-block" type="submit" value="{{ 'registration.submit'|trans }}" />
         </div>
     </div>
+    
+    {{form_widget(form)}}
+
 {{form_end(form)}}
 
 <a href="{{url('fos_user_security_login')}}">{{ 'have_account'|trans}}</a>
