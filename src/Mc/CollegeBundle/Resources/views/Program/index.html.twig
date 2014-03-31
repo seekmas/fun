@@ -75,7 +75,7 @@
 	            	<dt>关键字:</dt>
 	            	<dd>{{course.keywords}}</dd>
 	            	<dt>难度:</dt>
-	            	<dd>{{course.level}}</dd>
+	            	<dd>{% for i in 1..course.level %}<span class="glyphicon glyphicon-star"></span>{% endfor %}</dd>
 	            	<dt>时长:</dt>
 	            	<dd>{{course.time}}</dd>
 	            	<dt>语言:</dt> 

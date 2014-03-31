@@ -10,7 +10,6 @@ class __TwigTemplate_4ca41528f6c370950c342b566d8d0c78ebe4d927a9d8fcb432d2f10eafa
         $this->parent = $this->env->loadTemplate("::bootstrap3.html.twig");
 
         $this->blocks = array(
-            'title' => array($this, 'block_title'),
             'left' => array($this, 'block_left'),
             'body' => array($this, 'block_body'),
             'body_footer' => array($this, 'block_body_footer'),
@@ -25,12 +24,6 @@ class __TwigTemplate_4ca41528f6c370950c342b566d8d0c78ebe4d927a9d8fcb432d2f10eafa
     protected function doDisplay(array $context, array $blocks = array())
     {
         $this->parent->display($context, array_merge($this->blocks, $blocks));
-    }
-
-    // line 3
-    public function block_title($context, array $blocks = array())
-    {
-        echo "McCollegeBundle:Repository:index";
     }
 
     // line 5
@@ -169,6 +162,6 @@ class __TwigTemplate_4ca41528f6c370950c342b566d8d0c78ebe4d927a9d8fcb432d2f10eafa
 
     public function getDebugInfo()
     {
-        return array (  152 => 55,  150 => 54,  144 => 50,  142 => 49,  139 => 48,  136 => 47,  129 => 42,  123 => 40,  120 => 39,  116 => 37,  103 => 35,  99 => 34,  92 => 30,  86 => 27,  83 => 26,  81 => 25,  77 => 23,  74 => 22,  68 => 18,  56 => 12,  52 => 11,  49 => 10,  45 => 9,  40 => 6,  37 => 5,  31 => 3,);
+        return array (  145 => 55,  143 => 54,  137 => 50,  135 => 49,  132 => 48,  129 => 47,  122 => 42,  116 => 40,  113 => 39,  109 => 37,  96 => 35,  92 => 34,  85 => 30,  79 => 27,  76 => 26,  74 => 25,  70 => 23,  67 => 22,  61 => 18,  49 => 12,  45 => 11,  42 => 10,  38 => 9,  33 => 6,  30 => 5,);
     }
 }

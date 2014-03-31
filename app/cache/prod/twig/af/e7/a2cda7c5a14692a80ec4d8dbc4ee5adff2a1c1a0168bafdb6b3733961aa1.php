@@ -189,7 +189,14 @@ class __TwigTemplate_afe7a2cda7c5a14692a80ec4d8dbc4ee5adff2a1c1a0168bafdb6b37339
 \t            \t<dt>难度:</dt>
 \t            \t<dd>";
             // line 78
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["course"]) ? $context["course"] : $this->getContext($context, "course")), "level"), "html", null, true);
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable(range(1, $this->getAttribute((isset($context["course"]) ? $context["course"] : $this->getContext($context, "course")), "level")));
+            foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+                echo "<span class=\"glyphicon glyphicon-star\"></span>";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
             echo "</dd>
 \t            \t<dt>时长:</dt>
 \t            \t<dd>";
@@ -259,6 +266,6 @@ class __TwigTemplate_afe7a2cda7c5a14692a80ec4d8dbc4ee5adff2a1c1a0168bafdb6b37339
 
     public function getDebugInfo()
     {
-        return array (  242 => 107,  236 => 106,  234 => 105,  225 => 99,  207 => 84,  202 => 82,  197 => 80,  192 => 78,  187 => 76,  181 => 73,  177 => 72,  173 => 71,  158 => 62,  153 => 61,  151 => 60,  137 => 51,  134 => 50,  131 => 49,  125 => 44,  119 => 43,  112 => 39,  108 => 38,  102 => 36,  99 => 35,  97 => 34,  94 => 33,  90 => 32,  80 => 24,  67 => 22,  63 => 21,  53 => 14,  48 => 12,  40 => 6,  37 => 5,  30 => 3,);
+        return array (  249 => 107,  243 => 106,  241 => 105,  232 => 99,  214 => 84,  209 => 82,  204 => 80,  192 => 78,  187 => 76,  181 => 73,  177 => 72,  173 => 71,  158 => 62,  153 => 61,  151 => 60,  137 => 51,  134 => 50,  131 => 49,  125 => 44,  119 => 43,  112 => 39,  108 => 38,  102 => 36,  99 => 35,  97 => 34,  94 => 33,  90 => 32,  80 => 24,  67 => 22,  63 => 21,  53 => 14,  48 => 12,  40 => 6,  37 => 5,  30 => 3,);
     }
 }

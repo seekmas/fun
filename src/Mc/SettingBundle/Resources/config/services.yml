@@ -1,0 +1,6 @@
+parameters:
+
+services:
+    upload.upyun:
+        class: Mc\AdminBundle\Service\X
+        arguments: ["lean-avatar" , "avatar" , "test8866"]

@@ -94,6 +94,8 @@
   'McAdminBundle:Unit:show.html.twig' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/views/Unit/show.html.twig',
   'McModuleBundle:Dashboard:show.html.twig' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/views/Dashboard/show.html.twig',
   'McModuleBundle:Navigation:show.html.twig' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/views/Navigation/show.html.twig',
+  'McSettingBundle:Avatar:index.html.twig' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/views/Avatar/index.html.twig',
+  'McSettingBundle:Avatar:photo.html.twig' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/views/Avatar/photo.html.twig',
   'FOSUserBundle:ChangePassword:changePassword.html.twig' => '/Applications/XAMPP/xamppfiles/htdocs/startup/app/Resources/FOSUserBundle/views/ChangePassword/changePassword.html.twig',
   'FOSUserBundle:ChangePassword:changePassword_content.html.twig' => '/Applications/XAMPP/xamppfiles/htdocs/startup/app/Resources/FOSUserBundle/views/ChangePassword/changePassword_content.html.twig',
   'FOSUserBundle:Group:edit.html.twig' => '/Applications/XAMPP/xamppfiles/htdocs/startup/app/Resources/FOSUserBundle/views/Group/edit.html.twig',

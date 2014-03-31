@@ -1,0 +1,43 @@
+{% extends "::bootstrap3.html.twig" %}
+
+{% block title %}McSettingBundle:Avatar:index{% endblock %}
+
+
+
+
+{% block left %}
+		
+	{{ render( controller('McModuleBundle:Dashboard:show') ) }}
+
+{% endblock %}
+
+{% block body %}
+
+<h3>设置 {{app.user.username}} 的形象 <small>做一个有身份的大人物</small> </h3>
+
+<div class="badger-left badger-info" data-badger="个人照片">
+	<div class="row">
+		
+		<div class="col-md-6">
+			<img src="{{avatar}}" />
+		</div>
+
+		<div class="col-md-6">
+		{{ render( controller('McSettingBundle:Avatar:photo') ) }}
+		</div>
+	</div>
+</div>
+
+<div class="badger-left badger-info" data-badger="个人经历">
+		Block with badger 1
+</div>
+
+<div class="badger-left badger-info" data-badger="技能">
+		
+</div>
+
+<div class="badger-left badger-info" data-badger="Location">
+		
+</div>
+
+{% endblock %}

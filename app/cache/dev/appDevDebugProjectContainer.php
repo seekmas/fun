@@ -325,6 +325,7 @@ class appDevDebugProjectContainer extends Container
             'twig.exception_listener' => 'getTwig_ExceptionListenerService',
             'twig.loader' => 'getTwig_LoaderService',
             'twig.translation.extractor' => 'getTwig_Translation_ExtractorService',
+            'upload.upyun' => 'getUpload_UpyunService',
             'uri_signer' => 'getUriSignerService',
             'validator' => 'getValidatorService',
             'validator.expression' => 'getValidator_ExpressionService',
@@ -727,7 +728,7 @@ class appDevDebugProjectContainer extends Container
         $d = new \Doctrine\Common\Cache\ArrayCache();
         $d->setNamespace('sf2orm_default_537ed0e004078f7940ad7178c9d35c645ea68166d5bfa38176524d8898f4d6fd');
 
-        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Entity', 1 => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Entity'));
+        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Entity', 1 => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Entity', 2 => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Entity'));
 
         $f = new \Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver(array('/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine' => 'FOS\\UserBundle\\Entity', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/doctrine' => 'FOS\\CommentBundle\\Entity'));
         $f->setGlobalBasename('mapping');
@@ -735,12 +736,13 @@ class appDevDebugProjectContainer extends Container
         $g = new \Doctrine\ORM\Mapping\Driver\DriverChain();
         $g->addDriver($e, 'Mc\\CollegeBundle\\Entity');
         $g->addDriver($e, 'Mc\\AdminBundle\\Entity');
+        $g->addDriver($e, 'Mc\\SettingBundle\\Entity');
         $g->addDriver($f, 'FOS\\UserBundle\\Entity');
         $g->addDriver($f, 'FOS\\CommentBundle\\Entity');
         $g->addDriver(new \Doctrine\ORM\Mapping\Driver\XmlDriver(new \Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator(array('/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine/model' => 'FOS\\UserBundle\\Model'), '.orm.xml')), 'FOS\\UserBundle\\Model');
 
         $h = new \Doctrine\ORM\Configuration();
-        $h->setEntityNamespaces(array('McCollegeBundle' => 'Mc\\CollegeBundle\\Entity', 'McAdminBundle' => 'Mc\\AdminBundle\\Entity', 'FOSUserBundle' => 'FOS\\UserBundle\\Entity', 'FOSCommentBundle' => 'FOS\\CommentBundle\\Entity'));
+        $h->setEntityNamespaces(array('McCollegeBundle' => 'Mc\\CollegeBundle\\Entity', 'McAdminBundle' => 'Mc\\AdminBundle\\Entity', 'McSettingBundle' => 'Mc\\SettingBundle\\Entity', 'FOSUserBundle' => 'FOS\\UserBundle\\Entity', 'FOSCommentBundle' => 'FOS\\CommentBundle\\Entity'));
         $h->setMetadataCacheImpl($b);
         $h->setQueryCacheImpl($c);
         $h->setResultCacheImpl($d);
@@ -2376,7 +2378,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getJmsSerializer_MetadataDriverService()
     {
-        $a = new \Metadata\Driver\FileLocator(array('Symfony\\Bundle\\FrameworkBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer', 'Symfony\\Bundle\\SecurityBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer', 'Symfony\\Bundle\\TwigBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer', 'Symfony\\Bundle\\MonologBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/monolog-bundle/Symfony/Bundle/MonologBundle/Resources/config/serializer', 'Symfony\\Bundle\\SwiftmailerBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/config/serializer', 'Symfony\\Bundle\\AsseticBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/assetic-bundle/Symfony/Bundle/AsseticBundle/Resources/config/serializer', 'Doctrine\\Bundle\\DoctrineBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/config/serializer', 'Sensio\\Bundle\\FrameworkExtraBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle/Resources/config/serializer', 'Mc\\CollegeBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/config/serializer', 'Mc\\AdminBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/config/serializer', 'Mc\\ModuleBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/config/serializer', 'FOS\\UserBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/serializer', 'Bmatzner\\FontAwesomeBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/bmatzner/fontawesome-bundle/Bmatzner/FontAwesomeBundle/Resources/config/serializer', 'Knp\\Bundle\\PaginatorBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/config/serializer', 'FOS\\RestBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer', 'FOS\\CommentBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/serializer', 'JMS\\SerializerBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer', 'Symfony\\Bundle\\WebProfilerBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer', 'Sensio\\Bundle\\DistributionBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer', 'Sensio\\Bundle\\GeneratorBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer'));
+        $a = new \Metadata\Driver\FileLocator(array('Symfony\\Bundle\\FrameworkBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer', 'Symfony\\Bundle\\SecurityBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer', 'Symfony\\Bundle\\TwigBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer', 'Symfony\\Bundle\\MonologBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/monolog-bundle/Symfony/Bundle/MonologBundle/Resources/config/serializer', 'Symfony\\Bundle\\SwiftmailerBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/config/serializer', 'Symfony\\Bundle\\AsseticBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/assetic-bundle/Symfony/Bundle/AsseticBundle/Resources/config/serializer', 'Doctrine\\Bundle\\DoctrineBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/config/serializer', 'Sensio\\Bundle\\FrameworkExtraBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle/Resources/config/serializer', 'Mc\\CollegeBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/config/serializer', 'Mc\\AdminBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/config/serializer', 'Mc\\ModuleBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/config/serializer', 'Mc\\SettingBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/config/serializer', 'FOS\\UserBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/serializer', 'Bmatzner\\FontAwesomeBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/bmatzner/fontawesome-bundle/Bmatzner/FontAwesomeBundle/Resources/config/serializer', 'Knp\\Bundle\\PaginatorBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/config/serializer', 'FOS\\RestBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer', 'FOS\\CommentBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/serializer', 'JMS\\SerializerBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer', 'Symfony\\Bundle\\WebProfilerBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer', 'Sensio\\Bundle\\DistributionBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer', 'Sensio\\Bundle\\GeneratorBundle' => '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer'));
 
         return $this->services['jms_serializer.metadata_driver'] = new \JMS\Serializer\Metadata\Driver\DoctrineTypeDriver(new \Metadata\Driver\DriverChain(array(0 => new \JMS\Serializer\Metadata\Driver\YamlDriver($a), 1 => new \JMS\Serializer\Metadata\Driver\XmlDriver($a), 2 => new \JMS\Serializer\Metadata\Driver\PhpDriver($a), 3 => new \JMS\Serializer\Metadata\Driver\AnnotationDriver($this->get('annotation_reader')))), $this->get('doctrine'));
     }
@@ -3156,7 +3158,7 @@ class appDevDebugProjectContainer extends Container
         $g = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($d, array('always_use_default_target_path' => false, 'default_target_path' => '/', 'login_path' => '/login', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $g->setProviderKey('main');
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_provider.username'), 1 => $this->get('security.user.provider.concrete.in_memory')), 'main', $b, $c), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $this->get('security.authentication.manager'), $this->get('security.authentication.session_strategy'), $d, 'main', $g, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '53390258488d0', $b), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false), NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_provider.username'), 1 => $this->get('security.user.provider.concrete.in_memory')), 'main', $b, $c), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $this->get('security.authentication.manager'), $this->get('security.authentication.session_strategy'), $d, 'main', $g, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c, $this->get('form.csrf_provider')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '5339a50e11dfd', $b), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false), NULL, NULL, $b));
     }
 
     /**
@@ -4281,6 +4283,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
         $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/translations/messages.zh_CN.yml', 'zh_CN', 'messages');
+        $instance->addResource('xlf', '/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/translations/messages.fr.xlf', 'fr', 'messages');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ar.yml', 'ar', 'FOSUserBundle');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.bg.yml', 'bg', 'FOSUserBundle');
         $instance->addResource('yml', '/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ca.yml', 'ca', 'FOSUserBundle');
@@ -4455,6 +4458,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/views', 'McCollege');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/views', 'McAdmin');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/views', 'McModule');
+        $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/views', 'McSetting');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/app/Resources/FOSUserBundle/views', 'FOSUser');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/views', 'FOSUser');
         $instance->addPath('/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/views', 'KnpPaginator');
@@ -4478,6 +4482,19 @@ class appDevDebugProjectContainer extends Container
     protected function getTwig_Translation_ExtractorService()
     {
         return $this->services['twig.translation.extractor'] = new \Symfony\Bridge\Twig\Translation\TwigExtractor($this->get('twig'));
+    }
+
+    /**
+     * Gets the 'upload.upyun' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Mc\AdminBundle\Service\X A Mc\AdminBundle\Service\X instance.
+     */
+    protected function getUpload_UpyunService()
+    {
+        return $this->services['upload.upyun'] = new \Mc\AdminBundle\Service\X('lean-avatar', 'avatar', 'test8866');
     }
 
     /**
@@ -4809,7 +4826,7 @@ class appDevDebugProjectContainer extends Container
         $b = $this->get('security.user_checker');
         $c = $this->get('security.encoder_factory');
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('53390258488d0'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'secured_area', $c, true)), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5339a50e11dfd'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'secured_area', $c, true)), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -5096,6 +5113,7 @@ class appDevDebugProjectContainer extends Container
                 'McCollegeBundle' => 'Mc\\CollegeBundle\\McCollegeBundle',
                 'McAdminBundle' => 'Mc\\AdminBundle\\McAdminBundle',
                 'McModuleBundle' => 'Mc\\ModuleBundle\\McModuleBundle',
+                'McSettingBundle' => 'Mc\\SettingBundle\\McSettingBundle',
                 'FOSUserBundle' => 'FOS\\UserBundle\\FOSUserBundle',
                 'BmatznerFontAwesomeBundle' => 'Bmatzner\\FontAwesomeBundle\\BmatznerFontAwesomeBundle',
                 'KnpPaginatorBundle' => 'Knp\\Bundle\\PaginatorBundle\\KnpPaginatorBundle',

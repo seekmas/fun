@@ -1,15 +1,18 @@
+mc_setting:
+    resource: "@McSettingBundle/Resources/config/routing.yml"
+    prefix:   /profile
+
 mc_module:
     resource: "@McModuleBundle/Resources/config/routing.yml"
     prefix:   /
 
 mc_admin:
     resource: "@McAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin
+    prefix:   /the_lean_course
 
 mc_college:
     resource: "@McCollegeBundle/Resources/config/routing.yml"
     prefix:   /
-
 
 #fos user routing
 fos_user_security:

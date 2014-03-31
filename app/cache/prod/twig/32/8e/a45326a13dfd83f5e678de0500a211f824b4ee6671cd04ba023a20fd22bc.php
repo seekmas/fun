@@ -14,6 +14,7 @@ class __TwigTemplate_328ea45326a13dfd83f5e678de0500a211f824b4ee6671cd04ba023a20f
             'meta' => array($this, 'block_meta'),
             'stylesheets' => array($this, 'block_stylesheets'),
             'head_javascripts' => array($this, 'block_head_javascripts'),
+            'stylesheets_head' => array($this, 'block_stylesheets_head'),
             'base' => array($this, 'block_base'),
             'javascripts' => array($this, 'block_javascripts'),
         );
@@ -45,11 +46,16 @@ class __TwigTemplate_328ea45326a13dfd83f5e678de0500a211f824b4ee6671cd04ba023a20f
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
         <style>body{padding-top: 70px;}</style>
-    </head>
+
+        ";
+        // line 13
+        $this->displayBlock('stylesheets_head', $context, $blocks);
+        // line 14
+        echo "    </head>
 <body style=\"margin-bottom:40px;\">
 
     ";
-        // line 15
+        // line 17
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("McModuleBundle:Navigation:show"));
         echo "
 
@@ -58,17 +64,17 @@ class __TwigTemplate_328ea45326a13dfd83f5e678de0500a211f824b4ee6671cd04ba023a20f
         <div class=\"row\">
 
             ";
-        // line 21
+        // line 23
         $this->displayBlock('base', $context, $blocks);
-        // line 22
+        // line 24
         echo "
         </div>
         </div>
         
         ";
-        // line 26
+        // line 28
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 27
+        // line 29
         echo "
 </body>
 </html>";
@@ -95,12 +101,17 @@ class __TwigTemplate_328ea45326a13dfd83f5e678de0500a211f824b4ee6671cd04ba023a20f
     {
     }
 
-    // line 21
+    // line 13
+    public function block_stylesheets_head($context, array $blocks = array())
+    {
+    }
+
+    // line 23
     public function block_base($context, array $blocks = array())
     {
     }
 
-    // line 26
+    // line 28
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -117,6 +128,6 @@ class __TwigTemplate_328ea45326a13dfd83f5e678de0500a211f824b4ee6671cd04ba023a20f
 
     public function getDebugInfo()
     {
-        return array (  104 => 26,  99 => 21,  94 => 9,  89 => 8,  84 => 7,  64 => 22,  62 => 21,  44 => 10,  38 => 8,  36 => 7,  25 => 1,  77 => 18,  72 => 27,  58 => 19,  53 => 15,  51 => 16,  42 => 9,  34 => 4,  31 => 5,  69 => 17,  65 => 16,  60 => 15,  57 => 14,  50 => 10,  45 => 8,  41 => 9,  32 => 5,  29 => 4,  191 => 75,  189 => 74,  184 => 71,  178 => 67,  172 => 64,  169 => 63,  167 => 62,  163 => 60,  160 => 59,  154 => 55,  148 => 54,  141 => 50,  137 => 49,  131 => 47,  125 => 43,  123 => 42,  120 => 41,  116 => 40,  107 => 33,  100 => 31,  90 => 28,  87 => 27,  78 => 5,  73 => 21,  70 => 26,  67 => 8,  63 => 18,  56 => 18,  52 => 13,  47 => 11,  40 => 8,  37 => 6,  30 => 3,);
+        return array (  115 => 28,  110 => 23,  105 => 13,  100 => 9,  90 => 7,  84 => 5,  76 => 28,  70 => 24,  68 => 23,  59 => 17,  26 => 1,  95 => 8,  91 => 22,  86 => 21,  83 => 20,  78 => 29,  64 => 15,  54 => 14,  45 => 10,  41 => 7,  37 => 7,  32 => 5,  29 => 4,  60 => 14,  55 => 14,  52 => 13,  49 => 9,  42 => 9,  39 => 8,  36 => 6,  30 => 3,);
     }
 }

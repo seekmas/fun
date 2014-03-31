@@ -21,18 +21,18 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
 ";
         // line 4
         $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "session"), "flashbag"), "all", array(), "method"));
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session"), "flashbag"), "all", array(), "method"));
         foreach ($context['_seq'] as $context["type"] => $context["messages"]) {
             // line 5
             echo "    ";
             $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["messages"]) ? $context["messages"] : null));
+            $context['_seq'] = twig_ensure_traversable((isset($context["messages"]) ? $context["messages"] : $this->getContext($context, "messages")));
             foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
                 // line 6
                 echo "        <div class=\"alert alert-success\">
             ";
                 // line 7
-                echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : null), "html", null, true);
+                echo twig_escape_filter($this->env, (isset($context["message"]) ? $context["message"] : $this->getContext($context, "message")), "html", null, true);
                 echo "
         </div>
     ";
@@ -62,7 +62,7 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
         echo ":</dt>
     \t<dd> ";
         // line 20
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "username"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "username"), "html", null, true);
         echo "</dd>
     \t<dt> ";
         // line 21
@@ -70,7 +70,7 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
         echo ":</dt>
     \t<dd> ";
         // line 22
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "email"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "email"), "html", null, true);
         echo "</dd>
         <dt> ";
         // line 23
@@ -78,7 +78,7 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
         echo ":</dt>
         <dd> ";
         // line 24
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "name"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "name"), "html", null, true);
         echo "</dd>
         <dt> ";
         // line 25
@@ -86,7 +86,7 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
         echo ":</dt>
         <dd> ";
         // line 26
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "job"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "job"), "html", null, true);
         echo "</dd>
         <dt> ";
         // line 27
@@ -94,7 +94,7 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
         echo ":</dt>
         <dd> ";
         // line 28
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "qq"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "qq"), "html", null, true);
         echo "</dd>
 
     </dl>
@@ -113,6 +113,6 @@ class __TwigTemplate_ebecad94e87c313848677b74df8b28d4d65ea8a6be885c6266512e51fe1
 
     public function getDebugInfo()
     {
-        return array (  81 => 24,  110 => 58,  96 => 53,  23 => 4,  20 => 1,  146 => 66,  129 => 55,  74 => 24,  242 => 107,  236 => 106,  234 => 105,  225 => 99,  207 => 84,  202 => 82,  197 => 80,  192 => 78,  181 => 73,  153 => 61,  134 => 50,  97 => 28,  76 => 46,  104 => 35,  84 => 25,  77 => 23,  58 => 12,  53 => 9,  34 => 9,  65 => 20,  191 => 75,  184 => 71,  178 => 67,  172 => 64,  167 => 62,  160 => 59,  148 => 54,  137 => 60,  120 => 41,  100 => 31,  90 => 32,  70 => 20,  52 => 13,  37 => 10,  480 => 162,  474 => 161,  469 => 158,  461 => 155,  457 => 153,  453 => 151,  444 => 149,  440 => 148,  437 => 147,  435 => 146,  430 => 144,  427 => 143,  423 => 142,  413 => 134,  409 => 132,  407 => 131,  402 => 130,  398 => 129,  393 => 126,  387 => 122,  384 => 121,  381 => 120,  379 => 119,  374 => 116,  368 => 112,  365 => 111,  362 => 110,  360 => 109,  355 => 106,  341 => 105,  337 => 103,  322 => 101,  314 => 99,  312 => 98,  309 => 97,  305 => 95,  298 => 91,  294 => 90,  285 => 89,  283 => 88,  278 => 86,  268 => 85,  264 => 84,  258 => 81,  252 => 80,  247 => 78,  241 => 77,  229 => 73,  220 => 70,  214 => 69,  177 => 72,  169 => 63,  140 => 55,  132 => 51,  128 => 42,  111 => 37,  107 => 33,  61 => 19,  273 => 96,  269 => 94,  254 => 92,  246 => 90,  243 => 88,  240 => 86,  238 => 85,  235 => 74,  230 => 82,  227 => 81,  224 => 71,  221 => 77,  219 => 76,  217 => 75,  208 => 68,  204 => 72,  179 => 69,  159 => 61,  143 => 56,  135 => 53,  131 => 49,  119 => 48,  108 => 38,  102 => 56,  71 => 23,  67 => 22,  63 => 14,  59 => 18,  47 => 12,  38 => 6,  94 => 33,  89 => 26,  85 => 25,  79 => 26,  75 => 23,  68 => 22,  56 => 16,  50 => 13,  29 => 3,  87 => 24,  72 => 16,  55 => 16,  21 => 2,  26 => 2,  98 => 36,  93 => 27,  88 => 27,  78 => 19,  46 => 14,  27 => 5,  40 => 10,  44 => 11,  35 => 7,  31 => 4,  43 => 8,  41 => 11,  28 => 3,  201 => 92,  196 => 90,  183 => 82,  171 => 61,  166 => 71,  163 => 60,  158 => 62,  156 => 66,  151 => 60,  142 => 59,  138 => 53,  136 => 56,  123 => 42,  121 => 35,  117 => 40,  115 => 37,  105 => 40,  101 => 34,  91 => 32,  69 => 21,  66 => 20,  62 => 14,  49 => 9,  24 => 4,  32 => 6,  25 => 1,  22 => 3,  19 => 2,  209 => 82,  203 => 78,  199 => 67,  193 => 73,  189 => 74,  187 => 76,  182 => 66,  176 => 64,  173 => 71,  168 => 72,  164 => 59,  162 => 59,  154 => 55,  149 => 51,  147 => 58,  144 => 49,  141 => 50,  133 => 55,  130 => 47,  125 => 44,  122 => 40,  116 => 33,  112 => 44,  109 => 34,  106 => 36,  103 => 32,  99 => 33,  95 => 33,  92 => 32,  86 => 30,  82 => 48,  80 => 29,  73 => 22,  64 => 22,  60 => 17,  57 => 14,  54 => 16,  51 => 14,  48 => 11,  45 => 10,  42 => 10,  39 => 10,  36 => 7,  33 => 6,  30 => 3,);
+        return array (  97 => 28,  93 => 27,  89 => 26,  85 => 25,  77 => 23,  73 => 22,  69 => 21,  65 => 20,  61 => 19,  55 => 16,  27 => 5,  23 => 4,  19 => 2,  47 => 9,  36 => 7,  26 => 2,  20 => 1,  121 => 35,  116 => 33,  106 => 36,  104 => 35,  101 => 34,  99 => 33,  87 => 24,  81 => 24,  78 => 19,  72 => 16,  68 => 15,  63 => 14,  60 => 13,  53 => 9,  48 => 11,  44 => 6,  40 => 5,  35 => 7,  32 => 6,  31 => 4,  28 => 3,);
     }
 }

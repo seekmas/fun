@@ -1,0 +1,7 @@
+setting_avatar:
+    pattern: /setting_avatar
+    defaults: { _controller: McSettingBundle:Avatar:index }
+
+upload_avatar:
+    pattern: /upload_avatar
+    defaults: { _controller: McSettingBundle:Avatar:upload }

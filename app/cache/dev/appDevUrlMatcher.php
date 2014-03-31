@@ -40,6 +40,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/css/d4266d1')) {
+            // _assetic_d4266d1
+            if ($pathinfo === '/css/d4266d1.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => 'd4266d1',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_d4266d1',);
+            }
+
+            // _assetic_d4266d1_0
+            if ($pathinfo === '/css/d4266d1_comments_1.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => 'd4266d1',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_d4266d1_0',);
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/_')) {
             // _wdt
             if (0 === strpos($pathinfo, '/_wdt') && preg_match('#^/_wdt/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
@@ -148,6 +161,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // setting_avatar
+        if ($pathinfo === '/profile/setting_avatar') {
+            return array (  '_controller' => 'Mc\\SettingBundle\\Controller\\AvatarController::indexAction',  '_route' => 'setting_avatar',);
+        }
+
         // dashboard_show
         if ($pathinfo === '/dashboard_show') {
             return array (  '_controller' => 'Mc\\ModuleBundle\\Controller\\DashboardController::showAction',  '_route' => 'dashboard_show',);
@@ -158,10 +176,10 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Mc\\ModuleBundle\\Controller\\NavigationController::showAction',  '_route' => 'navigation_show',);
         }
 
-        if (0 === strpos($pathinfo, '/admin')) {
-            if (0 === strpos($pathinfo, '/admin/program')) {
+        if (0 === strpos($pathinfo, '/the_lean_course')) {
+            if (0 === strpos($pathinfo, '/the_lean_course/program')) {
                 // admin_program
-                if (rtrim($pathinfo, '/') === '/admin/program') {
+                if (rtrim($pathinfo, '/') === '/the_lean_course/program') {
                     if (substr($pathinfo, -1) !== '/') {
                         return $this->redirect($pathinfo.'/', 'admin_program');
                     }
@@ -170,17 +188,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
 
                 // admin_program_show
-                if (preg_match('#^/admin/program/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/program/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_program_show')), array (  '_controller' => 'Mc\\AdminBundle\\Controller\\ProgramController::showAction',));
                 }
 
                 // admin_program_new
-                if ($pathinfo === '/admin/program/new') {
+                if ($pathinfo === '/the_lean_course/program/new') {
                     return array (  '_controller' => 'Mc\\AdminBundle\\Controller\\ProgramController::newAction',  '_route' => 'admin_program_new',);
                 }
 
                 // admin_program_create
-                if ($pathinfo === '/admin/program/create') {
+                if ($pathinfo === '/the_lean_course/program/create') {
                     if ($this->context->getMethod() != 'POST') {
                         $allow[] = 'POST';
                         goto not_admin_program_create;
@@ -191,12 +209,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 not_admin_program_create:
 
                 // admin_program_edit
-                if (preg_match('#^/admin/program/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/program/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_program_edit')), array (  '_controller' => 'Mc\\AdminBundle\\Controller\\ProgramController::editAction',));
                 }
 
                 // admin_program_update
-                if (preg_match('#^/admin/program/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/program/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
                     if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
                         $allow = array_merge($allow, array('POST', 'PUT'));
                         goto not_admin_program_update;
@@ -207,7 +225,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 not_admin_program_update:
 
                 // admin_program_delete
-                if (preg_match('#^/admin/program/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/program/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
                     if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
                         $allow = array_merge($allow, array('POST', 'DELETE'));
                         goto not_admin_program_delete;
@@ -219,9 +237,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
-            if (0 === strpos($pathinfo, '/admin/unit')) {
+            if (0 === strpos($pathinfo, '/the_lean_course/unit')) {
                 // admin_unit
-                if (rtrim($pathinfo, '/') === '/admin/unit') {
+                if (rtrim($pathinfo, '/') === '/the_lean_course/unit') {
                     if (substr($pathinfo, -1) !== '/') {
                         return $this->redirect($pathinfo.'/', 'admin_unit');
                     }
@@ -230,22 +248,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
 
                 // admin_unit_pagination
-                if (preg_match('#^/admin/unit/(?P<program>\\d+)/(?P<page>\\d+)$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/unit/(?P<program>\\d+)/(?P<page>\\d+)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_unit_pagination')), array (  '_controller' => 'Mc\\AdminBundle\\Controller\\UnitController::indexAction',));
                 }
 
                 // admin_unit_show
-                if (preg_match('#^/admin/unit/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/unit/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_unit_show')), array (  '_controller' => 'Mc\\AdminBundle\\Controller\\UnitController::showAction',));
                 }
 
                 // admin_unit_new
-                if ($pathinfo === '/admin/unit/new') {
+                if ($pathinfo === '/the_lean_course/unit/new') {
                     return array (  '_controller' => 'Mc\\AdminBundle\\Controller\\UnitController::newAction',  '_route' => 'admin_unit_new',);
                 }
 
                 // admin_unit_create
-                if ($pathinfo === '/admin/unit/create') {
+                if ($pathinfo === '/the_lean_course/unit/create') {
                     if ($this->context->getMethod() != 'POST') {
                         $allow[] = 'POST';
                         goto not_admin_unit_create;
@@ -256,12 +274,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 not_admin_unit_create:
 
                 // admin_unit_edit
-                if (preg_match('#^/admin/unit/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/unit/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_unit_edit')), array (  '_controller' => 'Mc\\AdminBundle\\Controller\\UnitController::editAction',));
                 }
 
                 // admin_unit_update
-                if (preg_match('#^/admin/unit/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/unit/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
                     if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
                         $allow = array_merge($allow, array('POST', 'PUT'));
                         goto not_admin_unit_update;
@@ -272,7 +290,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 not_admin_unit_update:
 
                 // admin_unit_delete
-                if (preg_match('#^/admin/unit/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/the_lean_course/unit/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
                     if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
                         $allow = array_merge($allow, array('POST', 'DELETE'));
                         goto not_admin_unit_delete;

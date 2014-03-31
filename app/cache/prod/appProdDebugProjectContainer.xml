@@ -19,6 +19,7 @@
       <parameter key="McCollegeBundle">Mc\CollegeBundle\McCollegeBundle</parameter>
       <parameter key="McAdminBundle">Mc\AdminBundle\McAdminBundle</parameter>
       <parameter key="McModuleBundle">Mc\ModuleBundle\McModuleBundle</parameter>
+      <parameter key="McSettingBundle">Mc\SettingBundle\McSettingBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="BmatznerFontAwesomeBundle">Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
@@ -1534,6 +1535,12 @@
         <argument>messages</argument>
       </call>
       <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/translations/messages.fr.xlf</argument>
+        <argument>fr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
         <argument>yml</argument>
         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ar.yml</argument>
         <argument>ar</argument>
@@ -2933,7 +2940,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>533900bcb35a5</argument>
+            <argument>5339a35ab9bca</argument>
           </service>
         </argument>
         <argument type="service">
@@ -3264,7 +3271,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>533900bcb35a5</argument>
+            <argument>5339a35ab9bca</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3801,6 +3808,7 @@
             <argument type="collection">
               <argument key="McCollegeBundle">Mc\CollegeBundle\Entity</argument>
               <argument key="McAdminBundle">Mc\AdminBundle\Entity</argument>
+              <argument key="McSettingBundle">Mc\SettingBundle\Entity</argument>
               <argument key="FOSUserBundle">FOS\UserBundle\Entity</argument>
               <argument key="FOSCommentBundle">FOS\CommentBundle\Entity</argument>
             </argument>
@@ -3842,6 +3850,7 @@
                       <argument type="collection">
                         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Entity</argument>
                         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Entity</argument>
+                        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -3854,10 +3863,24 @@
                       <argument type="collection">
                         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Entity</argument>
                         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Entity</argument>
+                        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
                   <argument>Mc\AdminBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Entity</argument>
+                        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Entity</argument>
+                        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Mc\SettingBundle\Entity</argument>
                 </call>
                 <call method="addDriver">
                   <argument type="service">
@@ -3984,6 +4007,11 @@
       <argument>Mc\AdminBundle\Entity\User</argument>
     </service>
     <service id="router.helper" class="Mc\McService\RouterService\RouterHelper"/>
+    <service id="upload.upyun" class="Mc\AdminBundle\Service\X">
+      <argument>lean-avatar</argument>
+      <argument>avatar</argument>
+      <argument>test8866</argument>
+    </service>
     <service id="fos_user.security.interactive_login_listener" class="FOS\UserBundle\EventListener\LastLoginListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="fos_user.user_manager"/>
@@ -4846,6 +4874,10 @@
         <argument>McModule</argument>
       </call>
       <call method="addPath">
+        <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/views</argument>
+        <argument>McSetting</argument>
+      </call>
+      <call method="addPath">
         <argument>/Applications/XAMPP/xamppfiles/htdocs/startup/app/Resources/FOSUserBundle/views</argument>
         <argument>FOSUser</argument>
       </call>
@@ -5116,6 +5148,7 @@
                       <argument key="Mc\CollegeBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/config/serializer</argument>
                       <argument key="Mc\AdminBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/config/serializer</argument>
                       <argument key="Mc\ModuleBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/config/serializer</argument>
+                      <argument key="Mc\SettingBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/config/serializer</argument>
                       <argument key="FOS\UserBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/serializer</argument>
                       <argument key="Bmatzner\FontAwesomeBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/bmatzner/fontawesome-bundle/Bmatzner/FontAwesomeBundle/Resources/config/serializer</argument>
                       <argument key="Knp\Bundle\PaginatorBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/config/serializer</argument>
@@ -5143,6 +5176,7 @@
                       <argument key="Mc\CollegeBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/config/serializer</argument>
                       <argument key="Mc\AdminBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/config/serializer</argument>
                       <argument key="Mc\ModuleBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/config/serializer</argument>
+                      <argument key="Mc\SettingBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/config/serializer</argument>
                       <argument key="FOS\UserBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/serializer</argument>
                       <argument key="Bmatzner\FontAwesomeBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/bmatzner/fontawesome-bundle/Bmatzner/FontAwesomeBundle/Resources/config/serializer</argument>
                       <argument key="Knp\Bundle\PaginatorBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/config/serializer</argument>
@@ -5170,6 +5204,7 @@
                       <argument key="Mc\CollegeBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/CollegeBundle/Resources/config/serializer</argument>
                       <argument key="Mc\AdminBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/AdminBundle/Resources/config/serializer</argument>
                       <argument key="Mc\ModuleBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/ModuleBundle/Resources/config/serializer</argument>
+                      <argument key="Mc\SettingBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/src/Mc/SettingBundle/Resources/config/serializer</argument>
                       <argument key="FOS\UserBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/serializer</argument>
                       <argument key="Bmatzner\FontAwesomeBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/bmatzner/fontawesome-bundle/Bmatzner/FontAwesomeBundle/Resources/config/serializer</argument>
                       <argument key="Knp\Bundle\PaginatorBundle">/Applications/XAMPP/xamppfiles/htdocs/startup/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/config/serializer</argument>

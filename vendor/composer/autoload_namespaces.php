@@ -21,6 +21,7 @@ return array(
     'Presta\\SitemapBundle\\' => array($vendorDir . '/presta/sitemap-bundle'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src'),
     'PhpCollection' => array($vendorDir . '/phpcollection/phpcollection/src'),
+    'Oneup\\UploaderBundle' => array($vendorDir . '/oneup/uploader-bundle'),
     'Negotiation' => array($vendorDir . '/willdurand/negotiation/src'),
     'Mmoreram\\GearmanBundle' => array($vendorDir . '/mmoreram/gearman-bundle'),
     'Metadata\\' => array($vendorDir . '/jms/metadata/src'),
