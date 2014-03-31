@@ -35,43 +35,43 @@ class SecurityCommentAcl implements CommentAclInterface
      *
      * @var ObjectIdentityRetrievalStrategyInterface
      */
-    private $objectRetrieval;
+    protected $objectRetrieval;
 
     /**
      * The AclProvider.
      *
      * @var MutableAclProviderInterface
      */
-    private $aclProvider;
+    protected $aclProvider;
 
     /**
      * The current Security Context.
      *
      * @var SecurityContextInterface
      */
-    private $securityContext;
+    protected $securityContext;
 
     /**
      * The FQCN of the Comment object.
      *
      * @var string
      */
-    private $commentClass;
+    protected $commentClass;
 
     /**
      * The Class OID for the Comment object.
      *
      * @var ObjectIdentity
      */
-    private $oid;
+    protected $oid;
 
     /**
      * Constructor.
      *
-     * @param SecurityContextInterface $securityContext
+     * @param SecurityContextInterface                 $securityContext
      * @param ObjectIdentityRetrievalStrategyInterface $objectRetrieval
-     * @param MutableAclProviderInterface $aclProvider
-     * @param string $commentClass
+     * @param MutableAclProviderInterface              $aclProvider
+     * @param string                                   $commentClass
      */
     public function __construct(SecurityContextInterface $securityContext,
                                 ObjectIdentityRetrievalStrategyInterface $objectRetrieval,
@@ -99,7 +99,7 @@ class SecurityCommentAcl implements CommentAclInterface
     /**
      * Checks if the Security token is allowed to view the specified Comment.
      *
-     * @param CommentInterface $comment
+     * @param  CommentInterface $comment
      * @return boolean
      */
     public function canView(CommentInterface $comment)
@@ -110,7 +110,7 @@ class SecurityCommentAcl implements CommentAclInterface
     /**
      * Checks if the Security token is allowed to reply to a parent comment.
      *
-     * @param CommentInterface|null $parent
+     * @param  CommentInterface|null $parent
      * @return boolean
      */
     public function canReply(CommentInterface $parent = null)
@@ -125,7 +125,7 @@ class SecurityCommentAcl implements CommentAclInterface
     /**
      * Checks if the Security token is allowed to edit the specified Comment.
      *
-     * @param CommentInterface $comment
+     * @param  CommentInterface $comment
      * @return boolean
      */
     public function canEdit(CommentInterface $comment)
@@ -136,7 +136,7 @@ class SecurityCommentAcl implements CommentAclInterface
     /**
      * Checks if the Security token is allowed to delete the specified Comment.
      *
-     * @param CommentInterface $comment
+     * @param  CommentInterface $comment
      * @return boolean
      */
     public function canDelete(CommentInterface $comment)
@@ -147,7 +147,7 @@ class SecurityCommentAcl implements CommentAclInterface
     /**
      * Sets the default object Acl entry for the supplied Comment.
      *
-     * @param CommentInterface $comment
+     * @param  CommentInterface $comment
      * @return void
      */
     public function setDefaultAcl(CommentInterface $comment)
@@ -190,10 +190,10 @@ class SecurityCommentAcl implements CommentAclInterface
      *
      * Override this method in a subclass to change what permissions are defined.
      * Once this method has been overridden you need to run the
-     * `fos_comment:installAces --flush` command
+     * `fos:comment:installAces --flush` command
      *
-     * @param AclInterface $acl
-     * @param MaskBuilder $builder
+     * @param  AclInterface $acl
+     * @param  MaskBuilder  $builder
      * @return void
      */
     protected function doInstallFallbackAcl(AclInterface $acl, MaskBuilder $builder)

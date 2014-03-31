@@ -22,44 +22,63 @@ namespace FOS\CommentBundle\Model;
 interface ThreadManagerInterface
 {
     /**
-     * @param string $id
+     * @param  string          $id
      * @return ThreadInterface
      */
-    function findThreadById($id);
+    public function findThreadById($id);
 
     /**
      * Finds one comment thread by the given criteria
      *
-     * @param array $criteria
+     * @param  array           $criteria
      * @return ThreadInterface
      */
-    function findThreadBy(array $criteria);
+    public function findThreadBy(array $criteria);
+
+    /**
+     * Finds threads by the given criteria
+     *
+     * @param array $criteria
+     *
+     * @return array of ThreadInterface
+     */
+    public function findThreadsBy(array $criteria);
 
     /**
      * Finds all threads.
      *
      * @return array of ThreadInterface
      */
-    function findAllThreads();
+    public function findAllThreads();
 
     /**
      * Creates an empty comment thread instance
      *
+     * @param  bool   $id
      * @return Thread
      */
-    function createThread();
+    public function createThread($id = null);
 
     /**
-     * Saves a new thread
+     * Saves a thread
      *
      * @param ThreadInterface $thread
      */
-    function addThread(ThreadInterface $thread);
+    public function saveThread(ThreadInterface $thread);
+
+    /**
+     * Checks if the thread was already persisted before, or if it's a new one.
+     *
+     * @param ThreadInterface $thread
+     *
+     * @return boolean True, if it's a new thread
+     */
+    public function isNewThread(ThreadInterface $thread);
 
     /**
      * Returns the comment thread fully qualified class name
      *
      * @return string
      */
-    function getClass();
+    public function getClass();
 }

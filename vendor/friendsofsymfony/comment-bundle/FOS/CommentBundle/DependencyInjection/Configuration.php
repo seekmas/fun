@@ -11,8 +11,8 @@
 
 namespace FOS\CommentBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * This class contains the configuration information for the bundle
@@ -20,18 +20,18 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  * This information is solely responsible for how the different configuration
  * sections are normalized, and merged.
  */
-class Configuration
+class Configuration implements ConfigurationInterface
 {
     /**
      * Generates the configuration tree.
      *
      * @return NodeInterface
      */
-    public function getConfigTree()
+    public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
 
-        $treeBuilder->root('fos_comment', 'array')
+        $treeBuilder->root('fos_comment')
             ->children()
 
                 ->scalarNode('db_driver')->cannotBeOverwritten()->isRequired()->end()
@@ -39,10 +39,34 @@ class Configuration
 
                 ->arrayNode('form')->addDefaultsIfNotSet()
                     ->children()
-                        ->arrayNode('comment')->isRequired()->addDefaultsIfNotSet()
+                        ->arrayNode('comment')->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('type')->defaultValue('fos_comment.comment')->end()
+                                ->scalarNode('type')->defaultValue('fos_comment_comment')->end()
                                 ->scalarNode('name')->defaultValue('fos_comment_comment')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('thread')->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('type')->defaultValue('fos_comment_thread')->end()
+                                ->scalarNode('name')->defaultValue('fos_comment_thread')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('commentable_thread')->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('type')->defaultValue('fos_comment_commentable_thread')->end()
+                                ->scalarNode('name')->defaultValue('fos_comment_commentable_thread')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('delete_comment')->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('type')->defaultValue('fos_comment_delete_comment')->end()
+                                ->scalarNode('name')->defaultValue('fos_comment_delete_comment')->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('vote')->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('type')->defaultValue('fos_comment_vote')->end()
+                                ->scalarNode('name')->defaultValue('fos_comment_vote')->end()
                             ->end()
                         ->end()
                     ->end()
@@ -117,24 +141,15 @@ class Configuration
                         ->arrayNode('form_factory')->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('comment')->cannotBeEmpty()->defaultValue('fos_comment.form_factory.comment.default')->end()
+                                ->scalarNode('commentable_thread')->cannotBeEmpty()->defaultValue('fos_comment.form_factory.commentable_thread.default')->end()
+                                ->scalarNode('delete_comment')->cannotBeEmpty()->defaultValue('fos_comment.form_factory.delete_comment.default')->end()
+                                ->scalarNode('thread')->cannotBeEmpty()->defaultValue('fos_comment.form_factory.thread.default')->end()
+                                ->scalarNode('vote')->cannotBeEmpty()->defaultValue('fos_comment.form_factory.vote.default')->end()
                             ->end()
                         ->end()
-                        ->arrayNode('creator')->addDefaultsIfNotSet()
+                        ->arrayNode('spam_detection')
                             ->children()
-                                ->scalarNode('comment')->cannotBeEmpty()->defaultValue('fos_comment.creator.comment.default')->end()
-                                ->scalarNode('thread')->cannotBeEmpty()->defaultValue('fos_comment.creator.thread.default')->end()
-                                ->scalarNode('vote')->cannotBeEmpty()->defaultValue('fos_comment.creator.vote.default')->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('blamer')->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('comment')->cannotBeEmpty()->defaultValue('fos_comment.blamer.comment.noop')->end()
-                                ->scalarNode('vote')->cannotBeEmpty()->defaultValue('fos_comment.blamer.vote.noop')->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('spam_detection')->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('comment')->cannotBeEmpty()->defaultValue('fos_comment.spam_detection.comment.noop')->end()
+                                ->scalarNode('comment')->end()
                             ->end()
                         ->end()
                         ->arrayNode('sorting')->addDefaultsIfNotSet()
@@ -142,11 +157,12 @@ class Configuration
                                 ->scalarNode('default')->cannotBeEmpty()->defaultValue('date_desc')->end()
                             ->end()
                         ->end()
+                        ->scalarNode('markup')->end()
                     ->end()
                 ->end()
             ->end()
         ->end();
 
-        return $treeBuilder->buildTree();
+        return $treeBuilder;
     }
 }

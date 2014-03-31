@@ -1,0 +1,193 @@
+/**
+ * This file is part of the FOSCommentBundle package.
+ *
+ * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+.fos_comment_thread_show {
+    margin-top: 2em;
+    padding: 1em 20px;
+    width: 472px;
+    background: #f0f0f0;
+    box-shadow: 0 0 7px #bbb;
+    -moz-box-shadow: 0 0 7px #bbb;
+    -webkit-box-shadow: 0 0 7px #bbb;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.fos_comment_thread_show h3 {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    color: #a0a0a0;
+}
+.fos_comment_comment_show {
+  margin-top:5px; 
+  color: #31708f;
+}
+.fos_comment_comment_metas {
+  padding: 10px;
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.fos_comment_comment_body {
+    line-height: 1.5em;
+}
+.fos_comment_comments .fos_comment_comments {
+    margin-left: 2em;
+}
+.fos_comment_comment_reply {
+    text-align: right;
+}
+.fos_comment_comment_reply.replying {
+    text-align: left;
+    margin-top: 1em;
+    padding: 1em 20px;
+    background: #d6d6d6;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.fos_comment_comment_reply_show_form {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+
+}
+.fos_comment_comment_reply.fos_comment_replying button.fos_comment_comment_reply_show_form {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+
+}
+.fos_comment_thread_comments {
+    margin-bottom: 1.5em;
+}
+.fos_comment_reply_prototype {
+    display: none;
+}
+.fos_comment_thread_show > form.fos_comment_comment_form {
+    margin-bottom: 1em;
+}
+form.fos_comment_comment_form.processing {
+    opacity: 0.5;
+}
+form.fos_comment_comment_form label.author_name {
+    margin-top: 3px;
+    float:left;
+}
+form.fos_comment_comment_form label.author_name input {
+    padding: 2px 5px;
+}
+textarea {
+  display: block;
+  width: 100%;
+  height: 60px;
+  min-height: 60px;
+  max-height: 60px;
+  padding: 6px 6px;
+  margin-bottom:5px;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+form.fos_comment_comment_form.error textarea {
+    border-color: red;
+}
+.fos_comment_form_errors {
+    color: #ff0000;
+}
+.fos_comment_submit {
+    text-align: right;
+}
+.fos_comment_submit input {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+a.fos_comment_thread_feed {
+    width: 16px;
+    height: 16px;
+    display: block;
+    float: right;
+}
+.fos_comment_comment_voting {
+    float: right;
+}
+.fos_comment_comment_score {
+    display: inline-block;
+}
+.fos_comment_comment_replies {
+  margin-top:5px; 
+  color: #3c763d;
+  padding-left: 20px;
+}
+.fos_comment_comment_replies div.fos_comment_comment_metas {
+  padding: 10px;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}

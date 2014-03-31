@@ -3,14 +3,15 @@ language: php
 php:
   - 5.3
   - 5.4
+  - 5.5
 
-env:
-  - SYMFONY_VERSION=v2.0.9
-  - SYMFONY_VERSION=origin/2.0
-  - SYMFONY_VERSION=origin/master
+before_script:
+  - curl --silent http://getcomposer.org/installer | php
+  - php composer.phar install --dev --no-interaction --prefer-source
 
-before_script: php vendor/vendors.php
+script: phpunit --coverage-text --colors
 
 notifications:
   email:
     - friendsofsymfony-dev@googlegroups.com
+    - tim+build@nagel.com.au

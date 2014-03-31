@@ -49,23 +49,45 @@ class __TwigTemplate_ef82cf1bcb13fd4700c3df0575b19742a838c1cd7f0d0e20319c01450a7
         // line 10
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/mc/img/background.png"), "html", null, true);
         echo "\")}
-    </style> 
+    </style>
+
+    ";
+        // line 13
+        if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
+            // asset "d4266d1_0"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_d4266d1_0") : $this->env->getExtension('assets')->getAssetUrl("css/d4266d1_comments_1.css");
+            // line 14
+            echo "        <link rel=\"stylesheet\" href=\"";
+            echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
+            echo "\" type=\"text/css\" />
+    ";
+        } else {
+            // asset "d4266d1"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_d4266d1") : $this->env->getExtension('assets')->getAssetUrl("css/d4266d1.css");
+            echo "        <link rel=\"stylesheet\" href=\"";
+            echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
+            echo "\" type=\"text/css\" />
+    ";
+        }
+        unset($context["asset_url"]);
+        // line 16
+        echo "
 ";
     }
 
-    // line 14
+    // line 19
     public function block_head_javascripts($context, array $blocks = array())
     {
-        // line 15
+        // line 20
         echo "\t<script charset=\"utf-8\" src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/bootstrap3/dist/js/jquery-1.9.1.js"), "html", null, true);
         echo "\"></script>
 \t<script charset=\"utf-8\" src=\"";
-        // line 16
+        // line 21
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/bootstrap3/dist/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
 \t<script charset=\"utf-8\" src=\"";
-        // line 17
+        // line 22
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/mc/js/timeline.js"), "html", null, true);
         echo "\"></script>
 ";
@@ -83,6 +105,6 @@ class __TwigTemplate_ef82cf1bcb13fd4700c3df0575b19742a838c1cd7f0d0e20319c01450a7
 
     public function getDebugInfo()
     {
-        return array (  69 => 17,  65 => 16,  60 => 15,  57 => 14,  50 => 10,  45 => 8,  41 => 7,  37 => 6,  32 => 5,  29 => 4,);
+        return array (  91 => 22,  87 => 21,  82 => 20,  79 => 19,  74 => 16,  60 => 14,  56 => 13,  50 => 10,  45 => 8,  41 => 7,  37 => 6,  32 => 5,  29 => 4,);
     }
 }

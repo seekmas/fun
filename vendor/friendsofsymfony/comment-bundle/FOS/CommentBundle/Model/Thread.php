@@ -102,7 +102,7 @@ abstract class Thread implements ThreadInterface
      * @param  bool
      * @return null
      */
-    public function setIsCommentable($isCommentable)
+    public function setCommentable($isCommentable)
     {
         $this->isCommentable = (bool) $isCommentable;
     }
@@ -131,7 +131,7 @@ abstract class Thread implements ThreadInterface
      * Increments the number of comments by the supplied
      * value.
      *
-     * @param integer $by Value to increment comments by
+     * @param  integer $by Value to increment comments by
      * @return integer The new comment total
      */
     public function incrementNumComments($by = 1)

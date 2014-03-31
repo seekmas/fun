@@ -33,19 +33,19 @@ class UserChecker implements UserCheckerInterface
         }
 
         if (!$user->isAccountNonLocked()) {
-            $ex = new LockedException('User account is locked.');
+            $ex = new LockedException('账户被锁/User account is locked.');
             $ex->setUser($user);
             throw $ex;
         }
 
         if (!$user->isEnabled()) {
-            $ex = new DisabledException('User account is disabled.');
+            $ex = new DisabledException('还未激活的账户/User account is disabled.');
             $ex->setUser($user);
             throw $ex;
         }
 
         if (!$user->isAccountNonExpired()) {
-            $ex = new AccountExpiredException('User account has expired.');
+            $ex = new AccountExpiredException('账户已经失效/User account has expired.');
             $ex->setUser($user);
             throw $ex;
         }

@@ -11,7 +11,7 @@
 
 namespace FOS\CommentBundle\Model;
 
-use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * A signed vote is bound to a FOS\UserBundle User model.
@@ -25,12 +25,12 @@ interface SignedVoteInterface extends VoteInterface
      *
      * @param UserInterface $user
      */
-    function setVoter(UserInterface $voter);
+    public function setVoter(UserInterface $voter);
 
     /**
      * Gets the owner of the vote
      *
      * @return UserInterface
      */
-    function getVoter();
+    public function getVoter();
 }

@@ -38,8 +38,8 @@ class ThreadFormFactory implements ThreadFormFactoryInterface
      * Constructor.
      *
      * @param FormFactoryInterface $formFactory
-     * @param string $type
-     * @param string $name
+     * @param string               $type
+     * @param string               $name
      */
     public function __construct(FormFactoryInterface $formFactory, $type, $name)
     {
@@ -55,7 +55,7 @@ class ThreadFormFactory implements ThreadFormFactoryInterface
      */
     public function createForm()
     {
-        $builder = $this->formFactory->createNamedBuilder($this->type, $this->name);
+        $builder = $this->formFactory->createNamedBuilder($this->name, $this->type, null, array('validation_groups' => array('CreateThread')));
 
         return $builder->getForm();
     }

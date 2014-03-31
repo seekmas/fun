@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="{{ asset( 'bundles/mc/css/bootstrap_pack.css') }}" />
     <style>
         body{background: url( "{{asset('bundles/mc/img/background.png')}}")}
-    </style> 
+    </style>
+
+    {% stylesheets '@McAdminBundle/Resources/assets/css/comments.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+
 {% endblock %}
 
 {% block head_javascripts %}

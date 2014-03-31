@@ -18,9 +18,13 @@ fos_comment:
     acl: true
     service:
         acl:
-            thread: fos_comment.acl.thread.roles
+            thread:  fos_comment.acl.thread.roles
             comment: fos_comment.acl.comment.roles
-            vote: fos_comment.acl.vote.roles
+            vote:    fos_comment.acl.vote.roles
+        manager:
+            thread:  fos_comment.manager.thread.acl
+            comment: fos_comment.manager.comment.acl
+            vote:    fos_comment.manager.vote.acl
 ```
 
 To change the roles required for specific actions, modify the `acl_roles` configuration
@@ -48,5 +52,5 @@ fos_comment:
             delete: ROLE_ADMIN
 ```
 
-## That was it!
+## That is it!
 [Return to the index.](index.md)

@@ -20,33 +20,73 @@ namespace FOS\CommentBundle\Model;
  */
 interface CommentInterface
 {
+    const STATE_VISIBLE = 0;
+
+    const STATE_DELETED = 1;
+
+    const STATE_SPAM = 2;
+
+    const STATE_PENDING = 3;
+
     /**
      * @return mixed unique ID for this comment
      */
-    function getId();
+    public function getId();
 
     /**
      * @return string name of the comment author
      */
-    function getAuthorName();
+    public function getAuthorName();
 
     /**
      * @return string
      */
-    function getBody();
+    public function getBody();
 
     /**
      * @param string $body
      */
-    function setBody($body);
+    public function setBody($body);
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
-    function getCreatedAt();
+    public function getCreatedAt();
 
     /**
      * @return ThreadInterface
      */
-    function getThread();
+    public function getThread();
+
+    /**
+     * @param ThreadInterface $thread
+     */
+    public function setThread(ThreadInterface $thread);
+
+    /**
+     * @return CommentInterface
+     */
+    public function getParent();
+
+    /**
+     * @param CommentInterface $comment
+     */
+    public function setParent(CommentInterface $comment);
+
+    /**
+     * @return integer The current state of the comment
+     */
+    public function getState();
+
+    /**
+     * @param integer state
+     */
+    public function setState($state);
+
+    /**
+     * Gets the previous state.
+     *
+     * @return integer
+     */
+    public function getPreviousState();
 }

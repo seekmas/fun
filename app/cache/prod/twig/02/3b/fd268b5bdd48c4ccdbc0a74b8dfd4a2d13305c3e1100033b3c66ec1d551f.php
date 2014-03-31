@@ -13,6 +13,7 @@ class __TwigTemplate_023bfd268b5bdd48c4ccdbc0a74b8dfd4a2d13305c3e1100033b3c66ec1
             'title' => array($this, 'block_title'),
             'left' => array($this, 'block_left'),
             'body' => array($this, 'block_body'),
+            'body_footer' => array($this, 'block_body_footer'),
         );
     }
 
@@ -183,14 +184,33 @@ class __TwigTemplate_023bfd268b5bdd48c4ccdbc0a74b8dfd4a2d13305c3e1100033b3c66ec1
         // line 71
         echo "
 \t\t<hr/>
-\t\t<div class=\"col-md-8\">
-\t\t\t
-\t\t</div>\t
-\t\t<div class=\"col-md-4\">
-\t\t\t
+
+";
+    }
+
+    // line 77
+    public function block_body_footer($context, array $blocks = array())
+    {
+        // line 78
+        echo "<div class=\"row\">
+
+
+\t<div class=\"col-md-8\">
+\t<div class=\"panel panel-default\">
+        <div class=\"panel-body\">
+\t\t\t\t\t\t";
+        // line 84
+        $this->env->loadTemplate("FOSCommentBundle:Thread:async.html.twig")->display(array_merge($context, array("id" => ((isset($context["id"]) ? $context["id"] : $this->getContext($context, "id")) + 5000))));
+        // line 85
+        echo "\t\t\t</div>
 \t\t</div>
+\t</div>
 
+\t<div class=\"col-md-4\">
+\t\t
+\t</div>
 
+</div>
 ";
     }
 
@@ -206,6 +226,6 @@ class __TwigTemplate_023bfd268b5bdd48c4ccdbc0a74b8dfd4a2d13305c3e1100033b3c66ec1
 
     public function getDebugInfo()
     {
-        return array (  184 => 71,  178 => 67,  172 => 64,  169 => 63,  167 => 62,  163 => 60,  160 => 59,  154 => 55,  148 => 54,  141 => 50,  137 => 49,  131 => 47,  125 => 43,  123 => 42,  120 => 41,  116 => 40,  107 => 33,  100 => 31,  90 => 28,  87 => 27,  78 => 23,  73 => 21,  70 => 20,  67 => 19,  63 => 18,  56 => 14,  52 => 13,  47 => 11,  40 => 6,  37 => 5,  30 => 3,);
+        return array (  205 => 85,  203 => 84,  195 => 78,  192 => 77,  185 => 71,  179 => 67,  173 => 64,  170 => 63,  168 => 62,  164 => 60,  161 => 59,  155 => 55,  149 => 54,  142 => 50,  138 => 49,  132 => 47,  126 => 43,  124 => 42,  121 => 41,  117 => 40,  108 => 33,  101 => 31,  91 => 28,  88 => 27,  79 => 23,  74 => 21,  71 => 20,  68 => 19,  64 => 18,  57 => 14,  53 => 13,  48 => 11,  41 => 6,  38 => 5,  31 => 3,);
     }
 }

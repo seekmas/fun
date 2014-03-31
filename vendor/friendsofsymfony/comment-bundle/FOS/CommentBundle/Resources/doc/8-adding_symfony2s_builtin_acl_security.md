@@ -1,4 +1,4 @@
-Step 8: Adding role based ACL security
+Step 8: Adding ACL security
 ======================================
 
 **Note:**
@@ -20,9 +20,9 @@ fos_comment:
     acl: true
     service:
         manager:
-            thread: fos_comment.manager.thread.acl
+            thread:  fos_comment.manager.thread.acl
             comment: fos_comment.manager.comment.acl
-            vote: fos_comment.manager.vote.acl
+            vote:    fos_comment.manager.vote.acl
 ```
 
 **Note:**
@@ -32,7 +32,7 @@ fos_comment:
 ``` yaml
 # app/config/security.yml
 security:
-
+    # ...
     acl:
         connection: default
 ```
@@ -44,10 +44,10 @@ by running:
 $ app/console fos:comment:installAces
 ```
 
-This will make sure that the Acl entries in the database are correct. This comment
+This will make sure that the Acl entries in the database are correct. This command
 must be run whenever any configuration for security changes in FOSCommentBundle,
 including enabling the security features or changing the FQCN of your extended
 FOSCommentBundle objects.
 
-## That was it!
+## That is it!
 [Return to the index.](index.md)

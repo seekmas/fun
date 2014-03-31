@@ -13,10 +13,10 @@ namespace FOS\CommentBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Exception\AclNotFoundException;
+use FOS\CommentBundle\Model\VotableCommentInterface;
 
 /**
  * This command installs global access control entries (ACEs)
@@ -51,6 +51,7 @@ EOT
     {
         if (!$this->getContainer()->has('security.acl.provider')) {
             $output->writeln('You must setup the ACL system, see the Symfony2 documentation for how to do this.');
+
             return;
         }
 
@@ -78,8 +79,7 @@ EOT
             try {
                 $provider->findAcl($oid);
                 $foundThreadAcls++;
-            }
-            catch (AclNotFoundException $e) {
+            } catch (AclNotFoundException $e) {
                 $threadAcl->setDefaultAcl($thread);
                 $createdThreadAcls++;
             }
@@ -90,22 +90,22 @@ EOT
                 try {
                     $provider->findAcl($comment_oid);
                     $foundCommentAcls++;
-                }
-                catch (AclNotFoundException $e) {
+                } catch (AclNotFoundException $e) {
                     $commentAcl->setDefaultAcl($comment);
                     $createdCommentAcls++;
                 }
 
-                foreach ($voteManager->findVotesByComment($comment) as $vote) {
-                    $vote_oid = new ObjectIdentity($vote->getId(), get_class($vote));
+                if ($comment instanceof VotableCommentInterface) {
+                    foreach ($voteManager->findVotesByComment($comment) as $vote) {
+                        $vote_oid = new ObjectIdentity($vote->getId(), get_class($vote));
 
-                    try {
-                        $provider->findAcl($vote_oid);
-                        $foundVoteAcls++;
-                    }
-                    catch (AclNotFoundException $e) {
-                        $voteAcl->setDefaultAcl($vote);
-                        $createdVoteAcls++;
+                        try {
+                            $provider->findAcl($vote_oid);
+                            $foundVoteAcls++;
+                        } catch (AclNotFoundException $e) {
+                            $voteAcl->setDefaultAcl($vote);
+                            $createdVoteAcls++;
+                        }
                     }
                 }
             }

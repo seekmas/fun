@@ -14,6 +14,7 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
             'left' => array($this, 'block_left'),
             'body' => array($this, 'block_body'),
             'fos_user_content' => array($this, 'block_fos_user_content'),
+            'body_footer' => array($this, 'block_body_footer'),
         );
     }
 
@@ -57,7 +58,12 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
         // line 19
         echo "                  </div>
                 </div>
-            </div>
+                
+                ";
+        // line 22
+        $this->displayBlock('body_footer', $context, $blocks);
+        // line 23
+        echo "            </div>
 
         </div></div>
 ";
@@ -78,6 +84,11 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
     {
     }
 
+    // line 22
+    public function block_body_footer($context, array $blocks = array())
+    {
+    }
+
     public function getTemplateName()
     {
         return "::base.html.twig";
@@ -90,6 +101,6 @@ class __TwigTemplate_c54ef9ac057cac83838ccf9ce09b2dcd8cbc99ad82b0f12e7570c30b9a8
 
     public function getDebugInfo()
     {
-        return array (  77 => 18,  72 => 16,  67 => 8,  58 => 19,  56 => 18,  53 => 17,  51 => 16,  42 => 9,  40 => 8,  34 => 4,  31 => 3,);
+        return array (  83 => 18,  78 => 16,  73 => 8,  66 => 23,  59 => 19,  54 => 17,  52 => 16,  43 => 9,  35 => 4,  32 => 3,  205 => 85,  203 => 84,  195 => 78,  192 => 77,  185 => 71,  179 => 67,  173 => 64,  170 => 63,  168 => 62,  164 => 60,  161 => 59,  155 => 55,  149 => 54,  142 => 50,  138 => 49,  132 => 47,  126 => 43,  124 => 42,  121 => 41,  117 => 40,  108 => 33,  101 => 31,  91 => 28,  88 => 22,  79 => 23,  74 => 21,  71 => 20,  68 => 19,  64 => 22,  57 => 18,  53 => 13,  48 => 11,  41 => 8,  38 => 5,  31 => 3,);
     }
 }

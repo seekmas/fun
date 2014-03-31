@@ -14,12 +14,9 @@ namespace FOS\CommentBundle\EventListener;
 use FOS\CommentBundle\Events;
 use FOS\CommentBundle\Event\VoteEvent;
 use FOS\CommentBundle\Model\SignedVoteInterface;
-use FOS\CommentBundle\Model\VoteInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use InvalidArgumentException;
-use RuntimeException;
 
 /**
  * Assigns a FOS\UserBundle user from the logged in user to a vote.
@@ -42,9 +39,9 @@ class VoteBlamerListener implements EventSubscriberInterface
      * Constructor.
      *
      * @param SecurityContextInterface $securityContext
-     * @param LoggerInterface $logger
+     * @param LoggerInterface          $logger
      */
-    public function __construct(SecurityContextInterface $securityContext, LoggerInterface $logger = null)
+    public function __construct(SecurityContextInterface $securityContext = null, LoggerInterface $logger = null)
     {
         $this->securityContext = $securityContext;
         $this->logger = $logger;
@@ -53,12 +50,20 @@ class VoteBlamerListener implements EventSubscriberInterface
     /**
      * Assigns the Security token's user to the vote.
      *
-     * @param VoteEvent $vote
+     * @param  VoteEvent $vote
      * @return void
      */
     public function blame(VoteEvent $event)
     {
         $vote = $event->getVote();
+
+        if (null === $this->securityContext) {
+            if ($this->logger) {
+                $this->logger->debug("Vote Blamer did not receive the security.context service.");
+            }
+
+            return;
+        }
 
         if (!$vote instanceof SignedVoteInterface) {
             if ($this->logger) {
@@ -76,12 +81,12 @@ class VoteBlamerListener implements EventSubscriberInterface
             return;
         }
 
-        if (!$this->securityContext->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+        if ($this->securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $vote->setVoter($this->securityContext->getToken()->getUser());
         }
     }
 
-    static public function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return array(Events::VOTE_PRE_PERSIST => 'blame');
     }

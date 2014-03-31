@@ -15,7 +15,6 @@ use FOS\CommentBundle\Model\CommentInterface;
 use FOS\CommentBundle\Model\CommentManagerInterface;
 use FOS\CommentBundle\Model\ThreadInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use InvalidArgumentException;
 
 /**
  * Wraps a real implementation of CommentManagerInterface and
@@ -30,28 +29,28 @@ class AclCommentManager implements CommentManagerInterface
      *
      * @var CommentManagerInterface
      */
-    private $realManager;
+    protected $realManager;
 
     /**
      * The CommentAcl instance for checking permissions.
      *
      * @var CommentAclInterface
      */
-    private $commentAcl;
+    protected $commentAcl;
 
     /**
      * The ThreadAcl instance for checking permissions.
      *
      * @var ThreadAclInterface
      */
-    private $threadAcl;
+    protected $threadAcl;
 
     /**
      * Constructor.
      *
      * @param CommentManagerInterface $commentManager The concrete CommentManager service
-     * @param CommentAclInterface $commentAcl The Comment Acl service
-     * @param ThreadAclInterface $threadAcl The Thread Acl service
+     * @param CommentAclInterface     $commentAcl     The Comment Acl service
+     * @param ThreadAclInterface      $threadAcl      The Thread Acl service
      */
     public function __construct(CommentManagerInterface $commentManager, CommentAclInterface $commentAcl, ThreadAclInterface $threadAcl)
     {
@@ -79,7 +78,7 @@ class AclCommentManager implements CommentManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function findCommentsByThread(ThreadInterface $thread, $depth = nul, $sorterAlias = null)
+    public function findCommentsByThread(ThreadInterface $thread, $depth = null, $sorterAlias = null)
     {
         $comments = $this->realManager->findCommentsByThread($thread, $depth, $sorterAlias);
 
@@ -109,18 +108,33 @@ class AclCommentManager implements CommentManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function addComment(CommentInterface $comment, CommentInterface $parent = null)
+    public function saveComment(CommentInterface $comment)
     {
         if (!$this->threadAcl->canView($comment->getThread())) {
             throw new AccessDeniedException();
         }
 
-        if (!$this->commentAcl->canReply($parent)) {
+        if (!$this->commentAcl->canReply($comment->getParent())) {
             throw new AccessDeniedException();
         }
 
-        $this->realManager->addComment($comment, $parent);
-        $this->commentAcl->setDefaultAcl($comment);
+        $newComment = $this->isNewComment($comment);
+
+        if (!$newComment && !$this->commentAcl->canEdit($comment)) {
+            throw new AccessDeniedException();
+        }
+
+        if (($comment::STATE_DELETED === $comment->getState() || $comment::STATE_DELETED === $comment->getPreviousState())
+            && !$this->commentAcl->canDelete($comment)
+        ) {
+            throw new AccessDeniedException();
+        }
+
+        $this->realManager->saveComment($comment);
+
+        if ($newComment) {
+            $this->commentAcl->setDefaultAcl($comment);
+        }
     }
 
     /**
@@ -148,6 +162,14 @@ class AclCommentManager implements CommentManagerInterface
     /**
      * {@inheritDoc}
      */
+    public function isNewComment(CommentInterface $comment)
+    {
+        return $this->realManager->isNewComment($comment);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getClass()
     {
         return $this->realManager->getClass();
@@ -157,7 +179,7 @@ class AclCommentManager implements CommentManagerInterface
      * Iterates over a comment tree array and makes sure all comments
      * have appropriate view permissions.
      *
-     * @param array $comments A comment tree
+     * @param  array   $comments A comment tree
      * @return boolean
      */
     protected function authorizeViewCommentTree(array $comments)

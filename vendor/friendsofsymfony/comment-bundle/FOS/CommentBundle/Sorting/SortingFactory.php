@@ -32,12 +32,12 @@ class SortingFactory
     private $defaultSorter;
 
     /**
-     * @param array $sorters An array of SortingInterfaces
+     * @param array  $sorters       An array of SortingInterfaces
      * @param string $defaultSorter The alias of the sorter to use by default
      */
     public function __construct(array $sorters, $defaultSorter)
     {
-        foreach($sorters as $alias => $sorter) {
+        foreach ($sorters as $alias => $sorter) {
             if (!$sorter instanceof SortingInterface) {
                 throw new InvalidArgumentException('Sorters must implement SortingInterface');
             }
@@ -50,11 +50,11 @@ class SortingFactory
 
     public function getSorter($alias = null)
     {
-        if (null === $alias) {
+        if (empty($alias)) {
             $alias = $this->defaultSorter;
         }
 
-        if (!$this->sorters[$alias]) {
+        if (!array_key_exists($alias, $this->sorters)) {
             throw new RuntimeException(sprintf("Unknown sorting alias '%s'", $alias));
         }
 

@@ -14,6 +14,7 @@ namespace FOS\CommentBundle\Document;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use FOS\CommentBundle\Model\ThreadInterface;
 use FOS\CommentBundle\Model\ThreadManager as BaseThreadManager;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Default ODM ThreadManager.
@@ -40,25 +41,37 @@ class ThreadManager extends BaseThreadManager
     /**
      * Constructor.
      *
-     * @param DocumentManager         $dm
-     * @param string                  $class
+     * @param DocumentManager $dm
+     * @param string          $class
      */
-    public function __construct(DocumentManager $dm, $class)
+    public function __construct(EventDispatcherInterface $dispatcher, DocumentManager $dm, $class)
     {
-        $this->dm         = $dm;
+        parent::__construct($dispatcher);
+
+        $this->dm = $dm;
         $this->repository = $dm->getRepository($class);
-        $this->class      = $dm->getClassMetadata($class)->name;
+
+        $metadata = $dm->getClassMetadata($class);
+        $this->class = $metadata->name;
     }
 
     /**
      * Finds one comment thread by the given criteria
      *
-     * @param array $criteria
+     * @param  array           $criteria
      * @return ThreadInterface
      */
     public function findThreadBy(array $criteria)
     {
         return $this->repository->findOneBy($criteria);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findThreadsBy(array $criteria)
+    {
+        return $this->repository->findBy($criteria);
     }
 
     /**
@@ -72,11 +85,19 @@ class ThreadManager extends BaseThreadManager
     }
 
     /**
-     * Saves a new thread
+     * {@inheritDoc}
+     */
+    public function isNewThread(ThreadInterface $thread)
+    {
+        return !$this->dm->getUnitOfWork()->isInIdentityMap($thread);
+    }
+
+    /**
+     * Saves a thread
      *
      * @param ThreadInterface $thread
      */
-    public function addThread(ThreadInterface $thread)
+    protected function doSaveThread(ThreadInterface $thread)
     {
         $this->dm->persist($thread);
         $this->dm->flush();

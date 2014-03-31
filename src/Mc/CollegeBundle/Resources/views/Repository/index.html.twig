@@ -43,3 +43,20 @@
 
 
 {% endblock %}
+
+{% block body_footer %}
+
+	{% if context.description is defined %}
+	<div class="row">
+		<div class="col-md-12">
+		<div class="panel panel-default">
+	        <div class="panel-body">
+				{% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': context.description.id } %}
+			</div>
+		</div>
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}
+
+

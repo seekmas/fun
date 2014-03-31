@@ -16,8 +16,7 @@ use FOS\CommentBundle\Model\CommentManager as BaseCommentManager;
 use FOS\CommentBundle\Model\ThreadInterface;
 use FOS\CommentBundle\Model\CommentInterface;
 use FOS\CommentBundle\Sorting\SortingFactory;
-use DateTime;
-use InvalidArgumentException;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Default ORM CommentManager.
@@ -44,25 +43,28 @@ class CommentManager extends BaseCommentManager
     /**
      * Constructor.
      *
-     * @param EntityManager           $em
-     * @param string                  $class
-     * @param SortingFactory          $factory
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
+     * @param \FOS\CommentBundle\Sorting\SortingFactory                   $factory
+     * @param \Doctrine\ORM\EntityManager                                 $em
+     * @param string                                                      $class
      */
-    public function __construct(EntityManager $em, $class, SortingFactory $factory)
+    public function __construct(EventDispatcherInterface $dispatcher, SortingFactory $factory, EntityManager $em, $class)
     {
-        $this->em              = $em;
-        $this->repository      = $em->getRepository($class);
-        $this->class           = $em->getClassMetadata($class)->name;
+        parent::__construct($dispatcher, $factory);
 
-        $this->setSortingFactory($factory);
+        $this->em = $em;
+        $this->repository = $em->getRepository($class);
+
+        $metadata = $em->getClassMetadata($class);
+        $this->class = $metadata->name;
     }
 
     /**
      * Returns a flat array of comments of a specific thread.
      *
-     * @param ThreadInterface $thread
-     * @param integer $depth
-     * @return array of ThreadInterface
+     * @param  ThreadInterface $thread
+     * @param  integer         $depth
+     * @return array           of ThreadInterface
      */
     public function findCommentsByThread(ThreadInterface $thread, $depth = null, $sorterAlias = null)
     {
@@ -73,11 +75,11 @@ class CommentManager extends BaseCommentManager
                 ->orderBy('c.ancestors', 'ASC')
                 ->setParameter('thread', $thread->getId());
 
-        if ($depth > 0) {
+        if (null !== $depth && $depth >= 0) {
             // Queries for an additional level so templates can determine
             // if the final 'depth' layer has children.
 
-            $qb->andWhere('c.depth <= :depth')
+            $qb->andWhere('c.depth < :depth')
                ->setParameter('depth', $depth + 1);
         }
 
@@ -86,7 +88,7 @@ class CommentManager extends BaseCommentManager
             ->execute();
 
         if (null !== $sorterAlias) {
-            $sorter = $this->getSortingFactory()->getSorter($sorterAlias);
+            $sorter = $this->sortingFactory->getSorter($sorterAlias);
             $comments = $sorter->sortFlat($comments);
         }
 
@@ -96,9 +98,9 @@ class CommentManager extends BaseCommentManager
     /**
      * Returns the requested comment tree branch
      *
-     * @param integer $commentId
-     * @param string $sorter
-     * @return array See findCommentTreeByThread
+     * @param  integer $commentId
+     * @param  string  $sorter
+     * @return array   See findCommentTreeByThread
      */
     public function findCommentTreeByCommentId($commentId, $sorter = null)
     {
@@ -114,32 +116,21 @@ class CommentManager extends BaseCommentManager
             return array();
         }
 
-        $sorter = $this->getSortingFactory()->getSorter($sorter);
+        $sorter = $this->sortingFactory->getSorter($sorter);
 
         $trimParents = current($comments)->getAncestors();
+
         return $this->organiseComments($comments, $sorter, $trimParents);
     }
 
     /**
-     * Adds a comment
+     * Performs persisting of the comment.
      *
      * @param CommentInterface $comment
      */
-    public function addComment(CommentInterface $comment)
+    protected function doSaveComment(CommentInterface $comment)
     {
-        if (null !== $comment->getId()) {
-            throw new InvalidArgumentException('Can not add already saved comment');
-        }
-
-        if (null === $comment->getThread()) {
-            throw new InvalidArgumentException('The comment must have a thread');
-        }
-
-        $thread = $comment->getThread();
-        $thread->incrementNumComments(1);
-        $thread->setLastCommentAt(new DateTime());
-
-        $this->em->persist($thread);
+        $this->em->persist($comment->getThread());
         $this->em->persist($comment);
         $this->em->flush();
     }
@@ -152,6 +143,14 @@ class CommentManager extends BaseCommentManager
     public function findCommentById($id)
     {
         return $this->repository->find($id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isNewComment(CommentInterface $comment)
+    {
+        return !$this->em->getUnitOfWork()->isInIdentityMap($comment);
     }
 
     /**

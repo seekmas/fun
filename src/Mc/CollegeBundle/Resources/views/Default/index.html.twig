@@ -70,12 +70,25 @@
 			{% endif %}
 
 		<hr/>
-		<div class="col-md-8">
-			
-		</div>	
-		<div class="col-md-4">
-			
+
+{% endblock %}
+
+
+{% block body_footer %}
+<div class="row">
+
+
+	<div class="col-md-8">
+	<div class="panel panel-default">
+        <div class="panel-body">
+						{% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': id + 5000 } %}
+			</div>
 		</div>
+	</div>
 
+	<div class="col-md-4">
+		
+	</div>
 
+</div>
 {% endblock %}

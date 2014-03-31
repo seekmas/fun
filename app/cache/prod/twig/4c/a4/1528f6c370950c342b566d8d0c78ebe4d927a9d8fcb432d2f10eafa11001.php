@@ -13,6 +13,7 @@ class __TwigTemplate_4ca41528f6c370950c342b566d8d0c78ebe4d927a9d8fcb432d2f10eafa
             'title' => array($this, 'block_title'),
             'left' => array($this, 'block_left'),
             'body' => array($this, 'block_body'),
+            'body_footer' => array($this, 'block_body_footer'),
         );
     }
 
@@ -131,6 +132,31 @@ class __TwigTemplate_4ca41528f6c370950c342b566d8d0c78ebe4d927a9d8fcb432d2f10eafa
 ";
     }
 
+    // line 47
+    public function block_body_footer($context, array $blocks = array())
+    {
+        // line 48
+        echo "
+\t";
+        // line 49
+        if ($this->getAttribute((isset($context["context"]) ? $context["context"] : null), "description", array(), "any", true, true)) {
+            // line 50
+            echo "\t<div class=\"row\">
+\t\t<div class=\"col-md-12\">
+\t\t<div class=\"panel panel-default\">
+\t        <div class=\"panel-body\">
+\t\t\t\t";
+            // line 54
+            $this->env->loadTemplate("FOSCommentBundle:Thread:async.html.twig")->display(array_merge($context, array("id" => $this->getAttribute($this->getAttribute((isset($context["context"]) ? $context["context"] : $this->getContext($context, "context")), "description"), "id"))));
+            // line 55
+            echo "\t\t\t</div>
+\t\t</div>
+\t\t</div>
+\t</div>
+\t";
+        }
+    }
+
     public function getTemplateName()
     {
         return "McCollegeBundle:Repository:index.html.twig";
@@ -143,6 +169,6 @@ class __TwigTemplate_4ca41528f6c370950c342b566d8d0c78ebe4d927a9d8fcb432d2f10eafa
 
     public function getDebugInfo()
     {
-        return array (  128 => 42,  122 => 40,  119 => 39,  115 => 37,  102 => 35,  98 => 34,  91 => 30,  85 => 27,  82 => 26,  80 => 25,  76 => 23,  73 => 22,  67 => 18,  55 => 12,  51 => 11,  48 => 10,  44 => 9,  39 => 6,  36 => 5,  30 => 3,);
+        return array (  152 => 55,  150 => 54,  144 => 50,  142 => 49,  139 => 48,  136 => 47,  129 => 42,  123 => 40,  120 => 39,  116 => 37,  103 => 35,  99 => 34,  92 => 30,  86 => 27,  83 => 26,  81 => 25,  77 => 23,  74 => 22,  68 => 18,  56 => 12,  52 => 11,  49 => 10,  45 => 9,  40 => 6,  37 => 5,  31 => 3,);
     }
 }

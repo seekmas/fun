@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    translator:      { fallback: "%locale%" }
+    translator:       ~
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ "FOSCommentBundle" ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -68,7 +68,7 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-#FOSUser
+# #FOSUser
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -84,6 +84,13 @@ fos_user:
     from_email:
         address: mot.wu@36lean.com
         sender_name: 精创学院
+        
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: Mc\AdminBundle\Entity\Comment
+            thread: Mc\AdminBundle\Entity\Thread
 
 knp_paginator:
     page_range: 30                      # default page range used in pagination control

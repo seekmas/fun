@@ -13,6 +13,7 @@ namespace FOS\CommentBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -28,16 +29,14 @@ class FOSCommentExtension extends Extension
      * Loads and processes configuration to configure the Container.
      *
      * @throws InvalidArgumentException
-     * @param array $configs
-     * @param ContainerBuilder $container
+     * @param  array                    $configs
+     * @param  ContainerBuilder         $container
      * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $processor = new Processor();
         $configuration = new Configuration();
-
-        $config = $processor->process($configuration->getConfigTree(), $configs);
+        $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
@@ -46,7 +45,7 @@ class FOSCommentExtension extends Extension
         }
         $loader->load(sprintf('%s.xml', $config['db_driver']));
 
-        foreach (array('blamer', 'form', 'creator', 'spam_detection', 'twig', 'sorting') as $basename) {
+        foreach (array('events', 'form', 'twig', 'sorting') as $basename) {
             $loader->load(sprintf('%s.xml', $basename));
         }
 
@@ -70,24 +69,44 @@ class FOSCommentExtension extends Extension
         // TODO: change it if https://github.com/symfony/DoctrineMongoDBBundle/pull/31 is merged
         if ('mongodb' === $config['db_driver']) {
             if (null === $config['model_manager_name']) {
-                $container->setAlias(new Alias('fos_comment.document_manager', false), 'doctrine.odm.mongodb.document_manager');
+                $container->setAlias('fos_comment.document_manager', new Alias('doctrine.odm.mongodb.document_manager', false));
             } else {
-                $container->setAlias(new Alias('fos_comment.document_manager', false), sprintf('doctrine.odm.%s_mongodb.document_manager', $config['model_manager_name']));
+                $container->setAlias('fos_comment.document_manager', new Alias(sprintf('doctrine.odm.%s_mongodb.document_manager', $config['model_manager_name']), false));
             }
         }
 
         $container->setParameter('fos_comment.form.comment.type', $config['form']['comment']['type']);
         $container->setParameter('fos_comment.form.comment.name', $config['form']['comment']['name']);
 
+        $container->setParameter('fos_comment.form.thread.type', $config['form']['thread']['type']);
+        $container->setParameter('fos_comment.form.thread.name', $config['form']['thread']['name']);
+
+        $container->setParameter('fos_comment.form.commentable_thread.type', $config['form']['commentable_thread']['type']);
+        $container->setParameter('fos_comment.form.commentable_thread.name', $config['form']['commentable_thread']['name']);
+
+        $container->setParameter('fos_comment.form.delete_comment.type', $config['form']['delete_comment']['type']);
+        $container->setParameter('fos_comment.form.delete_comment.name', $config['form']['delete_comment']['name']);
+
+        $container->setParameter('fos_comment.form.vote.type', $config['form']['vote']['type']);
+        $container->setParameter('fos_comment.form.vote.name', $config['form']['vote']['name']);
+
         $container->setParameter('fos_comment.sorting_factory.default_sorter', $config['service']['sorting']['default']);
 
         $container->setAlias('fos_comment.form_factory.comment', $config['service']['form_factory']['comment']);
-        $container->setAlias('fos_comment.creator.thread', $config['service']['creator']['thread']);
-        $container->setAlias('fos_comment.creator.comment', $config['service']['creator']['comment']);
-        $container->setAlias('fos_comment.creator.vote', $config['service']['creator']['vote']);
-        $container->setAlias('fos_comment.blamer.comment', $config['service']['blamer']['comment']);
-        $container->setAlias('fos_comment.blamer.vote', $config['service']['blamer']['vote']);
-        $container->setAlias('fos_comment.spam_detection.comment', $config['service']['spam_detection']['comment']);
+        $container->setAlias('fos_comment.form_factory.commentable_thread', $config['service']['form_factory']['commentable_thread']);
+        $container->setAlias('fos_comment.form_factory.delete_comment', $config['service']['form_factory']['delete_comment']);
+        $container->setAlias('fos_comment.form_factory.thread', $config['service']['form_factory']['thread']);
+        $container->setAlias('fos_comment.form_factory.vote', $config['service']['form_factory']['vote']);
+
+        if (isset($config['service']['spam_detection'])) {
+            $loader->load('spam_detection.xml');
+            $container->setAlias('fos_comment.spam_detection.comment', $config['service']['spam_detection']['comment']);
+        }
+
+        if (isset($config['service']['markup'])) {
+            $container->setAlias('fos_comment.markup', new Alias($config['service']['markup'], false));
+            $loader->load('markup.xml');
+        }
 
         $container->setAlias('fos_comment.manager.thread', $config['service']['manager']['thread']);
         $container->setAlias('fos_comment.manager.comment', $config['service']['manager']['comment']);

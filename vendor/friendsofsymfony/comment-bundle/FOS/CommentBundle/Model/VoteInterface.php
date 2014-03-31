@@ -11,6 +11,8 @@
 
 namespace FOS\CommentBundle\Model;
 
+use Symfony\Component\Validator\ExecutionContext;
+
 /**
  * Methods a vote should implement.
  *
@@ -24,25 +26,30 @@ interface VoteInterface
     /**
      * @return mixed unique ID for this vote
      */
-    function getId();
+    public function getId();
 
     /**
      * @return SignedCommentInterface
      */
-    function getComment();
+    public function getComment();
 
     /**
      * @param VotableCommentInterface $comment
      */
-    function setComment(VotableCommentInterface $comment);
+    public function setComment(VotableCommentInterface $comment);
 
     /**
      * @return integer the modification applied to the comment by this vote
      */
-    function getValue();
+    public function getValue();
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
-    function getCreatedAt();
+    public function getCreatedAt();
+
+    /**
+     * @param ExecutionContext $context
+     */
+    public function isVoteValid(ExecutionContext $context);
 }

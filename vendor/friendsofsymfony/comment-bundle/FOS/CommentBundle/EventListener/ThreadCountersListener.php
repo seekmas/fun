@@ -13,6 +13,7 @@ namespace FOS\CommentBundle\EventListener;
 
 use FOS\CommentBundle\Events;
 use FOS\CommentBundle\Event\CommentEvent;
+use FOS\CommentBundle\Model\CommentManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -22,16 +23,40 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ThreadCountersListener implements EventSubscriberInterface
 {
+    /**
+     * @var CommentManagerInterface
+     */
+    private $commentManager;
+
+    /**
+     * Constructor.
+     *
+     * @param CommentManagerInterface $commentManager
+     */
+    public function __construct(CommentManagerInterface $commentManager)
+    {
+        $this->commentManager = $commentManager;
+    }
+
+    /**
+     * Increase the thread comments number
+     *
+     * @param \FOS\CommentBundle\Event\CommentEvent $event
+     */
     public function onCommentPersist(CommentEvent $event)
     {
         $comment = $event->getComment();
-        $thread = $comment->getThread();
 
+        if (!$this->commentManager->isNewComment($comment)) {
+            return;
+        }
+
+        $thread = $comment->getThread();
         $thread->incrementNumComments(1);
         $thread->setLastCommentAt($comment->getCreatedAt());
     }
 
-    static public function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return array(Events::COMMENT_PRE_PERSIST => 'onCommentPersist');
     }

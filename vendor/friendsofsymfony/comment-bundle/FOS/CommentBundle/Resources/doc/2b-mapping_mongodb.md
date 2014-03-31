@@ -30,27 +30,10 @@ class Comment extends BaseComment
      * @MongoDB\ReferenceOne(targetDocument="MyProject\MyBundle\Document\Thread")
      */
     protected $thread;
-
-    /**
-     * @return Thread
-     */
-    public function getThread()
-    {
-        return $this->thread;
-    }
-
-    /**
-     * @param Thread $thread
-     * @return null
-     */
-    public function setThread(Thread $thread)
-    {
-        $this->thread = $thread;
-    }
 }
 ```
 
-Additionally, create the Thread object:
+Additionally, create the Thread class:
 
 ``` php
 <?php
@@ -84,6 +67,9 @@ fos_comment:
         model:
             comment: MyProject\MyBundle\Document\Comment
             thread: MyProject\MyBundle\Document\Thread
+
+assetic:
+    bundles: [ "FOSCommentBundle" ]  
 ```
 
 Or if you prefer XML:
@@ -99,6 +85,10 @@ Or if you prefer XML:
         />
     </fos_comment:class>
 </fos_comment:config>
+    
+<assetic:config>
+    <assetic:bundle name="FOSCommentBundle" />
+</assetic:config>
 ```
 
 ### Back to the main step

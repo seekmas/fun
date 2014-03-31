@@ -16,13 +16,15 @@
 
     <mapped-superclass name="FOS\CommentBundle\Document\Comment" collection="fos_comment_comment">
 
-        <field name="body" fieldName="body" type="text" />
+        <field name="body" fieldName="body" type="string" />
 
         <field name="ancestors" fieldName="ancestors" type="collection" />
 
         <field name="depth" fieldName="depth" type="int" />
 
         <field name="createdAt" fieldName="createdAt" type="date" />
+
+        <field name="state" fieldName="state" type="int" />
 
     </mapped-superclass>
 

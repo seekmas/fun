@@ -1667,77 +1667,6 @@
         ]
     },
     {
-        "name": "friendsofsymfony/user-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "FOS/UserBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-            "reference": "f8e9255eedc91bc53195de288c9fe640719b2817"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f8e9255eedc91bc53195de288c9fe640719b2817",
-            "reference": "f8e9255eedc91bc53195de288c9fe640719b2817",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2",
-            "symfony/form": "~2.1",
-            "symfony/framework-bundle": "~2.1",
-            "symfony/security-bundle": "~2.1"
-        },
-        "require-dev": {
-            "doctrine/doctrine-bundle": "*",
-            "swiftmailer/swiftmailer": ">=4.3, <6.0",
-            "symfony/validator": "~2.1",
-            "symfony/yaml": "~2.1",
-            "twig/twig": "~1.5",
-            "willdurand/propel-typehintable-behavior": "dev-master"
-        },
-        "suggest": {
-            "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
-        },
-        "time": "2014-03-18 08:55:34",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "FOS\\UserBundle": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Christophe Coevoet",
-                "email": "stof@notk.org"
-            },
-            {
-                "name": "Thibault Duplessis",
-                "email": "thibault.duplessis@gmail.com",
-                "homepage": "http://ornicar.github.com"
-            },
-            {
-                "name": "FriendsOfSymfony Community",
-                "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
-            }
-        ],
-        "description": "Symfony FOSUserBundle",
-        "homepage": "http://friendsofsymfony.github.com",
-        "keywords": [
-            "User management"
-        ]
-    },
-    {
         "name": "knplabs/knp-components",
         "version": "1.2.5",
         "version_normalized": "1.2.5.0",
@@ -1918,71 +1847,6 @@
         ]
     },
     {
-        "name": "presta/sitemap-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Presta/SitemapBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/prestaconcept/PrestaSitemapBundle.git",
-            "reference": "28e32573e8578a86d03bbc37946d462812a8a908"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/prestaconcept/PrestaSitemapBundle/zipball/28e32573e8578a86d03bbc37946d462812a8a908",
-            "reference": "28e32573e8578a86d03bbc37946d462812a8a908",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0",
-            "symfony/symfony": ">=2.1.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*@stable"
-        },
-        "suggest": {
-            "liip/doctrine-cache-bundle": "Allows to store sitemaps in cache"
-        },
-        "time": "2014-02-26 11:19:31",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.3.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Presta\\SitemapBundle\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "David Epely",
-                "homepage": "http://www.prestaconcept.net/",
-                "role": "Initial developer"
-            },
-            {
-                "name": "Alain Flaus",
-                "email": "aflaus@prestaconcept.net",
-                "homepage": "http://www.prestaconcept.net/",
-                "role": "Maintainer, Developer"
-            }
-        ],
-        "description": "A symfony 2 bundle that provides tools to build your application sitemap.",
-        "keywords": [
-            "Sitemap",
-            "Symfony2",
-            "bundle",
-            "prestaconcept",
-            "xml"
-        ]
-    },
-    {
         "name": "knplabs/knp-time-bundle",
         "version": "v1.3",
         "version_normalized": "1.3.0.0",
@@ -2091,71 +1955,6 @@
         "keywords": [
             "Symfony2",
             "cache"
-        ]
-    },
-    {
-        "name": "mmoreram/gearman-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Mmoreram/GearmanBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/mmoreram/GearmanBundle.git",
-            "reference": "ee6cf61bc666db863c9872f5c1c0f185b500b42a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/mmoreram/GearmanBundle/zipball/ee6cf61bc666db863c9872f5c1c0f185b500b42a",
-            "reference": "ee6cf61bc666db863c9872f5c1c0f185b500b42a",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/common": ">=2.2",
-            "liip/doctrine-cache-bundle": "1.0.4",
-            "php": ">=5.3.3",
-            "symfony/config": ">=2.1",
-            "symfony/console": ">=2.1",
-            "symfony/dependency-injection": ">=2.1",
-            "symfony/framework-bundle": ">=2.1",
-            "symfony/http-kernel": ">=2.1"
-        },
-        "replace": {
-            "mmoreramerino/gearman-bundle": "dev-master"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-03-20 23:51:32",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.3-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Mmoreram\\GearmanBundle": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Marc Morera",
-                "email": "yuhu@mmoreram.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://github.com/mmoreram/GearmanBundle/contributors"
-            }
-        ],
-        "description": "Adds gearman support to your Symfony2 project",
-        "homepage": "https://github.com/mmoreram/GearmanBundle",
-        "keywords": [
-            "gearman"
         ]
     },
     {
@@ -2342,113 +2141,6 @@
         ]
     },
     {
-        "name": "knplabs/knp-snappy-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Knp/Bundle/SnappyBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
-            "reference": "9927cd482cd496d49a58cd153c4a09d9062b8276"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/9927cd482cd496d49a58cd153c4a09d9062b8276",
-            "reference": "9927cd482cd496d49a58cd153c4a09d9062b8276",
-            "shasum": ""
-        },
-        "require": {
-            "knplabs/knp-snappy": "*",
-            "php": ">=5.3.2",
-            "symfony/framework-bundle": ">=2.0.0"
-        },
-        "time": "2014-03-20 16:17:22",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Knp\\Bundle\\SnappyBundle": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "KnpLabs Team",
-                "homepage": "http://knplabs.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "http://github.com/KnpLabs/KnpSnappyBundle/contributors"
-            }
-        ],
-        "description": "Easily create PDF and images in Symfony2 by converting Twig/HTML templates.",
-        "homepage": "http://github.com/KnpLabs/KnpSnappyBundle",
-        "keywords": [
-            "bundle",
-            "knp",
-            "knplabs",
-            "pdf",
-            "snappy"
-        ]
-    },
-    {
-        "name": "bmatzner/fontawesome-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Bmatzner/FontAwesomeBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/bmatzner/BmatznerFontAwesomeBundle.git",
-            "reference": "e72d1a6198231dc0eb8a691a5cf42b8a7f590fe4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/bmatzner/BmatznerFontAwesomeBundle/zipball/e72d1a6198231dc0eb8a691a5cf42b8a7f590fe4",
-            "reference": "e72d1a6198231dc0eb8a691a5cf42b8a7f590fe4",
-            "shasum": ""
-        },
-        "require": {
-            "symfony/framework-bundle": ">=2.1"
-        },
-        "time": "2013-11-22 10:28:03",
-        "type": "symfony-bundle",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Bmatzner\\FontAwesomeBundle": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT",
-            "CC BY 3.0"
-        ],
-        "authors": [
-            {
-                "name": "Bernd Matzner",
-                "email": "bernd@matznermatzner.de",
-                "homepage": "http://berndmatzner.de"
-            }
-        ],
-        "description": "FontAwesome Bundle for Symfony2",
-        "homepage": "http://fortawesome.github.com/Font-Awesome/",
-        "keywords": [
-            "css",
-            "graphics",
-            "symfony",
-            "typography",
-            "webfonts"
-        ]
-    },
-    {
         "name": "willdurand/jsonp-callback-validator",
         "version": "v1.1.0",
         "version_normalized": "1.1.0.0",
@@ -2540,147 +2232,6 @@
             "format",
             "header",
             "negotiation"
-        ]
-    },
-    {
-        "name": "friendsofsymfony/rest-bundle",
-        "version": "1.3.1",
-        "version_normalized": "1.3.1.0",
-        "target-dir": "FOS/RestBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-            "reference": "ed28a056225d911de4be4686326339a1a51b7fa9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/ed28a056225d911de4be4686326339a1a51b7fa9",
-            "reference": "ed28a056225d911de4be4686326339a1a51b7fa9",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/inflector": "1.0.*",
-            "php": ">=5.3.2",
-            "psr/log": "~1.0",
-            "symfony/framework-bundle": "~2.2",
-            "willdurand/jsonp-callback-validator": "~1.0",
-            "willdurand/negotiation": "~1.2"
-        },
-        "conflict": {
-            "jms/serializer": "<0.12",
-            "jms/serializer-bundle": "<0.11"
-        },
-        "require-dev": {
-            "jms/serializer-bundle": "0.12.*",
-            "sensio/framework-extra-bundle": "~2.2",
-            "symfony/form": "~2.2",
-            "symfony/security": "~2.2",
-            "symfony/serializer": "~2.2",
-            "symfony/validator": "~2.2",
-            "symfony/yaml": "~2.2"
-        },
-        "suggest": {
-            "jms/serializer-bundle": "Add support for advanced serialization capabilities, recommended, requires 0.12.*",
-            "sensio/framework-extra-bundle": "Add support for route annotations and the view response listener",
-            "symfony/serializer": "Add support for basic serialization capabilities and xml decoding, requires ~2.2"
-        },
-        "time": "2014-03-11 15:28:34",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "FOS\\RestBundle": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Lukas Kahwe Smith",
-                "email": "smith@pooteeweet.org"
-            },
-            {
-                "name": "FriendsOfSymfony Community",
-                "homepage": "https://github.com/friendsofsymfony/FOSRestBundle/contributors"
-            },
-            {
-                "name": "Konstantin Kudryashov",
-                "email": "ever.zet@gmail.com",
-                "homepage": "http://everzet.com"
-            }
-        ],
-        "description": "This Bundle provides various tools to rapidly develop RESTful API's with Symfony2",
-        "homepage": "http://friendsofsymfony.github.com",
-        "keywords": [
-            "rest"
-        ]
-    },
-    {
-        "name": "friendsofsymfony/comment-bundle",
-        "version": "v0.9.0",
-        "version_normalized": "0.9.0.0",
-        "target-dir": "FOS/CommentBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/FriendsOfSymfony/FOSCommentBundle.git",
-            "reference": "32eebde2732341fe3b5cf66928c8b02840f802a8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSCommentBundle/zipball/32eebde2732341fe3b5cf66928c8b02840f802a8",
-            "reference": "32eebde2732341fe3b5cf66928c8b02840f802a8",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2",
-            "symfony/framework-bundle": "2.*",
-            "symfony/security-bundle": "2.*"
-        },
-        "suggest": {
-            "doctrine/couchdb-odm-bundle": "*",
-            "symfony/doctrine-bundle": "*",
-            "symfony/mongodb-odm-bundle": "*"
-        },
-        "time": "2011-11-20 05:26:50",
-        "type": "symfony-bundle",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "FOS\\CommentBundle": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thibault Duplessis",
-                "email": "thibault.duplessis@gmail.com",
-                "homepage": "http://ornicar.github.com"
-            },
-            {
-                "name": "Tim Nagel",
-                "email": "tim@nagel.com.au"
-            },
-            {
-                "name": "FriendsOfSymfony Community",
-                "homepage": "https://github.com/friendsofsymfony/FOSCommentBundle/contributors"
-            }
-        ],
-        "description": "This Bundle provides threaded comment functionality for Symfony2 applications",
-        "homepage": "http://friendsofsymfony.github.com",
-        "keywords": [
-            "comment",
-            "forum",
-            "threads"
         ]
     },
     {
@@ -3262,6 +2813,474 @@
             "json",
             "serialization",
             "xml"
+        ]
+    },
+    {
+        "name": "friendsofsymfony/user-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "FOS/UserBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+            "reference": "f8e9255eedc91bc53195de288c9fe640719b2817"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f8e9255eedc91bc53195de288c9fe640719b2817",
+            "reference": "f8e9255eedc91bc53195de288c9fe640719b2817",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "symfony/form": "~2.1",
+            "symfony/framework-bundle": "~2.1",
+            "symfony/security-bundle": "~2.1"
+        },
+        "require-dev": {
+            "doctrine/doctrine-bundle": "*",
+            "swiftmailer/swiftmailer": ">=4.3, <6.0",
+            "symfony/validator": "~2.1",
+            "symfony/yaml": "~2.1",
+            "twig/twig": "~1.5",
+            "willdurand/propel-typehintable-behavior": "dev-master"
+        },
+        "suggest": {
+            "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
+        },
+        "time": "2014-03-18 08:55:34",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "FOS\\UserBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Christophe Coevoet",
+                "email": "stof@notk.org"
+            },
+            {
+                "name": "Thibault Duplessis",
+                "email": "thibault.duplessis@gmail.com",
+                "homepage": "http://ornicar.github.com"
+            },
+            {
+                "name": "FriendsOfSymfony Community",
+                "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
+            }
+        ],
+        "description": "Symfony FOSUserBundle",
+        "homepage": "http://friendsofsymfony.github.com",
+        "keywords": [
+            "User management"
+        ]
+    },
+    {
+        "name": "presta/sitemap-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Presta/SitemapBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/prestaconcept/PrestaSitemapBundle.git",
+            "reference": "28e32573e8578a86d03bbc37946d462812a8a908"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/prestaconcept/PrestaSitemapBundle/zipball/28e32573e8578a86d03bbc37946d462812a8a908",
+            "reference": "28e32573e8578a86d03bbc37946d462812a8a908",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "symfony/symfony": ">=2.1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*@stable"
+        },
+        "suggest": {
+            "liip/doctrine-cache-bundle": "Allows to store sitemaps in cache"
+        },
+        "time": "2014-02-26 11:19:31",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.3.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Presta\\SitemapBundle\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "David Epely",
+                "homepage": "http://www.prestaconcept.net/",
+                "role": "Initial developer"
+            },
+            {
+                "name": "Alain Flaus",
+                "email": "aflaus@prestaconcept.net",
+                "homepage": "http://www.prestaconcept.net/",
+                "role": "Maintainer, Developer"
+            }
+        ],
+        "description": "A symfony 2 bundle that provides tools to build your application sitemap.",
+        "keywords": [
+            "Sitemap",
+            "Symfony2",
+            "bundle",
+            "prestaconcept",
+            "xml"
+        ]
+    },
+    {
+        "name": "knplabs/knp-snappy-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Knp/Bundle/SnappyBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
+            "reference": "9927cd482cd496d49a58cd153c4a09d9062b8276"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/9927cd482cd496d49a58cd153c4a09d9062b8276",
+            "reference": "9927cd482cd496d49a58cd153c4a09d9062b8276",
+            "shasum": ""
+        },
+        "require": {
+            "knplabs/knp-snappy": "*",
+            "php": ">=5.3.2",
+            "symfony/framework-bundle": ">=2.0.0"
+        },
+        "time": "2014-03-20 16:17:22",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Knp\\Bundle\\SnappyBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "KnpLabs Team",
+                "homepage": "http://knplabs.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://github.com/KnpLabs/KnpSnappyBundle/contributors"
+            }
+        ],
+        "description": "Easily create PDF and images in Symfony2 by converting Twig/HTML templates.",
+        "homepage": "http://github.com/KnpLabs/KnpSnappyBundle",
+        "keywords": [
+            "bundle",
+            "knp",
+            "knplabs",
+            "pdf",
+            "snappy"
+        ]
+    },
+    {
+        "name": "mmoreram/gearman-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Mmoreram/GearmanBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mmoreram/GearmanBundle.git",
+            "reference": "ee6cf61bc666db863c9872f5c1c0f185b500b42a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mmoreram/GearmanBundle/zipball/ee6cf61bc666db863c9872f5c1c0f185b500b42a",
+            "reference": "ee6cf61bc666db863c9872f5c1c0f185b500b42a",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/common": ">=2.2",
+            "liip/doctrine-cache-bundle": "1.0.4",
+            "php": ">=5.3.3",
+            "symfony/config": ">=2.1",
+            "symfony/console": ">=2.1",
+            "symfony/dependency-injection": ">=2.1",
+            "symfony/framework-bundle": ">=2.1",
+            "symfony/http-kernel": ">=2.1"
+        },
+        "replace": {
+            "mmoreramerino/gearman-bundle": "dev-master"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2014-03-20 23:51:32",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Mmoreram\\GearmanBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Marc Morera",
+                "email": "yuhu@mmoreram.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://github.com/mmoreram/GearmanBundle/contributors"
+            }
+        ],
+        "description": "Adds gearman support to your Symfony2 project",
+        "homepage": "https://github.com/mmoreram/GearmanBundle",
+        "keywords": [
+            "gearman"
+        ]
+    },
+    {
+        "name": "bmatzner/fontawesome-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Bmatzner/FontAwesomeBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bmatzner/BmatznerFontAwesomeBundle.git",
+            "reference": "e72d1a6198231dc0eb8a691a5cf42b8a7f590fe4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/bmatzner/BmatznerFontAwesomeBundle/zipball/e72d1a6198231dc0eb8a691a5cf42b8a7f590fe4",
+            "reference": "e72d1a6198231dc0eb8a691a5cf42b8a7f590fe4",
+            "shasum": ""
+        },
+        "require": {
+            "symfony/framework-bundle": ">=2.1"
+        },
+        "time": "2013-11-22 10:28:03",
+        "type": "symfony-bundle",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Bmatzner\\FontAwesomeBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT",
+            "CC BY 3.0"
+        ],
+        "authors": [
+            {
+                "name": "Bernd Matzner",
+                "email": "bernd@matznermatzner.de",
+                "homepage": "http://berndmatzner.de"
+            }
+        ],
+        "description": "FontAwesome Bundle for Symfony2",
+        "homepage": "http://fortawesome.github.com/Font-Awesome/",
+        "keywords": [
+            "css",
+            "graphics",
+            "symfony",
+            "typography",
+            "webfonts"
+        ]
+    },
+    {
+        "name": "friendsofsymfony/rest-bundle",
+        "version": "1.3.1",
+        "version_normalized": "1.3.1.0",
+        "target-dir": "FOS/RestBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
+            "reference": "ed28a056225d911de4be4686326339a1a51b7fa9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/ed28a056225d911de4be4686326339a1a51b7fa9",
+            "reference": "ed28a056225d911de4be4686326339a1a51b7fa9",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/inflector": "1.0.*",
+            "php": ">=5.3.2",
+            "psr/log": "~1.0",
+            "symfony/framework-bundle": "~2.2",
+            "willdurand/jsonp-callback-validator": "~1.0",
+            "willdurand/negotiation": "~1.2"
+        },
+        "conflict": {
+            "jms/serializer": "<0.12",
+            "jms/serializer-bundle": "<0.11"
+        },
+        "require-dev": {
+            "jms/serializer-bundle": "0.12.*",
+            "sensio/framework-extra-bundle": "~2.2",
+            "symfony/form": "~2.2",
+            "symfony/security": "~2.2",
+            "symfony/serializer": "~2.2",
+            "symfony/validator": "~2.2",
+            "symfony/yaml": "~2.2"
+        },
+        "suggest": {
+            "jms/serializer-bundle": "Add support for advanced serialization capabilities, recommended, requires 0.12.*",
+            "sensio/framework-extra-bundle": "Add support for route annotations and the view response listener",
+            "symfony/serializer": "Add support for basic serialization capabilities and xml decoding, requires ~2.2"
+        },
+        "time": "2014-03-11 15:28:34",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "FOS\\RestBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Lukas Kahwe Smith",
+                "email": "smith@pooteeweet.org"
+            },
+            {
+                "name": "FriendsOfSymfony Community",
+                "homepage": "https://github.com/friendsofsymfony/FOSRestBundle/contributors"
+            },
+            {
+                "name": "Konstantin Kudryashov",
+                "email": "ever.zet@gmail.com",
+                "homepage": "http://everzet.com"
+            }
+        ],
+        "description": "This Bundle provides various tools to rapidly develop RESTful API's with Symfony2",
+        "homepage": "http://friendsofsymfony.github.com",
+        "keywords": [
+            "rest"
+        ]
+    },
+    {
+        "name": "friendsofsymfony/comment-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "FOS/CommentBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/FriendsOfSymfony/FOSCommentBundle.git",
+            "reference": "767daec362035288200d9c6b3bd4ef877f335e2d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/FriendsOfSymfony/FOSCommentBundle/zipball/767daec362035288200d9c6b3bd4ef877f335e2d",
+            "reference": "767daec362035288200d9c6b3bd4ef877f335e2d",
+            "shasum": ""
+        },
+        "require": {
+            "friendsofsymfony/rest-bundle": "~1.0",
+            "jms/serializer-bundle": "~0.11",
+            "php": ">=5.3.2",
+            "symfony/form": "~2.1",
+            "symfony/framework-bundle": "~2.1",
+            "symfony/security-bundle": "~2.1",
+            "symfony/twig-bundle": "~2.1",
+            "symfony/validator": "~2.1",
+            "symfony/yaml": "~2.1"
+        },
+        "require-dev": {
+            "doctrine/doctrine-bundle": "~1.1",
+            "doctrine/orm": "~2.3",
+            "friendsofsymfony/user-bundle": "~1.1",
+            "ornicar/akismet-bundle": "dev-master",
+            "symfony/assetic-bundle": "~2.1",
+            "symfony/browser-kit": "~2.1",
+            "symfony/css-selector": "~2.1"
+        },
+        "suggest": {
+            "friendsofsymfony/user-bundle": "Allows for user integration.",
+            "ornicar/akismet-bundle": "Integrate Akismet for spamdetection."
+        },
+        "time": "2014-03-19 09:47:24",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "FOS\\CommentBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tim Nagel",
+                "email": "tim@nagel.com.au"
+            },
+            {
+                "name": "FriendsOfSymfony Community",
+                "homepage": "https://github.com/friendsofsymfony/FOSCommentBundle/contributors"
+            },
+            {
+                "name": "Alexander Mols",
+                "email": "iam.asm89@gmail.com",
+                "homepage": "http://asm89.github.io/"
+            }
+        ],
+        "description": "This Bundle provides threaded comment functionality for Symfony2 applications",
+        "homepage": "http://friendsofsymfony.github.com",
+        "keywords": [
+            "comment",
+            "forum",
+            "threads"
         ]
     }
 ]
