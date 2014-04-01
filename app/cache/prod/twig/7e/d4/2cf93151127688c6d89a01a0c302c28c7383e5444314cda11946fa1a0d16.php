@@ -74,17 +74,6 @@ class __TwigTemplate_7ed42cf93151127688c6d89a01a0c302c28c7383e5444314cda11946fa1
 \t</div>
 </div>
 
-<div class=\"badger-left badger-info\" data-badger=\"个人经历\">
-\t\tBlock with badger 1
-</div>
-
-<div class=\"badger-left badger-info\" data-badger=\"技能\">
-\t\t
-</div>
-
-<div class=\"badger-left badger-info\" data-badger=\"Location\">
-\t\t
-</div>
 
 ";
     }
